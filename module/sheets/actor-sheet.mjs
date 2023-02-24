@@ -261,7 +261,10 @@ export class ROLActorSheet extends ActorSheet {
         balArm = i.system.ap
       }  
     }
-    this.actor.update ({'system.armour.regular': regArm, 'system.armour.ballistic' : balArm })
+    if (this.actor.type === 'character') {
+      this.actor.update ({'system.armour.regular': regArm, 'system.armour.ballistic' : balArm })
+    }  
+
 
    // Assign and return
     context.equipment = equipment;
