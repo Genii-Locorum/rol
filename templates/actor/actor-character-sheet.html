@@ -1,0 +1,293 @@
+<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+
+  {{!-- Sheet Header --}}
+  <header class="multi-panel-content">
+
+    <div class="image-panel">
+      <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="157" width="157"/>
+    </div>
+
+    <div class="left-panel">
+      <div class="chartype">
+    {{#isAnd isDemiMonde isCreation}} 
+        <input class="chartype" list="charTypeList" type="text" name="system.charType" value="{{system.charType}}"/>
+        <datalist id="charTypeList">
+          <option value="{{ localize 'ROL.investigator' }}"></option>
+          <option value="{{ localize 'ROL.demiMonde' }}"></option>
+        </datalist> 
+    {{else}}
+      <div class="chartype">{{system.charType}}</div>
+    {{/isAnd}}  
+    </div>  
+      <div class="charname row flexrow">
+        <label class="charname">{{ localize 'ROL.name' }} :</label>
+        <input name="name" type="text" value="{{actor.name}}"/>
+      </div>  
+      
+      <div class="charname row flexrow">
+        <label>{{ localize 'ROL.occupation' }} :</label>
+        <input name="system.occupation" type="text" value="{{system.occupation}}"/>
+      </div>
+         
+      <div class=" charname row flexrow">
+        <label>{{ localize 'ROL.placeOfBirth' }} :</label>
+        <input name="system.placeOfBirth" type="text" value="{{system.placeOfBirth}}"/>
+      </div>
+    
+      <div class=" charname row flexrow">
+        <label>{{ localize 'ROL.residence' }} :</label>
+        <input name="system.residence" type="text" value="{{system.residence}}"/>
+      </div>
+
+      <div class=" charname row flexrow">
+        <label>{{ localize 'ROL.affluence' }} :</label>
+        {{#if isCreation}}
+          <input list="affluenceList" name="system.affluence" type="text" value="{{system.affluence}}"/>
+            <datalist id="affluenceList">
+              <option value="{{ localize 'ROL.poor' }}"></option>
+              <option value="{{ localize 'ROL.average' }}"></option>
+            </datalist>
+        {{else}}  
+            <div class="affluence">{{system.affluence}}</div>
+        {{/if}}  
+      </div>
+   
+      
+      <div class=" charname row flexrow">
+        <label class="detailblockbottom">{{ localize 'ROL.pronouns' }} :</label>
+        <input name="system.pronouns" type="text" value="{{system.pronouns}}"/>
+    
+        <div></div>
+
+        <label class="detailblockbottom">{{ localize 'ROL.age' }} :</label>
+        <input name="system.age" type="text" value="{{system.age}}" data d-type="Number"/>
+      </div>
+    
+    
+    </div>
+
+    <div class="right-panel">
+      <div class="right">
+        <img class="profile-img" src="systems/rol/css/images/FOXE.png" height="85" width="85"/>
+      </div>
+   
+    </div>  
+  </header>
+
+
+  {{!-- Stats Block --}}
+
+  {{#unless isCreation}}  
+    <div class="abilities grid grid-5col">
+      {{#each system.abilities as |ability key|}}
+        <div class="resource-label attribute-name rollable align-center" data-target ={{ability.value}} data-type="Attribute" data-formula="1d100" data-label="{{ability.label}}">{{ability.label}}</div>
+      {{/each}}
+      {{#each system.abilities as |ability key|}}
+        <div class="stats-content" title="{{ localize 'ROL.halfScore' }}">{{ability.value}} / {{ability.half}}</div>
+      {{/each}}
+    </div>    
+    {{else}}
+    <div class="{{#if (gt system.abilityTotal maxStats)}} abilities-max {{else}} abilities {{/if}} grid grid-6col">
+      {{#each system.abilities as |ability key|}}
+        <div class="resource-label rollable align-center" data-type="Attribute" data-target ={{ability.value}} data-formula="1d100" data-label="{{ability.label}}">{{ability.label}}</div>
+      {{/each}}
+        <div class="resource-label align-center">Total</div>
+      {{#each system.abilities as |ability key|}}
+        <input class="stats-content" type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
+      {{/each}}
+        <div class="stats-total {{#if (gt system.abilityTotal maxStats)}} control-active {{/if}}">{{system.abilityTotal}}</div>
+    </div>
+    {{/unless}}
+
+  {{!-- Two panel --}}
+  <div class="two-panel-content">
+
+    <div class="left-panel">  
+
+    <div class="boxed">  
+    <div class="resource-label align-center luck-name rollable resource-label-gap" data-target={{system.luck.value}} data-type="Luck" data-formula="1d100" data-label="{{localize 'ROL.luckShort'}}">{{ localize 'ROL.luck' }}</div>
+
+    {{#if isLuckDetail}}
+    <div class="statblock grid grid-3col">
+      <input name="system.luck.value" title = "{{ localize 'ROL.luckCurr' }}" type="text" value="{{system.luck.value}}" data-dtype="Number"/> 
+      <div class="statdisplay"> / </div>
+      {{#if system.flags.locked}}   
+        <div class="statdisplay" title = "{{ localize 'ROL.luckMax' }}">{{system.luck.max}}</div>
+      {{else}}
+        <input name="system.luck.max" type="text" title = "{{ localize 'ROL.luckMax' }}" value="{{system.luck.max}}" data-dtype="Number"/>
+      {{/if}}    
+    </div>
+    {{else}}
+        <input class="stats-content resource-label-gap" title = "{{ localize 'ROL.luckCurr' }}" name="system.luck.value" type="text" value="{{system.luck.value}}" data-dtype="Number">
+    {{/if}}
+    {{#if system.Boon}}
+      <div class="resource-label align-center resource-label-gap">{{ localize 'ROL.luckBoon' }}</div>  
+      <input class="stats-content" name="system.luck.min" type="text" value="{{system.luck.min}}" data-dtype="Number"/>  
+    {{/if}}
+    </div>  
+    <br>
+
+    {{#unless system.isFae}}
+      <div class="boxed">
+        <div class="resource-label next-scene align-center resource-label-gap" title="{{ localize 'ROL.mpRegen' }}">{{ localize 'ROL.mp' }}</div>
+          <div class="statblock grid grid-3col">
+            <input name="system.mp.value" title = "{{ localize 'ROL.mpCurr' }}" type="text" value="{{system.mp.value}}" data-dtype="Number"/> 
+            <div class="statdisplay"> / </div>
+            {{#if system.flags.locked}}   
+              <div class="statdisplay" title = "{{ localize 'ROL.mpMax' }}">{{system.mp.max}}</div>
+            {{else}}
+              <input name="system.mp.max" type="text" title = "{{ localize 'ROL.mpMax' }}" value="{{system.mp.max}}" data-dtype="Number"/>
+            {{/if}}
+          </div>  
+      </div>  
+      <br>
+    {{/unless}}
+      
+      <div class="boxed resource-label align-center">
+        <div class="resource-label-gap healing-phase" title="{{ localize 'ROL.healing' }}">{{ localize 'ROL.damage' }}</div>
+        <input class="stats-content" name="system.damage.value" type="text" value="{{system.damage.value}}" data d-type="Number"/>
+        <div class="damage-status">{{system.damageStatus}}</div>
+        <a class="tough-control {{#if system.properties.down}} control-active {{/if}}"  title="{{ localize 'ROL.down' }}"><i class="fas fa-bed"></i></a>
+        <a class="tough-control {{#if system.properties.mortal}} control-active {{/if}}" title="{{ localize 'ROL.mortal' }}"><i class="fas fa-heartbeat"></i></a>
+        <a class="tough-control {{#if system.properties.fatal}} control-active {{/if}}" title="{{ localize 'ROL.fatal' }}"><i class="fas fa-tombstone"></i></a>
+        <a class="tough-control {{#if system.properties.impaired}} control-active {{/if}} tough-toggle" data-property='impaired' title="{{ localize 'ROL.impaired' }}"><i class="fas fa-eye-slash"></i></a>
+        <a class="tough-control {{#if system.properties.hurt}} control-active {{/if}} tough-toggle" data-property='hurt' title="{{ localize 'ROL.hurt' }}"><i class="fas fa-face-head-bandage"></i></a>
+        <a class="tough-control {{#if system.properties.bloodied}} control-active {{/if}} tough-toggle" data-property='bloodied' title="{{ localize 'ROL.bloodied' }}"><i class="fas fa-user-injured"></i></a>
+        <a class="tough-control {{#if system.properties.trauma}} control-active {{/if}} tough-toggle " data-property='trauma' title="{{ localize 'ROL.trauma' }}"><i class="fas fa-head-side-brain"></i></a>
+      </div>
+      <br>
+
+      <div class="boxed resource-label align-center">
+        <span class="resource-label-gap">{{ localize 'ROL.mov' }}:
+        {{#if isCreation}} 
+          <input class="stats-content" name="system.mov" type="text" value="{{system.mov}}" data-dtype="Number"/></span>
+        {{else}}
+          <span class="fixed-stats-content">{{system.mov}}</span></span>
+        {{/if}}
+        </div>
+      <br>
+
+      {{#if system.Magic}}  
+      <div class="boxed">
+        <div class="resource-label align-center resource-label-gap">{{ localize 'ROL.shield' }}  {{ localize 'ROL.spell' }}</div>
+          <div class="statblock grid grid-3col">
+            <input name="system.armour.shieldBlock" title = "{{ localize 'ROL.shieldBlock' }}" type="text" value="{{system.armour.shieldBlock}}" data-dtype="Number"/> 
+          <div class="statdisplay"> / </div>
+            <input name="system.armour.shieldHP" type="text" title = "{{ localize 'ROL.shieldHP' }}" value="{{system.armour.shieldHP}}" data-dtype="Number"/>
+          </div>  
+      </div>  
+      <br>
+      {{/if}}
+
+      <div class="boxed resource-label align-center">
+        <div class="resource-label-gap">{{ localize 'ROL.effects' }}</div>
+        {{#if system.properties.disfigured}}  
+          <a class="tough-control control-active {{#if isGM}} tough-toggle {{/if}}" data-property='disfigured' title="{{ localize 'ROL.disfigured' }}"><i class="fas fa-hood-cloak"></i></a>                  
+        {{/if}}  
+          {{#each advantages as |advantage id|}}
+            {{#if (eq advantage.system.adveffect "Magic")}}
+              {{#if (gt ../system/magicScore 0)}}
+                <a class="tough-control control-active" title="{{ localize advantage.system.advEffect }}"><i class="{{advantage.system.effIcon}}"></i></a>
+              {{/if}}
+            {{else}}              
+              <a class="tough-control control-active" title="{{ localize advantage.system.advEffect }}"><i class="{{advantage.system.effIcon}}"></i></a>
+            {{/if}}
+          {{/each}}
+        </div>
+      <br>
+
+      <div class="boxed">
+      {{#if isLocked}}
+        <div class="resource-label align-center htd-name rollable resource-label-gap {{#if system.properties.htd}} control-active {{/if}}" title="{{ localize 'ROL.htd' }}" data-target={{system.abilities.pow.value}} data-type="HTD" data-formula="1d100" data-label="HTD">{{ localize 'ROL.htd' }}</div>
+      {{else}}
+        <div class="resource-label align-center tough-toggle resource-label-gap {{#if system.properties.htd}} control-active {{/if}}" title="{{ localize 'ROL.htd' }}" data-property="htd">{{ localize 'ROL.htd' }}</div>
+      {{/if}}
+      </div> 
+      <br>
+
+      {{#if isSession}}
+        {{#unless system.LuckofDemiMonde}}
+          <div class="boxed">
+            <div class="resource-label align-center luckrecovery-rollable resource-label-gap" title="{{ localize 'ROL.luckRecovery' }}" data-target={{system.luck.value}} data-type="LuckRecovery" data-formula="1d100" data-label={{ localize 'ROL.luckRecovery' }}>{{ localize 'ROL.luckRecovery' }}</div>
+          </div>
+          <br>
+        {{/unless}}
+      {{/if}}
+
+      
+      {{#if system.LuckofDemiMonde}}
+          <div class="boxed">
+          <div class="resource-label align-center luckreset-rollable resource-label-gap" title="{{ localize 'ROL.luckReset' }}" data-target={{system.abilities.pow.value}} data-type="LuckReset" data-formula="1d0" data-flatadj={{system.abilities.pow.value}} data-label={{ localize 'ROL.luckReset' }}>{{ localize 'ROL.luckReset' }}</div>
+          </div>
+      {{else}}
+        {{#isOr isCreation isDevelopment}}  
+          <div class="boxed">
+          <div class="resource-label align-center luckreset-rollable resource-label-gap" title="{{ localize 'ROL.luckReset' }}" data-target={{system.luck.value}} data-type="LuckReset" data-formula="2d10" data-flatadj="50" data-label={{ localize 'ROL.luckReset' }}>{{ localize 'ROL.luckReset' }}</div>
+          </div>
+        {{/isOr}}    
+      {{/if}}
+    </div> 
+
+
+  <div class="right-panel">
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    {{!-- Default tab is specified in actor-sheet.mjs --}}
+    <a class="item" data-tab="skills">{{ localize 'ROL.skills' }}</a>
+    {{#unless system.isFae}}
+      <a class="item" data-tab="magic">{{ localize 'ROL.magic' }}</a>
+    {{/unless}}
+    <a class="item" data-tab="traits">{{ localize 'ROL.traits' }}</a>
+    <a class="item" data-tab="equipment">{{ localize 'ROL.equipment' }}</a>
+    <a class="item" data-tab="biography">{{ localize 'ROL.biography' }}</a>
+    <a class="item" data-tab="development">{{ localize 'ROL.development' }}</a>
+
+    {{#if system.flags.locked}}
+    <a class="unlock-character-sheet" title="{{ localize 'ROL.unlock' }}"> <i class="fas fa-lock"></i> </a>
+  {{else}}
+    <a class="unlock-character-sheet" title="{{ localize 'ROL.lock' }}"> <i class="fas fa-lock-open"></i></a>
+  {{/if}}
+  </nav>
+
+     {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+    {{!-- Skills Tab --}}
+    <div class="tab skills" data-group="primary" data-tab="skills">
+      {{> "systems/rol/templates/actor/parts/actor-skills.html"}}
+    </div>
+
+    {{!-- Equipment Tab --}}
+    <div class="tab items" data-group="primary" data-tab="equipment">
+       {{> "systems/rol/templates/actor/parts/actor-equipment.html"}}
+    </div>
+
+    {{!-- Biography Tab --}}
+    <div class="tab biography" data-group="primary" data-tab="biography">
+      {{> "systems/rol/templates/actor/parts/actor-biography.html"}}
+    </div>
+
+    {{!-- Development Tab --}}
+    <div class="tab biography" data-group="primary" data-tab="development">
+      {{> "systems/rol/templates/actor/parts/actor-development.html"}}
+    </div>
+
+    {{#unless systrem.isFae}}
+      {{!-- Magic Tab --}}
+      <div class="tab spells" data-group="primary" data-tab="magic">
+        {{> "systems/rol/templates/actor/parts/actor-magic.html"}}
+      </div>
+    {{/unless}}  
+
+    {{!-- Traits Tab --}}
+    <div class="tab effects flexcol" data-group="primary" data-tab="traits">
+      {{> "systems/rol/templates/actor/parts/actor-traits.html"}}
+    </div>
+
+   
+  </section>
+</div>
+</div>
+</form>
+

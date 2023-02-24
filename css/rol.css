@@ -1,0 +1,1005 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+/* Global styles */
+.window-app {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+}
+
+.rollable:hover, .rollable:focus, .skill-rollable:hover, .skill-rollable:focus, .healing-phase:hover, .healing-phase:focus, .luckreset-rollable:hover, .luckreset-rollable:focus, .luckrecovery-rollable:hover, .luckrecovery-rollable:focus, .next-scene:hover, .next-scene:focus {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  cursor: pointer;
+}
+
+.grid,
+.grid-2col {
+  display: grid;
+  grid-column: span 2/span 2;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.grid-3col {
+  grid-column: span 3/span 3;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4col {
+  grid-column: span 4/span 4;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-5col {
+  grid-column: span 5/span 5;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-6col {
+  grid-column: span 6/span 6;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-7col {
+  grid-column: span 7/span 7;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.grid-8col {
+  grid-column: span 8/span 8;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.grid-9col {
+  grid-column: span 9/span 9;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+
+.grid-10col {
+  grid-column: span 10/span 10;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+
+.grid-11col {
+  grid-column: span 11/span 11;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+}
+
+.grid-12col {
+  grid-column: span 12/span 12;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.grid-start-2 {
+  grid-column-start: 2;
+}
+
+.grid-start-3 {
+  grid-column-start: 3;
+}
+
+.grid-start-4 {
+  grid-column-start: 4;
+}
+
+.grid-start-5 {
+  grid-column-start: 5;
+}
+
+.grid-start-6 {
+  grid-column-start: 6;
+}
+
+.grid-start-7 {
+  grid-column-start: 7;
+}
+
+.grid-start-8 {
+  grid-column-start: 8;
+}
+
+.grid-start-9 {
+  grid-column-start: 9;
+}
+
+.grid-start-10 {
+  grid-column-start: 10;
+}
+
+.grid-start-11 {
+  grid-column-start: 11;
+}
+
+.grid-start-12 {
+  grid-column-start: 12;
+}
+
+.grid-span-2 {
+  grid-column-end: span 2;
+}
+
+.grid-span-3 {
+  grid-column-end: span 3;
+}
+
+.grid-span-4 {
+  grid-column-end: span 4;
+}
+
+.grid-span-5 {
+  grid-column-end: span 5;
+}
+
+.grid-span-6 {
+  grid-column-end: span 6;
+}
+
+.grid-span-7 {
+  grid-column-end: span 7;
+}
+
+.grid-span-8 {
+  grid-column-end: span 8;
+}
+
+.grid-span-9 {
+  grid-column-end: span 9;
+}
+
+.grid-span-10 {
+  grid-column-end: span 10;
+}
+
+.grid-span-11 {
+  grid-column-end: span 11;
+}
+
+.grid-span-12 {
+  grid-column-end: span 12;
+}
+
+.flex-group-center,
+.flex-group-left,
+.flex-group-right {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+}
+
+.flex-group-left {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.flex-group-right {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.flexshrink {
+  -webkit-box-flex: 0;
+  -ms-flex: 0;
+  flex: 0;
+}
+
+.flex-between {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.flexlarge {
+  -webkit-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+}
+
+.align-left {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.align-right {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.align-center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.package-configuration .form-group {
+  margin-bottom: 0rem;
+}
+
+.form-group label{
+  font-weight: bold;
+}
+
+.package-configuration .form-fields input {
+  text-align: right;
+}
+
+/* Styles limited to rol sheets-------------------------------------------------------------------------------------------------------------------------------------- */ 
+
+.rol .window-content {
+  background-image:url("./images/cream-paper.jpg");
+  background-size: cover;
+  overflow-y:hidden ;
+}
+
+
+.difficult-centre input[type="text"] {
+  text-align:center;
+}
+
+.rol .character {
+  min-width: 550px;
+  height: 100%;
+}
+
+.rol .item-skill{
+  min-width: 550px; 
+  max-width: 550px;
+}
+
+.rol .item-form {
+  font-family: "Roboto", sans-serif;
+}
+
+
+
+.rol .sheet-header {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  max-height: 140px;
+}
+.rol img .sheet-header .profile-img {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100px;
+  flex: 0 0 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.rol .charname input[type="text"] {
+  width: 100%;
+  height: calc(100% - 2px);
+  padding-left: 5px;
+}
+
+
+.rol .chartype {
+  min-width: 100%;
+  font-weight: bold;
+  font-size: 14px;
+  background: transparent;
+  margin-bottom: 5px;
+}
+
+.rol .abilities{
+  row-gap: 5px;
+  min-height: 50px;
+  max-height: 50px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  border: 1px solid black;
+  background-color: cornsilk;
+}
+
+.rol .abilities-max{
+  row-gap: 5px;
+  min-height: 50px;
+  max-height: 50px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  border: 1px solid black;
+  background-color: crimson;
+}
+
+.rol .right {
+  text-align: right;
+}
+
+.rol .centre {
+  text-align: center;
+  align-items: center;
+}
+
+.rol .stats-content {
+  font-weight: bold;
+  text-align: center;
+  max-height: 20px;
+
+  height: calc(100% - 2px);
+}
+
+.rol .stats-total {
+  font-weight: bold;
+  text-align: center;
+  margin: 1px;
+  padding: 1px 3px 1px 3px;
+  height: 14.5px;
+}
+
+.rol .npc-stats-content {
+  text-align: center;
+  height: 18px;
+  padding:2px;
+  margin: 0px;
+}
+
+.rol .npc-stats-input {
+  text-align: center;
+  font-weight: bold;
+  height: 18px;
+  padding:1px;
+  width: 44px;
+  margin: 0px;
+}
+
+.rol .fixed-stats-content {
+  font-weight: bold;
+  text-align: center;
+  height: 18px;
+  padding-top:2px;
+  padding-bottom:2px;
+}
+
+.rol .charname {
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.rol .charname label{
+  margin-bottom: 4px;
+  font-weight: bold;
+  max-width: 90px;
+}
+
+.rol .sheet-header .header-fields {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.rol .sheet-header h1.charname {
+  height: 50px;
+  padding: 0px;
+  margin: 5px 0;
+  border-bottom: 0;
+}
+.rol .sheet-header h1.charname input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.rol .sheet-tabs {
+  -webkit-box-flex: 0;
+  -ms-flex: 0;
+  flex: 0;
+}
+
+.rol .sheet-body,
+.rol .sheet-body .tab,
+.rol .sheet-body .tab .editor {
+  height: 100%;
+}
+
+.rol .tox .tox-editor-container {
+  background: #fff;
+}
+
+.rol .tox .tox-edit-area {
+  padding: 0 8px;
+}
+
+.rol .resource-label {
+  font-weight: bold;
+}
+
+.rol .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px groove #eeede0;
+  font-weight: bold;
+}
+
+.rol .contacts-header {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.rol .items-header > * {
+  font-size: 14px;
+  text-align: center;
+}
+
+.rol .items-header .item-name {
+  font-weight: bold;
+  padding-left: 5px;
+  text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.rol .items-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  color: #444;
+}
+
+.rol .items-list .item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rol .items-list .item-name {
+  -webkit-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  margin: 0;
+  overflow: hidden;
+  font-size: 13px;
+  text-align: left;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.rol .items-list .item-name h3, .rol .items-list .item-name h4 {
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.rol .items-list .item-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100px;
+  flex: 0 0 100px;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.rol .items-list .item-controls a {
+  font-size: 12px;
+  text-align: center;
+  margin: 0 6px;
+}
+
+.rol .items-list .item {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 2px;
+  border-bottom: 1px solid #c9c7b8;
+}
+
+.rol .items-list .item:last-child {
+  border-bottom: none;
+}
+
+.rol .items-list .item .item-name {
+  color: #191813;
+}
+
+.rol .items-list .item .item-name .item-image {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 30px;
+  flex: 0 0 30px;
+  height: 30px;
+  background-size: 30px;
+  border: none;
+  margin-right: 5px;
+}
+
+.rol .items-list .item-prop {
+  text-align: center;
+  border-left: 1px solid #c9c7b8;
+  border-right: 1px solid #c9c7b8;
+  font-size: 12px;
+}
+
+.rol .items-list .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px groove #eeede0;
+  font-weight: bold;
+}
+
+.rol .items-list .items-header > * {
+  font-size: 12px;
+  text-align: center;
+}
+
+.rol .items-list .items-header .item-name {
+  padding-left: 5px;
+  text-align: left;
+}
+
+.rol .item-formula {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 200px;
+  flex: 0 0 200px;
+  padding: 0 8px;
+}
+
+.rol .effects .item .effect-source,
+.rol .effects .item .effect-duration,
+.rol .effects .item .effect-controls {
+  text-align: center;
+  border-left: 1px solid #c9c7b8;
+  border-right: 1px solid #c9c7b8;
+  font-size: 12px;
+}
+
+.rol .effects .item .effect-controls {
+  border: none;
+}
+
+.rol .multi-panel-content {
+  display: flex;
+  flex-direction: row;
+  max-height:157px;
+}
+
+.rol .npc-multi-panel-content {
+  display: flex;
+  flex-direction: row;
+  max-height:100px;
+}
+
+.rol .multi-panel-content .left-panel {
+  flex: 1;
+  padding-left: 10px;
+  width: 100%;  
+}
+
+.rol .multi-panel-content .right-panel {
+  flex: none;
+   padding-left: 10px;
+  width: 95px;
+}
+
+.rol .two-panel-content {
+  display: flex;
+  flex-direction: row;
+  max-height: 60%;
+}
+
+.rol .two-panel-content .left-panel {
+  flex: 1;
+  padding-right: 5px;
+  max-width: 100px;
+  margin: 4px 0px;
+  border-right: 1px solid black;
+}
+
+.rol .two-panel-content .right-panel {
+  flex: 1;
+  padding-left: 10px;
+}
+
+.rol .multi-panel-content .image-panel {
+  display: block;
+  flex: 0.5;
+  min-width: 157px;
+  max-width: 157px;
+}
+
+.rol .statdisplay {
+  text-align: center;
+  text-justify:auto;
+  padding: 1px 3px 1px 3px;
+}
+
+.rol .statblock {
+  display: grid;
+  gap: 0px;
+  text-align: center;
+  grid-template-columns: 38px 10px 38px;
+  margin: 0px;
+}
+
+.rol .npc-statblock {
+  display: grid;
+  gap: 0px;
+  text-align: center;
+  grid-template-columns: 44px 44px 44px 44px 44px 44px 44px 44px 44px 44px;
+  padding-top: 10px;
+  margin: 0px;
+  max-height: 20px;
+}
+
+.rol .statblock input[type="text"] {
+  height: calc(100% - 2px);
+  padding: 1px 3px 1px 3px;
+  margin-right: 2px;
+}
+
+.rol .unlock-character-sheet{
+  padding-top:10px;
+  min-width: 14px;
+}
+
+.rol .resource-label-gap {
+  margin-bottom: 5px;
+}
+
+.rol .plainboxed {
+  border: 1px solid black;  
+  padding-left: 3px;
+  border-radius: 3px;
+}
+
+.rol .boxed {
+  border: 1px solid grey;
+  padding: 3px;
+  background-color: cornsilk;
+}
+
+.rol .npc-boxed {
+  padding: 3px;
+  max-height: 170px;
+  max-width: 470px;
+}
+
+.rol .npc-htd-boxed {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  border: 1px solid grey;
+  padding: 3px;
+  background-color: cornsilk;
+  max-width: 50px;
+}
+
+#controls ol.control-tools > li.toggle.active {
+  background: rgba(60, 0, 120, 0.75);
+  color: orange;
+  border: 1px solid #9b8dff;
+  box-shadow: 0 0 10px #9b8dff;
+}
+
+.rol .tough-control {
+  color: lightgray;
+  font-size: 18px;
+}
+
+.rol .control-active {
+  color: black;
+  text-shadow: 0 0 10px red;
+}
+
+.rol .npc-header {
+  max-width: 470px;
+  min-width: 470px;
+  display:grid;
+  grid-template-columns: 240px 200px 30px;
+}
+
+.rol .skillheader-fields {
+  max-width: 440px;
+  min-width: 440px;
+  display:grid;
+  grid-template-columns: 200px 10px 200px;
+  font-weight: bolder; 
+  align-content: center;
+  justify-content: center;
+}
+
+.rol .display-switch {
+  display: inline-block;
+  margin: 2px 2px 0 0;
+  padding: 0 10px;
+  margin: 0 10px;
+  line-height: 16px;
+  min-height: 16px;
+  min-width: 60px;
+  border: 1px solid black;
+  border-radius: 3px;
+  color: black;
+}
+
+.rol .adv-switch {
+  display: inline-block;
+  margin: 2px 2px 0 0;
+  padding: 0 10px;
+  line-height: 16px;
+  min-height: 16px;
+  min-width: 100px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 3px;
+  color: black;
+}
+
+.rol .skillname {
+  margin: auto 0 auto 0;
+  font-weight:normal;
+}
+
+.rol .skillname-gap {
+  text-align: center;
+  margin: auto 0 auto 0;
+  font-weight:bolder;
+  font-size: 16px;
+}
+
+.rol .skill-resource{
+  max-width: 440px;
+  min-width: 440px;
+  display:grid;
+  grid-template-columns: 100px 100px;
+}
+
+.rol .spell-resource{
+  max-width: 440px;
+  min-width: 440px;
+  display:grid;
+  grid-template-columns: 100px 300px;
+}
+
+.rol .npc-name-resource{
+  padding-left: 5px;
+  max-width: 440px;
+  min-width: 440px;
+  display:grid;
+  grid-template-columns: 200px 200px;
+}
+
+.rol .loc-label-inp {
+  text-align:center;
+  height: calc(100% - 2px);
+}
+
+.rol .skill-score-inp {
+  height:14px;
+}
+
+.rol .biography-doc{
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-height: 150px;
+
+}
+
+.rol .background-doc{
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-height: 50px;
+}
+
+.rol .skill-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  height:100%;
+}
+
+.rol .specialisation-header {
+  list-style: none;
+  width: 180px;
+  margin-right: 0.5rem;
+}
+
+.rol .skilltype-header {
+  list-style: none;
+  width: 180px;
+  margin-right: 0.5rem;
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.rol .skillpoint-header {
+  list-style: none;
+  width: 360px;
+  margin-right: 0.5rem;
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.rol .specialisation {
+  margin-left: 5px;
+  padding-left: 5px;
+  max-width: 185px;
+  border-left: 1px solid;
+}
+
+.rol .skill-listitem {
+  width: 190px;
+  display: grid;
+  grid-template-columns: 100px auto 35px 40px ;
+  border-bottom: 1px black solid;
+}
+
+.rol .spell-listitem {
+  width: 350px;
+  display: grid;
+  grid-template-columns: 200px auto 40px 60px ;
+  border-bottom: 1px black solid;
+}
+
+.rol .weapons-listitem {
+  width: 350px;
+  display: grid;
+  grid-template-columns: 150px auto 60px 90px ;
+  border-bottom: 1px black solid;
+}
+
+.rol .skill-score {
+  text-align: center;
+  margin: auto;
+}
+
+.rol .skill-score input[type='text'] {
+  height: calc(100% - 2px);
+}
+
+.rol .item-control.active {
+  color: crimson;
+}
+
+.rol .detailblockbottom{
+  margin: 0;
+  grid-template-columns: 180px 180px;
+}
+
+.rol .detailblockbottom {
+  max-width: 90px;
+  min-width: 90px;
+}
+
+.rol .damage-status {
+  margin-top: 3px;
+  text-align: center;
+}
+
+.flavour-result {
+  font-size: 16px;
+}
+
+.result-success {
+  color: green;
+}
+
+.result-fail {
+  color: red;
+}
+
+.order-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#difficulty-roll-form .align-center {
+  justify-content: center;
+  text-align: center;
+}
+
+.rol .signare {
+  display: grid;
+  grid-template-columns: 40px auto ;
+  margin-top: 0px;
+}
+
+.rol .signare-name {
+  font-weight: bold;
+  margin: auto 0px;
+}
+
+.rol .dropdown{
+  padding-left: 20px;
+}
+
+.rol .affluence{
+  width: 100%;
+  height: calc (100%-2px);
+  padding: 1px 3px 1px 5px;
+  font-weight: normal;
+  border: 1px solid #7a7971;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.rol .npc-advantages{
+  display: grid;
+  margin-top: 0px;
+  max-width: 470 px;
+  grid-template-columns: 100px 100px 100px;
+}
+
+.rol .npc-skills{
+ display: flex;
+ flex: 0 0 33%;
+ flex-wrap: wrap;
+}
+
+.rol .partyOrder {
+  font-size: 16px;
+}
+
+.rol .dice-total{
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.rol .dice-success{
+  background-color: rgb(21, 211, 122);
+}
+
+.rol .dice-fail{
+  background-color: orange;
+}
+
+.rol .roll-icons{
+  font-size: 16px;
+}
+
+.rol .bottomline {
+  padding-top:10px;
+  margin-bottom: 5px;
+  border-bottom: solid black 1px;
+}

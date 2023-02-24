@@ -1,0 +1,79 @@
+<header>
+
+<ol class="items-list effects-list">
+  <div class="skilltype-header">{{ localize 'ROL.advType' }}</div>
+  {{#each advantages as |advantage id|}}
+  <li class="item spell-listitem" data-item-id="{{advantage._id}}">
+    <div class="item-name">
+      <div> {{advantage.name}}</div>
+    </div>
+    <div></div>
+    {{#unless system.advType}}
+      <div title="{{ localize 'ROL.disadvantage' }}" ><i class="result-fail fas fa-skull"></i></div>
+    {{else}}
+      <div></div>
+    {{/unless}}
+    <div class="item-controls">
+      <a class="item-control item-edit" title="{{ localize 'ROL.editAdvantage' }}"><i class="fas fa-info-circle"></i></a>
+      {{#unless ../system.flags.locked}}
+        <a class="item-control item-delete" title="{{ localize 'ROL.deleteAdvantage' }}"><i class="fas fa-trash"></i></a>
+      {{/unless}}
+    </div>
+  </li>
+  {{/each}}
+  <br>
+</ol>
+
+<ol class="items-list effects-list">
+  <li class="flexrow contacts-header">
+    <div class="skilltype-header">{{ localize 'ROL.contacts' }}</div>
+    <div class="item-controls">
+      <a class="item-control item-create" title="{{ localize 'ROL.createContact' }}" data-type="contacts"><i class="fas fa-plus"></i> {{ localize 'ROL.addContact' }}</a>
+    </div>  
+  </li>
+  {{#each contacts as |contacts id|}}
+  <li class="item spell-listitem" data-item-id="{{contacts._id}}">
+    <div class="item-name">
+      <div> {{contacts.name}}</div>
+    </div>
+    <div></div>
+    {{#if system.secure}}
+      <div title="{{ localize 'ROL.secure' }}" ><i class="result-success fas fa-smile"></i></div>
+    {{else}}
+      {{#if system.sour}}
+        <div title="{{ localize 'ROL.sour' }}" ><i class="result-fail fas fa-frown"></i></div>
+      {{else}}
+        <div></div>
+      {{/if}}
+    {{/if}}  
+    <div class="item-controls">
+      <a class="item-control item-edit" title="{{ localize 'ROL.editContact' }}"><i class="fas fa-info-circle"></i></a>
+      {{#unless ../system.flags.locked}}
+        <a class="item-control item-delete" title="{{ localize 'ROL.deleteContact' }}"><i class="fas fa-trash"></i></a>
+      {{/unless}}
+    </div>
+  </li>
+  {{/each}}
+  <br>
+</ol>
+
+{{#if system.Magic}}
+<div class="spell-name">{{ localize 'ROL.signare' }}</div>
+  <div class="signare-name">{{ localize 'ROL.sound' }}:</div>
+    <input class="" type="text" name="system.signare.sound" value="{{system.signare.sound}}"/>
+  <div class="signare-name">{{ localize 'ROL.smell' }}:</div>
+    <input class="" type="text" name="system.signare.smell" value="{{system.signare.smell}}"/>
+  <div class="signare-name">{{ localize 'ROL.other' }}:</div>
+    <input class="" type="text" name="system.signare.other" value="{{system.signare.other}}"/>
+
+<div class="resource-label-gap"></div>
+<br>
+{{/if}}
+
+{{#if system.ThematicPower}}
+
+  <div class="spell-name">{{ localize 'ThematicPower' }}</div>
+    <input class="" type="text" name="system.thematic" value="{{system.thematic}}"/>
+{{/if}}
+
+</header>

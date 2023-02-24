@@ -1,0 +1,180 @@
+{
+  "Actor": {
+    "types": ["character", "npc"],
+    "templates": {
+      "base": {
+        "damage": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "armour": {
+          "natural" : 0,
+          "regular" : 0,
+          "ballistic": 0,
+          "shieldBlock": 0,
+          "shiedlHP" : 0
+          },
+        "hp": {
+          "value": 0,
+          "min": 0,
+          "max": 3
+        },
+        "mp": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "luck": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "abilities": {
+          "str": {
+            "value": 0
+          },
+          "con": {
+            "value": 0
+          },
+          "dex": {
+            "value": 0
+          },
+          "int": {
+            "value": 0
+          },
+          "pow": {
+            "value": 0
+          }
+        },
+        "flags":{
+          "locked":false,
+          "luckImprov": false,
+          "luckReset": false
+        },
+        "charType": "Investigator",
+        "occupation" :"",
+        "affluence": "Average",
+        "placeOfBirth" : "",
+        "spellCount": [],
+        "residence" : "",
+        "pronouns" : "",
+        "age" : "",
+        "mov" : 8,
+        "signare" :{
+          "sound": "",
+          "smell": "",
+          "other": ""
+        },
+        "thematic": "",
+        "properties" :{
+          "disfigured": false,
+          "impaired": false,
+          "htd":false,
+          "htdFumble": false,
+          "hurt": false,
+          "bloodied": false,
+          "trauma": false
+        },
+        "background": {
+          "present": "",
+          "supernatural": "",
+          "childhood": ""
+        }
+      }
+    },
+
+    "character": {
+      "templates": ["base"],
+      "devPoints": {
+        "earned": 0,
+        "holding": 0,
+        "spent": 0,
+        "history": ""
+      }  
+    },
+
+    "npc": {
+      "templates": ["base"],
+      "dmgBonus": 0,
+      "description": "",
+      "notes": ""
+    }
+  },
+
+  "Item": {
+    "types": ["spell", "skill", "advantages", "contacts","weapons", "armour", "equipment"],
+    "templates": {
+      "base": {
+        "description": ""
+      },
+      "preReq": {
+        "preReq": {
+          "logic": "",
+          "1": {
+            "preType": "",
+            "preOpt": "",
+            "preVal": 0
+          },
+          "2": {
+            "preType": "",
+            "preOpt": "",
+            "preVal": 0
+          },
+          "3": {
+            "preType": "",
+            "preOpt": "",
+            "preVal": 0
+          }
+        }
+      }
+    },
+    "equipment": {
+      "templates": ["base"]
+    },
+    "weapons": {
+      "templates": ["base"],
+      "damage": 1,
+      "type": "",
+      "signature": false,
+      "damType": "",
+      "range": "",
+      "automatic": false,
+      "semiauto": false
+    },
+    "armour": {
+      "templates": ["base"],
+      "type": "",
+      "ap": 1
+    },
+    "advantages": {
+      "templates": ["base","preReq"],
+      "advType": true,
+      "effIcon": "",
+      "advEffect": "",
+      "cost" : 1 
+    },
+    "contacts": {
+      "templates": ["base"],
+      "secure": false,
+      "sour" : false
+    },
+    "skill":{
+      "templates": ["base"],
+      "type":"",
+      "subType":"",
+      "score": 0,
+      "skillName": "",
+      "specialisation": "",
+      "special": false
+    },
+    "spell": {
+      "templates": ["base","preReq"],
+      "spellOrder": 1,
+      "mastered": false,
+      "damType": "",
+      "damageBoost": false,
+      "damage": 0
+    }
+  }
+}

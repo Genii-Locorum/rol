@@ -1,0 +1,41 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+
+    <div class="skillheader-fields  grid grid-3col">
+      <div class="skillname">
+          <input name="name" type="text" value="{{item.name}}" placeholder="name"/>
+      </div>
+      <div></div>
+      <div></div>
+    </div>  
+  </header>
+
+  <div class="skill-prop" style="display: block;" data-set="properties">
+    <div class="charname">{{ localize 'ROL.armourType' }}:</div>
+          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.type 'Natural')}} control-active {{/if}}" data-property='natural'>{{ localize 'ROL.natural' }}  </div>
+          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.type 'Regular')}} control-active {{/if}}" data-property='regular'>{{ localize 'ROL.regular' }}  </div>
+          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.type 'Ballistic')}} control-active {{/if}}" data-property='ballistic'>{{ localize 'ROL.ballistic' }}  </div>
+  </div>    
+        <div></div>  
+        <br>  
+
+    <div class="skill-resource grid grid-2col"> 
+    {{#if isGM}}    
+      <label class="charname">{{ localize 'ROL.ap' }}:</label>
+        <input class="loc-label-inp" type="text" name="system.ap" value="{{system.ap}}" data-dtype="Number"/>
+    {{else}} 
+      <div class="charname">{{ localize 'ROL.ap' }}:</div>
+        <div class="loc-label-inp">{{system.ap}}</div>
+    {{/if}}
+    </div>  
+
+  {{!-- Description  --}}
+    <section class="sheet-body">
+      <div class="charname">{{ localize 'ROL.description' }}:</div>
+      <div>
+        {{editor system.armour.description class="biography-doc" target="system.armour.description" button=true owner=owner editable=editable}}
+      </div>
+    </section>
+</form>
