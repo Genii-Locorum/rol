@@ -135,16 +135,16 @@
     "weapons": {
       "templates": ["base"],
       "damage": 1,
-      "type": "",
+      "type": "Melee",
       "signature": false,
-      "damType": "",
+      "damType": "blunt",
       "range": "",
       "automatic": false,
       "semiauto": false
     },
     "armour": {
       "templates": ["base"],
-      "type": "",
+      "type": "Regular",
       "ap": 1
     },
     "advantages": {
@@ -161,8 +161,8 @@
     },
     "skill":{
       "templates": ["base"],
-      "type":"",
-      "subType":"",
+      "type":"Common",
+      "subType":"None",
       "score": 0,
       "skillName": "",
       "specialisation": "",
@@ -172,7 +172,7 @@
       "templates": ["base","preReq"],
       "spellOrder": 1,
       "mastered": false,
-      "damType": "",
+      "damType": "magic",
       "damageBoost": false,
       "damage": 0
     }

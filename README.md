@@ -17,3 +17,5 @@ This implementation requires you to install (separately) socketlib by Manuel Vö
 I started this implementation with the Boilerplate system by Asacolips and used their tutorials plus the Youtube series by Cédric Hauteville.
 
 I am also grateful to the advice freely given by the participants on the League of Extraordinary Foundry VTT Developers Discord Channel
+
+The implementation is also heavily influenced by the Call of Cthulhu Foundry implementation by the Miskatonic Investigative Society - thank you to them for showing me the way and for their advice
