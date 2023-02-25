@@ -308,6 +308,17 @@
   margin-bottom: 5px;
 }
 
+.rol .npc-chartype {
+  display: grid;
+  grid-template-columns: 450px 20px;
+  min-width: 100%;
+  font-weight: bold;
+  font-size: 14px;
+  background: transparent;
+  margin-bottom: 5px;
+  
+}
+
 .rol .abilities{
   row-gap: 5px;
   min-height: 50px;
@@ -696,6 +707,21 @@
 }
 
 .rol .npc-boxed {
+  display: grid;
+  gap: 0px;
+  grid-template-columns: 470px 100px 20px;
+  padding: 3px;
+  max-height: 170px;
+  max-width: 600px;
+}
+
+.rol .npc-boxed-right {
+  padding: 3px;
+  max-height: 170px;
+  max-width: 110px;
+}
+
+.rol .npc-boxed-left {
   padding: 3px;
   max-height: 170px;
   max-width: 470px;

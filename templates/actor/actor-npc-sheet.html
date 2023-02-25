@@ -1,26 +1,22 @@
 <form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
 
   {{!-- Sheet Header --}}
-  <header class="npc-boxed">
+  <header class="npc-boxed  grid grid-3col">
 
-  <div class="chartype">
+  <div class="npc-boxed-left">  
+
+    <div class="chartype">
     <input class="chartype" list="charTypeList" type="text" name="system.charType" value="{{system.charType}}"/>
     <datalist id="charTypeList">
       <option value="{{ localize 'ROL.notDemiMonde' }}"></option>
       <option value="{{ localize 'ROL.demiMonde' }}"></option>
     </datalist> 
   </div> 
-
-
-
+ 
     <div class="npc-header grid grid-3col">
       <input class="resource-label" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
       <input class="resource-label" name="system.occupation" type="text" value="{{system.occupation}}" placeholder="Occupation"/>
-      {{#if isLocked}}
-        <a class="unlock-character-sheet" title="{{ localize 'ROL.unlock' }}"> <i class="fas fa-lock"></i> </a>
-      {{else}}
-        <a class="unlock-character-sheet" title="{{ localize 'ROL.lock' }}"> <i class="fas fa-lock-open"></i></a>
-      {{/if}}
+      <div></div>
     </div>  
   
  
@@ -58,6 +54,21 @@
       <input class="stats-content" name="system.armour.shieldBlock" type="text" value="{{system.armour.shieldBlock}}" data-dtype="Number"/> 
     <div class="resource-label align-center resource-label-gap" title = "{{ localize 'ROL.shield' }}  {{ localize 'ROL.hp' }}">{{ localize 'ROL.shieldHPShort' }}:</div>
       <input class="stats-content" name="system.armour.shieldHP" type="text" value="{{system.armour.shieldHP}}" data-dtype="Number"/> 
+  </div>
+  </div>
+
+  <div class="npc-boxed-right"> 
+    <div class="image-panel">
+      <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+    </div>
+  </div>  
+
+  <div>
+    {{#if isLocked}}
+      <a class="unlock-character-sheet" title="{{ localize 'ROL.unlock' }}"> <i class="fas fa-lock"></i> </a>
+    {{else}}
+      <a class="unlock-character-sheet" title="{{ localize 'ROL.lock' }}"> <i class="fas fa-lock-open"></i></a>
+    {{/if}}
   </div>
 
 </header>
