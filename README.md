@@ -8,8 +8,6 @@ The Rivers of Lonon: the Roleplaying game © Chaosium Inc.
 
 Rivers of London including all distinctive characters and locations © Ben Aaronovitch.
 
-All the names that are copyrighted are used under the Chaosium Fan License.
-
 Foundry VTT support is covered by Limited License Agreement for Module Development.
 
 This implementation requires you to install (separately) socketlib by Manuel Vögele which is licensed under MIT.
