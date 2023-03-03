@@ -29,7 +29,7 @@ export class ROLActor extends Actor {
     const systemData = actorData.system;
 
     // Capture if DemiMonde
-    if (actorData.system.charType === game.i18n.localize("ROL.demiMonde")) {
+    if (actorData.system.charType === "DemiMonde") {
       actorData.system.isFae = true;
     }
 
@@ -196,7 +196,7 @@ _prepareCommonData(actorData) {
 const systemData = actorData.system;
 
 //Calcualte scores and indicators where skills, spells and advantages have an impact   
-if (systemData.charType === game.i18n.localize('ROL.demiMonde')) {
+if (systemData.charType === "DemiMonde") {
   systemData.LuckofDemiMonde = true;
 }
 systemData.magicScore=0;

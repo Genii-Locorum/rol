@@ -99,7 +99,6 @@ export class ROLUtilities {
   //Toggle Character Creation On and Off---------------------------------------------------------------------------------------
   static async toggleCreation(toggle){
     await game.settings.set('rol', 'characterCreation', toggle)
-    console.log("Transmit")
     game.socket.emit('system.rol', {
       type: 'updateChar',
       value: 'createPhase',

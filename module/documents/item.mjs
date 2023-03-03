@@ -32,6 +32,8 @@ export class ROLItem extends Item {
    * @private
    */
   async roll() {
+
+    
     const item = this;
 
     // Initialize chat data.

@@ -4,39 +4,47 @@
   "description": "Rivers of London implementation for FoundryVTT!",
   "version": "0.1.3",
   "compatibility": {
-    "minimum": 10,
+    "minimum": "10",
     "verified": "10.291",
-    "maximum": 10
+    "maximum": "10"
   },
-  "authors": [{
-    "name": "Boilerplate by Asacolips, heavily based on Call of Cthulhu by Misaktonic Investigative Society, Rivers of London adaption by Dangermouse"
-  }],
-  "esmodules": ["module/rol.mjs"],
-  "styles": ["css/rol.css"],
-  "scripts": [],
-  "packs": [],
+  "authors": [
+    {
+      "name": "Boilerplate by Asacolips, heavily based on Call of Cthulhu by Misaktonic Investigative Society, Rivers of London adaption by Dangermouse",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "module/rol.mjs"
+  ],
+  "styles": [
+    "css/rol.css"
+  ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json"
+      "path": "lang/en.json",
+      "flags": {}
     }
   ],
   "relationships": {
-    "requires": [{
-    "type": "module",
-    "id":"socketlib",
-    "manifest" : "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/master/module.json"
-  }]},
+    "requires": [
+      {
+        "type": "module",
+        "id": "socketlib",
+        "manifest": "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/master/module.json",
+        "compatibility": {}
+      }
+    ]
+  },
   "socket": true,
   "gridDistance": 5,
   "gridUnits": "ft",
   "primaryTokenAttribute": "hp",
-  "secondaryTokenAttribute": "",
   "url": "https://github.com/Genii-Locorum/Rivers-of-London",
   "manifest": "https://github.com/Genii-Locorum/Rivers-of-London/releases/latest/download/system.json",
   "download": "https://github.com/Genii-Locorum/Rivers-of-London/releases/latest/download/system.zip",
   "license": "LICENSE.txt",
   "changelog": "CHANGELOG.md"
 }
- 

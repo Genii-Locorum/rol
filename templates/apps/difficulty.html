@@ -41,13 +41,17 @@
         {{/unless}}
       {{/isOr}}
 
-      {{#if (eq type "Damage")}}      
-        <br>
-        <div class="flexrow">
-          <label>{{ localize 'ROL.cover' }}</label>
-          <input class="align-center" name="cover" type="text" value=0 data-dtype="Number"/>
-        </div>  
-        <br>
+      {{#if (eq type "Damage")}}    
+        {{#unless (eq damType 'vorpal')}}    
+          {{#unless (eq damType 'magic')}}  
+            <br>
+            <div class="flexrow">
+            <label>{{ localize 'ROL.cover' }}</label>
+              <input class="align-center" name="cover" type="text" value=0 data-dtype="Number"/>
+            </div>  
+            <br>
+          {{/unless}}
+        {{/unless}}
       {{/if}}  
 
         <div class="flexrow" style="padding: 4px 0;">

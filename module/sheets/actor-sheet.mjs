@@ -2,6 +2,7 @@ import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/ef
 import { ROLChecks } from "../helpers/Utilities/checks.mjs";
 import { ROLCombatChat } from "../helpers/Combat/combat-chat.mjs";
 import { ROLUtilities } from "../helpers/Utilities/utilities.mjs";
+import { ROLOpposed } from '../helpers/Utilities/opposed.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -308,6 +309,7 @@ export class ROLActorSheet extends ActorSheet {
 
     // Rollable Skills
     html.find('.skill-name.rollable').click(ROLChecks._onRollSkillTest.bind(this));
+    //html.find('.skill-name.rollable').contextmenu(ROLOpposed._onOpposedRoll.bind(this)) - Placeholder to trigger oppossed skill roll
 
     // Rollable Attributes
     html.find('.attribute-name.rollable').click(ROLChecks._onRollAttributeTest.bind(this));
@@ -400,9 +402,17 @@ export class ROLActorSheet extends ActorSheet {
       checkProp={'system.properties.trauma' : true};
     } else if (prop==='disfigured' && state === true) {
     checkProp={'system.properties.disfigured' : false};
-  } else if (prop==='disfigured' && state === false) {
-    checkProp={'system.properties.disfigured' : true};
-  }
+    } else if (prop==='disfigured' && state === false) {
+      checkProp={'system.properties.disfigured' : true};
+    } else if (prop==='typeNPC') {
+      checkProp={'system.charType' : "Npc"};
+    } else if (prop==='typeDemi') {
+      checkProp={'system.charType' : "DemiMonde"};
+    } else if (prop==='typeCreature') {
+      checkProp={'system.charType' : "Creature"};
+    } else if (prop==='typeInv') {
+      checkProp={'system.charType' : "Investigator"};
+    }  
     const actor = await this.object.update(checkProp);
     return actor;
   }
@@ -472,11 +482,11 @@ export class ROLActorSheet extends ActorSheet {
               reqCheck[i] = 1;  
             }
           } else if (k.system.preReq[i].preType === "Not Demi Monde" ){  //Test for Not Demi Monde
-            if (this.actor.system.charType != "Demi Monde"){
+            if (this.actor.system.charType != "DemiMonde"){
               reqCheck[i] = 1;  
             }
           } else if (k.system.preReq[i].preType === "Demi Monde Only" ){  //Test for Demi Monde
-            if (this.actor.system.charType === "Demi Monde"){
+            if (this.actor.system.charType === "DemiMonde"){
               reqCheck[i] = 1;
             }
             //Test for Skill-Min, Spell and Spell-Mastered by reviewing items owned by actor

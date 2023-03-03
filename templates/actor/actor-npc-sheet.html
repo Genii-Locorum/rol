@@ -5,20 +5,18 @@
 
   <div class="npc-boxed-left">  
 
-    <div class="chartype">
-    <input class="chartype" list="charTypeList" type="text" name="system.charType" value="{{system.charType}}"/>
-    <datalist id="charTypeList">
-      <option value="{{ localize 'ROL.notDemiMonde' }}"></option>
-      <option value="{{ localize 'ROL.demiMonde' }}"></option>
-    </datalist> 
-  </div> 
- 
     <div class="npc-header grid grid-3col">
       <input class="resource-label" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
       <input class="resource-label" name="system.occupation" type="text" value="{{system.occupation}}" placeholder="Occupation"/>
       <div></div>
     </div>  
-  
+
+    <div class="skill-prop" style="display: block;" data-set="properties">
+      <div class="display-switch centre tough-toggle {{#if (eq system.charType 'Npc')}} control-active {{/if}}" data-property='typeNPC'>{{ localize 'ROL.npc' }}  </div>
+      <div class="display-switch centre tough-toggle {{#if (eq system.charType 'DemiMonde')}} control-active {{/if}}" data-property='typeDemi'>{{ localize 'ROL.demiMonde' }}  </div>
+      <div class="display-switch centre tough-toggle {{#if (eq system.charType 'Creature')}} control-active {{/if}}" data-property='typeCreature'>{{ localize 'ROL.creature' }}  </div>
+    </div>    
+    <div></div> 
  
   {{!-- Stats --}}  
   <div class="npc-statblock grid grid-10col">

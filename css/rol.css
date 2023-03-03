@@ -754,6 +754,7 @@
 }
 
 .rol .npc-header {
+  margin-top: 0px;
   max-width: 470px;
   min-width: 470px;
   display:grid;

@@ -9,15 +9,20 @@
 
     <div class="left-panel">
       <div class="chartype">
-    {{#isAnd isDemiMonde isCreation}} 
-        <input class="chartype" list="charTypeList" type="text" name="system.charType" value="{{system.charType}}"/>
-        <datalist id="charTypeList">
-          <option value="{{ localize 'ROL.investigator' }}"></option>
-          <option value="{{ localize 'ROL.demiMonde' }}"></option>
-        </datalist> 
+    {{#if isCreation}} 
+    <div class="skill-prop" style="display: block;" data-set="properties">
+      <div class="display-switch centre tough-toggle {{#if (eq system.charType 'Investigator')}} control-active {{/if}}" data-property='typeInv'>{{ localize 'ROL.investigator' }}  </div>
+      {{#if isDemiMonde}}
+        <div class="display-switch centre tough-toggle {{#if (eq system.charType 'DemiMonde')}} control-active {{/if}}" data-property='typeDemi'>{{ localize 'ROL.demiMonde' }}  </div>
+      {{/if}}
+    </div>
     {{else}}
-      <div class="chartype">{{system.charType}}</div>
-    {{/isAnd}}  
+      {{#if (eq  system.charType 'Investigator')}}  
+        <div class="chartype">{{ localize 'ROL.investigator' }}</div>
+      {{else}}
+        <div class="chartype">{{ localize 'ROL.demiMonde' }}</div>
+      {{/if}}
+    {{/if}}  
     </div>  
       <div class="charname row flexrow">
         <label class="charname">{{ localize 'ROL.name' }} :</label>

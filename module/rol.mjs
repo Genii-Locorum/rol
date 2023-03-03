@@ -172,6 +172,7 @@ Hooks.once("ready", async function() {
     if (game.settings.get('rol' , 'developmentEnabled')) {game.settings.set('rol','developmentEnabled', false)};
     if (game.settings.get('rol' , 'characterCreation')) {game.settings.set('rol','characterCreation', false)};
     if (game.settings.get('rol' , 'sessionendEnabled')) {game.settings.set('rol','sessionendEnabled', false)};
+    game.settings.set('rol','opposedCardId', null);
   }
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
@@ -197,9 +198,9 @@ async function createItemMacro(data, slot) {
   if (!data.uuid.includes('Actor.') && !data.uuid.includes('Token.')) {
     return ui.notifications.warn("You can only create macro buttons for owned Items");
   };
+
   // If it is, retrieve it based on the uuid.
   const item = await Item.fromDropData(data);
-
   // Create the macro command using the uuid.
   const command = `game.rol.rollItemMacro("${data.uuid}");`;
   let macro = game.macros.find(m => (m.name === item.name) && (m.command === command));
@@ -217,7 +218,7 @@ async function createItemMacro(data, slot) {
 }
 
 /**
- * Create a Macro from an Item drop.
+ * Run a called Macro created from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
  * @param {string} itemUuid
  */
@@ -234,7 +235,6 @@ function rollItemMacro(itemUuid) {
       const itemName = item?.name ?? itemUuid;
       return ui.notifications.warn(`Could not find item ${itemName}. You may need to delete and recreate this macro.`);
     }
-
     // Trigger the item roll
     item.roll();
   });

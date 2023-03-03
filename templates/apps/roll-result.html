@@ -117,13 +117,17 @@
     {{#if (eq rollType 'Damage')}}  
       <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.causeDamage'}}</button>  
     {{else}}
-      {{#if (gt damage 0)}}
-        {{#if (gt resultLevel 0)}}
+      {{#isAnd (gt damage 0) (gt resultLevel 0)}}
           <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.rollDamage'}}</button>
-        {{/if}}  
       {{else}}
-        <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.resolve'}}</button>
-      {{/if}}
+        {{#isAnd (eq damage 0) (eq rollType 'Weapon')}}
+          {{#if (gt resultLevel 0)}}
+            <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.rollDamage'}}</button>        
+          {{/if}}
+        {{else}}
+          <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.resolve'}}</button>
+        {{/isAnd}}
+      {{/isAnd}}
     {{/if}}
   {{/if}}
 

@@ -38,6 +38,13 @@ export function registerSettings () {
     type: Boolean
   });
 
+  game.settings.register('rol', 'opposedCardId', {
+    name: 'Open Opposed Card ID',
+    scope: 'world',
+    config: false,
+    default: "",
+    type: Text
+  });
 
   //Game Settings
   game.settings.register('rol', 'pcPreReq', {

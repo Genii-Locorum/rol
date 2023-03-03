@@ -61,6 +61,7 @@ static async _getVictimId() {
 // Start Skill Check 
 //
 static async _onRollSkillTest(event){
+  console.log(event)
   let target =await ROLChecks._getTargetId(this.token,this.actor); 
   let actor = await ROLChecks._getTarget(target.targetId, target.targetType);
   ROLChecks.startCheck ({
@@ -166,7 +167,7 @@ static async _onLuckReset(event){
     ui.notifications.error(game.i18n.localize("ROL.luckRollMade"));
     return;
   } 
-  if(actor.system.charType === game.i18n.localize('ROL.demiMonde')){
+  if(actor.system.charType === "DemiMonde"){
     chatType = "OTHER";
   }  
   ROLChecks.startCheck ({
@@ -288,7 +289,6 @@ static async initiateConfig(options){
     originGM: game.user.isGM,
     target: options.target,
     victim: options.victim,
-    actor: options.actor,
     damType: options.damType,
     type: dataset.type ? `${dataset.type}` : '',               
     subType: dataset.subtype ? `${dataset.subtype}` : '',  
@@ -305,7 +305,7 @@ static async initiateConfig(options){
     isPushed: false,
     resolved: false,
     newRollVal: 0,
-    damage: Number(dataset.damage ? `${dataset.damage}` : 0),
+    damage: Number(dataset.damage ? `${dataset.damage}` : -1),
     damageTarget: Number(dataset.damagetarget ? `${dataset.damagetarget}` : 0),
     damageFormula: dataset.damageformula ? dataset.damageformula.toLowerCase() : "",
     damageDealt: 0,
@@ -317,7 +317,7 @@ static async initiateConfig(options){
   }
  
   //If this is a damage causing roll then check that target is selected
-    if (config.damage > 0) {
+    if (config.damage > 0 || config.type === 'Damage' || (config.type === "Weapon" && config.damage === 0)) {
       let check  = await ROLChecks.dummyVictim(config.victim, config.target)
       if (!check) {
         return false}
@@ -354,8 +354,8 @@ static async startCheck (options = {}) {
   if (config === false) {
     return
   }
-  await ROLChecks.runCheck (config)
-  return}
+  let msgId = await ROLChecks.runCheck (config)
+  return msgId}
 
 //
 // Run Check Routines - go here if you want to pass over a pre-defined Damage roll and not rest the Config
@@ -413,9 +413,8 @@ static async runCheck (config) {
     config.bonusDamage--
   }
 
-  await ROLChecks.makeRoll(config) ;  
-
-  return
+  let msgId = await ROLChecks.makeRoll(config) ;  
+  return msgId
 }
 
 static async makeRoll(config) {
@@ -455,7 +454,8 @@ static async makeRoll(config) {
 
   //Calculate initial damage
   if (config.type === 'Damage'){
-  config.damageDealt = await ROLChecks.calcDamage(config.damage,config.resultLevel,config.multiShot, config.subType, config.actor.system.damageBonus)
+    let actor = await ROLChecks._getTarget(config.target.targetId,config.target.targetType)
+    config.damageDealt = await ROLChecks.calcDamage(config.damage,config.resultLevel,config.multiShot, config.subType, actor.system.damageBonus)
   }  
 
 
@@ -476,10 +476,9 @@ static async makeRoll(config) {
 
   //Create the ChatMessage and Roll Dice
   const html = await ROLChecks.startChat(config);
-  await ROLChecks.showChat(html,config);
+  let msgId =  await ROLChecks.showChat(html,config);
 
-
-  return
+  return msgId
 }
 
 //
@@ -510,7 +509,8 @@ static async dummyVictim(victim, target){
 // If character suffering HTD and this isnt HTD or Damage roll then stop the check
 //
 static async checkHTD(config) {
-  if (config.actor.system.properties.htd && config.type !="HTD" && config.type !="Damage") {
+  let actor = await ROLChecks._getTarget(config.target.targetId,config.target.targetType)
+  if (actor.system.properties.htd && config.type !="HTD" && config.type !="Damage") {
    ui.notifications.error(game.i18n.localize('ROL.htdResolve'));
      return false;  
  }
@@ -551,11 +551,11 @@ static async successLevel (config){
 //Set the critical and fumble chances adjusted for impaired  
   let critChance = config.critChance;
   let fumbleChance = 100;
-
+  let actor = await ROLChecks._getTarget(config.target.targetId,config.target.targetType)
   
-  if (config.actor.system.properties.impaired || config.actor.system.properties.trauma) {
+  if (actor.system.properties.impaired || actor.system.properties.trauma) {
     fumbleChance = 90
-  } else if (config.actor.system.Damaged){
+  } else if (actor.system.Damaged){
     fumbleChance = 95
   } 
 
@@ -602,7 +602,7 @@ static async testSuccess(rollResult, critChance, successScore, fumbleChance,reve
 // Luck Recovery
 //
 static async testLuckRecovery (config) {
-  let actor = config.actor
+  let actor = await ROLChecks._getTarget(config.target.targetId,config.target.targetType)
   let newLuck = actor.system.luck.value;
   let newMax = actor.system.luck.max;
 
@@ -620,7 +620,7 @@ static async testLuckRecovery (config) {
 //
 static async testLuckReset (config) {
 // If Luck Reset and success determine recovery
-  let actor = config.actor;
+  let actor = await ROLChecks._getTarget(config.target.targetId,config.target.targetType)
   let newLuck = actor.system.luck.value;
   let newMax = actor.system.luck.max;
   let resetFlag = false;
@@ -632,7 +632,7 @@ static async testLuckReset (config) {
   }  
 
 
-  if(actor.system.charType === game.i18n.localize('ROL.demiMonde')) {
+  if(actor.system.charType === "DemiMonde") {
     resetFlag = true;
   }
 
@@ -644,17 +644,18 @@ static async testLuckReset (config) {
 // Prep the chat card
 //
 static async startChat(config) {
+  let actor = await ROLChecks._getTarget(config.target.targetId,config.target.targetType)
   let messageData = {
     event: config.event,
     origin: config.origin,
     originGM: config.originGM,
-    speaker: ChatMessage.getSpeaker({ actor: config.actor }),
+    speaker: ChatMessage.getSpeaker({ actor: actor.name }),
     rollType: config.type,
     label: config.label,
     pushed: config.wasPushed,
     resolved: config.resolved,
     newPushed: config.isPushed,
-    actorId: config.actor._id,
+    actorId: actor._id,
     totalMP: config.totalMP,
     damage: config.damage,
     damageDealt: config.damageDealt,
@@ -687,6 +688,7 @@ static async startChat(config) {
 //
 static async showChat(html,config) {
 
+let actor = await ROLChecks._getTarget(config.target.targetId,config.target.targetType)
 let chatData={};
 if (config.chatType === "ROLL") {
   chatData = {
@@ -696,8 +698,8 @@ if (config.chatType === "ROLL") {
     content: html,
     flags: {config: config},
     speaker: {
-      actor: config.actor._id,
-      alias: config.actor.name,
+      actor: actor._id,
+      alias: actor.name,
     },
   };
 
@@ -709,18 +711,13 @@ if (config.chatType === "ROLL") {
     content: html,
     flags: {config: config},
     speaker: {
-      actor: config.actor._id,
-      alias: config.actor.name,
+      actor: actor._id,
+      alias: actor.name,
     },
   };
-
-
-
 }
-  await ChatMessage.create(chatData);
-
-  return 
-
+  let msg = await ChatMessage.create(chatData);
+  return msg._id
 }
 
 
@@ -733,6 +730,7 @@ static async RollDialog (options) {
       automatic: options.automatic,
       semiauto: options.semiauto,
       label: options.label,
+      damType: options.damType,
       bonusDice: options.defaultBonusDice
     }
 
@@ -922,7 +920,7 @@ static async handleChatButton(data) {
         const resolvehtml = await ROLChecks.startChat(targetMsg.flags.config);
         await targetMsg.update({content: resolvehtml});
 
-      if ((targetMsg.flags.config.type === "Spell" || targetMsg.flags.config.type === "Weapon") && targetMsg.flags.config.resolved && targetMsg.flags.config.damage > 0 ) {
+      if (((targetMsg.flags.config.type === "Spell"  && targetMsg.flags.config.damage > 0) || targetMsg.flags.config.type === "Weapon") && targetMsg.flags.config.resolved && targetMsg.flags.config.resultLevel > 0) {
         await targetMsg.update({
           'flags.config.type' : "Damage",
           'flags.config.allowPush' : false,

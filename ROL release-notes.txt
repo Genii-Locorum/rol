@@ -1,0 +1,12 @@
+V3
+Changed Character & NPC Types to toggles which then update charType (Character = Investigator/Demi Monde, NPS is NPC/Demi Monde/Creature)
+Concealment question for damage only shown if damage type is not Magic or Vorpal0
+Fixed issue with potential damage (issue with correctly getting damageBonus)
+Fixed issue with targeting not being called where base damage was zero for weapons
+Removed actor from message - to reduce  message size
+
+V2 25/02/2023
+Changed template.json - added defaults for a number of options on items
+Added portrait to NPC sheet
+Added some tooltips on Damage Types to explain their effects
+
