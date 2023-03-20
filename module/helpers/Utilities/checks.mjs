@@ -61,7 +61,6 @@ static async _getVictimId() {
 // Start Skill Check 
 //
 static async _onRollSkillTest(event){
-  console.log(event)
   let target =await ROLChecks._getTargetId(this.token,this.actor); 
   let actor = await ROLChecks._getTarget(target.targetId, target.targetType);
   ROLChecks.startCheck ({
@@ -163,7 +162,7 @@ static async _onLuckReset(event){
   let target =await ROLChecks._getTargetId(this.token,this.actor); 
   let actor = await ROLChecks._getTarget(target.targetId, target.targetType);
   let chatType = "ROLL";
-  if (!actor.system.flags.luckReset) {
+  if (!actor.system.flags.luckReset && actor.system.luck.value >=1) {
     ui.notifications.error(game.i18n.localize("ROL.luckRollMade"));
     return;
   } 

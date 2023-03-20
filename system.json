@@ -2,7 +2,7 @@
   "id": "rol",
   "title": "Rivers of London",
   "description": "Rivers of London implementation for FoundryVTT!",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "compatibility": {
     "minimum": "10",
     "verified": "10.291",
@@ -14,6 +14,49 @@
       "flags": {}
     }
   ],
+  "packs": [
+    { "label": "Advantages",
+      "type": "Item",
+      "name": "advantages",
+      "path": "packs/advantages.db",
+      "system": "rol",
+      "private": false,
+      "flags": {}
+    },
+    { "label": "Armour",
+      "type": "Item",
+      "name": "armour",
+      "path": "packs/armour.db",
+      "system": "rol",
+      "private": false,
+      "flags": {}
+    },
+    { "label": "Skills",
+    "type": "Item",
+    "name": "skills",
+    "path": "packs/skills.db",
+    "system": "rol",
+    "private": false,
+    "flags": {}
+    },
+    { "label": "Spells",
+    "type": "Item",
+    "name": "spells",
+    "path": "packs/spells.db",
+    "system": "rol",
+    "private": false,
+    "flags": {}
+  },
+  { "label": "Weapons",
+  "type": "Item",
+  "name": "weapons",
+  "path": "packs/weapons.db",
+  "system": "rol",
+  "private": false,
+  "flags": {}
+}
+  ],
+  
   "esmodules": [
     "module/rol.mjs"
   ],

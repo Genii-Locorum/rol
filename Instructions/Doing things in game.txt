@@ -1,0 +1,111 @@
+Doing things and what the various icons mean
+
+Making Characteristic Rolls
+- When not in Character Creation mode the characteristics are displayed near the top of the character sheet as Full/Half score.  
+- If you hover the mouse over the Characteristic name it will glow red – clicking on the Characteristic name will open up a Roll Dialog 
+  window where you can set the Difficulty level and the Bonus dice level (+ = Bonus Dice, - = Penalty Dice).  Although the slider goes 
+  from -2 to +2 only one bonus/penalty dice is rolled.  The +/-2 options are for combat rolls.  Click on the roll dice button to make 
+  the dice roll  or click on  “x Close” at the top right to simply close the window without rolling the dice.
+- If you hold Shift and click on the characteristic name it will make the roll with the default options (Regular Difficulty with no Penalty/Bonus Dice).
+- The result of the dice roll is displayed in the Chat Messages tab
+  It will show the character or NPC name, the Difficulty level, the Characteristic rolled, the target score, the level of success in words and icons. 
+  You can then see  whether a Bonus or Penalty Dice was included and the result of the dice roll.
+- Clicking in the chat message will expand the message if you own the character.  You can then see  some options to Push the Roll or spend Luck.
+  If you choose to push the roll (if the option is available) it will reroll the dice with the exact same paramaters as the original roll
+  If you choose to spend luck (and have the necessary luck points) the result level will be changed and your Luck automatically reduced  
+  Different options are available depending on the level of success and the type of roll being made.
+- Whilst more applicable to some NPCs/Creatures if you have a zero score you will get a message in the chat window saying you can’t make a roll.
+
+
+Making a Skill Roll
+- This is very much like a Characteristic Roll except only the full score is shown to save some space.  
+- Hover over and click on the skill name to open the Roll Dialog window.  This is the same window for the Characteristic roll.
+- If you have no score in the skill it will result in a message saying you cannot make the roll.
+- Using Shift Click rolls with the standard defaults 
+
+Casting a Spell
+- You can either cast a spell by rolling the Magic skill and making any adjustments (e.g. Magic Point spent) manually or you can click on the spell name in the Magic tab
+- There are two extra pieces of information about a spell that skill don’t have.  If a spell has a base damage (not zero) then this is shown by the 
+  spell name and if has been mastered then a green certificate icon his shown.
+- The first thing you may notice is that you get a dialog box pop up warning you that either:
+  •	You haven’t selected a target
+  •	You are targeting another character
+  •	You are targeting yourself
+- If you are happy to proceed then click “Yes”, otherwise select “No” and target the appropriate token on the scene.
+- This work like a skill roll and has the Roll Dialog window but also, if the spell has been mastered, an option to boost the spell power.  For mastered spells the Bonus Dice will default to +1.
+- Using Shift Click rolls with default options (Regular Difficulty, the default Bonus/Penalty Dice and assumes no spell boost.)
+- If you have no score in the magic skill it will result in a message saying you cannot make the roll.
+- Assuming you have made the roll and the chat message has appeared you can expand it as above to see options to push the roll or spend luck points as appropriate (see above)
+- When you are happy with the changes click on the "Resovle Roll" button in the chat message to finalise it and to have your Magic Points updated
+- For a damage causing spell that has been succesfully case "Resolve Roll" is replaced with "Roll Damage".  Clicking it will update your Magic Points and move you on to Spell Damage
+
+Spell Damage
+- Congratulations, you’ve successfully cast a spell that does damage.  There are two options for rolling damage but they do the same thing.
+- You can click on the "RolL Damage" chat message button after successfully casting a damage dealing spell.
+- Alternatively you can click on the Damage number by the spell name.  
+- You get a familiar, but slightly different Roll Dialog Window.  You have the option to enter "Cover Damage" as well as the usual Bonus Dice Level.  
+- If "Cover Damage" is entered this reduces the damage to a target by the appropriate amount if the spell damage type is affected by Cover
+- The Damage message in the Chat Messages tab shown the usual information but also shows the Damage done as well as the Dice Roll result.
+- Using Shift and Click rolls the damage with the default settings.
+- When you've finalised the roll click on "Cause Damage" to inflict the damage on your selected target
+
+Weapon Attacks
+- The information shown for weapons, on the equipment tab, is like the spell information.  Aside from the name, you also see the base damage, a green star for a Signature weapon,
+  a green crosshair icon for an automatic weapon and a red crosshair for a semi automatic weapon.
+- Clicking on the weapon name will open a Roll Dialog window where you can select the Difficulty, Bonus Dice level and in the case of an automatic or semi-automatic weapon you get the option for
+  multiple shot damage.  The weapon will use the relevant skill it has been assigned to (see setting up weapons earlier).    Using Shift and Click makes the roll with the default settings.
+- You will get a message if you have zero skill in the appropriate skill saying you can’t make the roll.
+- Clicking on the chat message will let you spend Luck points but you won't see the Push the roll option
+- For succesfull attacks click on the "Roll Damage" option to move to weapon damage
+
+Weapon Damage
+- Like spell attacks you can roll damage either from the successful chat attack message or by clicking on the damage number in the equipment tab 
+- You will get a dialog window for options.
+- Shift and Click will make the roll with the default settings.
+- You do not need to adjust any settings in this window for a signature weapon, this will happen automatically.
+- When you've finalised the roll click on "Cause Damage" to inflict the damage on your selected target
+
+Making a Luck Roll
+- Click on “Luck Points” in the character sheet.  You will get the usual Roll Dialog window where you can adjust the Difficulty and Bonus Dice Level (Shift and Click makes the roll with the default settings). 
+
+Resetting Magic Points
+- Double clicking on the “Magic Points” title in Section c will reset current MP back to maximum
+
+Taking Damage
+- As you take Damage you can manually update the number in the damage box.
+- If the GM has made the attacks with the automated options above then your damage will update automatically
+- A change in the damage value will automatically update the description underneath the value.  The description is adjusted for the relevant (dis)advantage.
+- There are a number of icons under the description.  The first three are “Downed (the bed icon), Mortal Wound (the heart icon) and Fatal Wound (the tombstone icon).  
+  These will automatically toggle on and off if you manually change the damage value.
+- The next four icons are Impaired (the eye icon), Hurt (bandaged head icon), Bloodied (person in a sling) and Mental Trauma (brain icon).  
+- The Impaired icon will toggle on at the appropriate damage level but will not turn off when damage is reduced.  You can manually toggle the icon by clicking on it.
+- Mental Trauma is not automatically toggled – you must turn this off and on manually by clicking on  the icon.
+- Mental Trauma and Impaired will automatically apply their effects on dice rolls whilst they are toggled on.
+- The Hurt and Bloodied icons are only activated by Automated Healing (see below).
+
+Healing
+- As mentioned above you can manually adjust the damage score to mirror the healing rules.  Doing so will not toggle the Hurt or Bloodied icons.  
+- Manually turning these on in line with the game rules will mean you can not reduce your damage level to zero.  If after time you heal enough to remove these effects 
+  then manually toggle them off and then adjust the Damage score.
+
+Automated Healing
+- Double click on the “Damage” title and your Damage Value will change per the game rules, toggling the statuses automatically.  
+- For Mortal or Fatal wounds you will get options per the game rules.
+
+Effects
+- The icons here are a quick reminder of the advantages you have - they are not toggleable
+
+Hyper Thaumaturgical Degradation
+- Or HTD for short.  If your characters suffers from HTD the wording will glow red.  The game will stop you making any other rolls until you resolve this.
+- To resolve this make sure your character sheet is locked and then click on the HTD title to get a Roll Dialog window up.  
+  The only option here is Bonus Dice slider from -1 (Penalty Dice) to 0 (normal roll).  Make the roll and the results will be displayed in the Chat Message tab
+- Magic Point and Damage adjustments will be made automatically.
+- In the event that the HTD status was added in error, you can manually toggle it off (or on) by unlocking your character sheet and clicking on the HTD title.
+
+A Note on Damage Types and Armour
+- There are five types of damage
+- Blunt damage: all armour and cover will protect you from this sort of damage
+- Bladed damage: all armour and cover. except Natural Toughness, will protect you from this sort of damage
+- Ballistic: Natural Toughness and Regular armour will not protect you - Ballistic Armour, cover and Magic armour will
+- Magic: only Magic Armour will protect you
+- Vorpal: no armour or cover will protect from this

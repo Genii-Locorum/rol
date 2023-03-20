@@ -309,7 +309,7 @@ export class ROLActorSheet extends ActorSheet {
 
     // Rollable Skills
     html.find('.skill-name.rollable').click(ROLChecks._onRollSkillTest.bind(this));
-    //html.find('.skill-name.rollable').contextmenu(ROLOpposed._onOpposedRoll.bind(this)) - Placeholder to trigger oppossed skill roll
+    html.find('.skill-name.rollable').contextmenu(ROLOpposed._onOpposedRoll.bind(this))
 
     // Rollable Attributes
     html.find('.attribute-name.rollable').click(ROLChecks._onRollAttributeTest.bind(this));

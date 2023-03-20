@@ -1,0 +1,122 @@
+This is not a tuturial on Foundry VTT - there are plenty of those available, introduction videos on Youtube and helpful articles on the Foundry Wiki - https://foundryvtt.wiki/en/home
+
+You are going to need a copy of the “Rivers of London: the Role Playing Game”.
+
+Create a Scene
+First things first, create a new Scene – you need to do this for the GM tools to be available.
+
+Setting up Skills
+- Create a new item with a relevant name and "skill" type
+- Change the icon if you want
+- Select a Skill Type: Common (default), Expert or weapons
+- Select the Skill Sub-Type – Athletics, Language, Magic, Firearms, Fighting or None (default) this is important as it has an impact on how the system functions.  
+  Clicking on these TOGGLES may change the Skill Type – e.g. if you say this is a Firearms skill it will change the Skill Type to Weapons
+- If the skill is a specialisation, click this option under the Properties header.  This is generally for Arts/Crats, Languages and Science based skills.  
+  If Specialisation is activated a second name box pops up for you to enter the parent skill (e.g. For Forgery the skill name is Forgery and the parent name is Science).
+- Enter the base skill chance that will apply to all characters, NPCs etc (usually 0 or 30).  This chance will be changed later when added to character or NPC sheets.
+- Enter a description.   This is a default description and players can change this when the skill is added to their character sheet.  
+
+Setting up Advantages
+- Create a new item with a relevant name and "advantages" type
+- Change the icon if you want to
+- Enter the Cost – 1 for a minor advantage, 2 for a major advantage.  At this time this doesn't have an impact on the system.
+- Against Properties toggle the Advantage (default) box on if this is an advantage or Demi-Monde ability.  Leave it off if it a Disadvantage.
+- Select the Advantage Effect from the drop down list.  This is a long list so you may need to move the item box around the screen to see a full list.  This option has an important impact on the system.
+- Type in a font awesome icon name in the Icon box – e.g. “fas fa-coins” from those provided with Foundry.  The icon will be displayed on the character sheet if the character has the advantage.
+  You can find a list of the fas icons at https://fontawesome.com/search
+- Select the Pre-Requisite logic from the drop down list or leave blank if there are no pre-requisites- this will then set how many pre-requisitite rows you see next (0 - 3)
+- For each row of pre-requisites now presented select the type in the first box
+    i.	If you selected “Char Min” or “Char Max” the second box will give you a drop down list of characteristics.  
+    ii.	If you selected “Skill-Min”, “Spell” or “Spell Mastered” you need to type the name of the spell or skill in the second box – be careful to use the correct name and case
+    iii.	If you selected “Not Advantage” the second box will have a drop down list of Advantage types. 
+    iv.	For “Demi Monde Only” or “Not Demi Monde” leave the second box blank
+- If you selected “Char-Min”, “Char-Max” or “Skill-Min” enter the appropriate value in the third box, otherwise leave it at zero
+- Enter a description.   This is a default description and players can change this when the skill is added to their character sheet.  
+
+You should be aware that some, but not all, advantages have their impacts implemented automatically (e.g. Rich does automatically affect Affluence, but Scary does not automatically adjust the relevant skill roll)
+
+Setting up Spells
+- Create a new item with a relevant name and "spell" type
+- Change the icon if you want to
+- Select the Spell Order from the drop down list (you will have to delete the default value to see the list)
+- Enter the amount of base damage caused by the spell (leave as 0 for spells that don’t do damage)
+- If the damage is more than zero select the damage type (default is Magic) – the tootltip will explain the effects of the damage type
+- Select the Pre-Requisite logic from the drop down list or leave blank if there are no pre-requisities.  See "Setting up Advantages" for details on pre-requisites
+- Leave the “Mastered” toggle turned off – we will change this from the character sheet if appropriate.
+- Enter a description.   This is a default description and players can change this when the spell is added to their character sheet.
+
+Setting up Weapons
+- Create a new item with a relevant name and "weapons" type
+- Change the icon if you want to
+- Select the damage type (default is Blunt) – the tootltip will explain the effects of the damage type
+- Toggle the Weapon Type – Melee (default), Thrown or Firearms.  
+- Enter the amount of base damage caused by the weapon 
+- Enter the range of the weapon
+- If the weapon is a firearm you also have the options to toggle the weapon to Semi Automatic or Automatic
+- Do not toggle the “Signature” option on – players will activate this on the item when it is  on the character sheet
+- Enter a description.   This is a default description and players can change this when the weapon is added to their character sheet.
+
+Setting up Armour
+- Create a new item with a relevant name and "armour" type
+- Change the icon if you want to
+- Toggle the Armour Type – Natural, Regular, Ballistic
+- Enter the amount of armour points for this item 
+- Enter a description.   This is a default description and players can change this when the armour is added to their character sheet.
+
+Setting up Equipment
+- Create a new item with a relevant name and "equipment" type
+- Change the icon if you want to
+- Enter a description.   This is a default description and players can change this when the armour is added to their character sheet.
+
+Setting up Contacts
+- Create a new item with a relevant name and "contacts" type
+- Change the icon if you want to
+- Enter a relationship description.   This is a default description and players can change this when the armour is added to their character sheet.
+- Toggle the relationship to either "Secure" or "Sour" if appropriate - if one is toggled on clicking the other will change the toggle or clicking the existing toggled box will turn it off
+
+GM tools
+- These will only be visible when you have created your first scene and only visible to GMs
+- There are (currently) four tools:
+    •	End of Session Phase (the crescent)
+    •	Development Phase (the key)
+    •	Character Creation (the person)
+    •	Party Initiative Order (the crossed swords)
+- End of Session Phase is used to award Development Points in to a “Pending” pot and to allow the characters to recover luck.
+- Development Phase moves any Development Points from Pending to Earned - they now available to be spent.  Characters may also reset their luck.  
+  Characters can also change skill scores and names directly on the character sheet in Development Phase.
+- Character Creation allows players to change their Characteristics, Movement Rate and carry out bulk changes to skill names and scores directly on their character sheet.  
+  It also allows characters to set their luck.
+- These tools are toggled on and off.  If the game is restarted they will reset to Off.
+- The Party Initiative Order will give you a list of Characters (not just those who are active).  Rank them in the order per the game rules.  
+  This order will persist unless you refresh or restart foundry.  This is part of the Initiative system,
+- For luck recovery and reset an extra button will appear on the character sheet (bottom left).  
+  The system will only allow the button to be used once per character.  If you want to allow a second roll then toggle the relevant GM Tool off and back on.
+  The exception here is Luck Reset for Demi-Monde characters when the Luck Reset button is always available.
+
+Game Settings
+- There are a number of settings that you can adjust for this implementation.  
+- Enforce PC Pre-Requisite Checks
+    If ticked (the default) then the various pre-requisite rules are enforced – you can not add a spell, advantage etc to a character if it does not meet the pre-requisites.  
+    Unticking the box turns off this restriction
+- Enforce NPC Pre-Requisite Checks
+    This does the same as the previous control, except for NPCs.
+- Show Current/Max Luck
+    If unticked (the default) only current Luck is shown on the character sheet.  If ticked both current and Maximum Luck are shown.
+- Age affects movement
+    If unticked (the default) then a characters age does not affect their movement rate.  If ticked it is reduced in line with the advanced rules.
+- Allow Demi Monde Investigators
+    If unticked (the default) you may not create a Demi Monde investigator.  Ticking this removes this restriction.
+- Increase abilities in single units
+    If unticked (the default) Characteristic scores will be rounded down to the nearest block of ten (e.g. 53 will change to 50).  If ticked this rounding down does not take place.  
+    The total Characteristic points will reflect the rounding down.
+- Extend ability range
+    If unticked (the default) Characteristic scores are only allowed in the range of 30-80.  If ticked this range is extended to 20-90.  
+    Characteristics entered outside of the permitted range are automatically changed.
+- Maximum Total Stats
+    This sets the level at which the warning message for total stats is activated.  This does not stop characters having more stats
+- Maximum Spell Order
+    This sets the maximum spell level allowed in the game.  At this time the language pack only contains titles for 20 orders of spell.
+- Colour of DSN Bonus Dice
+    This sets the colour of the bonus dice rolled if using Dice-So-Nice module.
+- Colour of DSN Penalty Dice
+    This sets the colour of the penalty dice rolled if using Dice-So-Nice module.

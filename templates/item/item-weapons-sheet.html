@@ -14,11 +14,11 @@
 
   <div class="skill-prop" style="display: block;" data-set="properties">
     <div class="charname">{{ localize 'ROL.damageType' }}:</div>
-          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.damType 'blunt')}} control-active {{/if}}" data-property='blunt'>{{ localize 'ROL.blunt' }}  </div>
-          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.damType 'bladed')}} control-active {{/if}}" data-property='bladed'>{{ localize 'ROL.bladed' }}  </div>
-          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.damType 'ballistic')}} control-active {{/if}}" data-property='projectile'>{{ localize 'ROL.ballistic' }}  </div>
-          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.damType 'magic')}} control-active {{/if}}" data-property='magical'>{{ localize 'ROL.magic' }}  </div>
-          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.damType 'vorpal')}} control-active {{/if}}" data-property='vorpal'>{{ localize 'ROL.vorpal' }}  </div>
+          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.damType 'blunt')}} control-active {{/if}}" title = "{{ localize 'ROL.dmgBlunt' }}" data-property='blunt'>{{ localize 'ROL.blunt' }}  </div>
+          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.damType 'bladed')}} control-active {{/if}}" title = "{{ localize 'ROL.dmgBladed' }}" data-property='bladed'>{{ localize 'ROL.bladed' }}  </div>
+          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.damType 'ballistic')}} control-active {{/if}}" title = "{{ localize 'ROL.dmgBallistic' }}" data-property='projectile'>{{ localize 'ROL.ballistic' }}  </div>
+          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.damType 'magic')}} control-active {{/if}}" title = "{{ localize 'ROL.dmgMagic' }}" data-property='magical'>{{ localize 'ROL.magic' }}  </div>
+          <div class="display-switch {{#if isGM}} toggle-switch {{/if}} {{#if (eq system.damType 'vorpal')}} control-active {{/if}}" title = "{{ localize 'ROL.dmgVorpal' }}" data-property='vorpal'>{{ localize 'ROL.vorpal' }}  </div>
   </div>    
         <div></div>  
         <br>  

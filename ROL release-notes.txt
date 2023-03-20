@@ -1,9 +1,17 @@
-V3
+V5 20/03/2023
+Changed Luck Reset roll check to allow a roll where Luck = zero to account for newly created characters
+Added compendium with common and fighting skills plus examples of other items
+Added tooltips to weapon sheet damage types
+Added three instructions documents covering setting up a world, creating a character, and doing stuff in game.
+
+V4 03/03/2023
 Changed Character & NPC Types to toggles which then update charType (Character = Investigator/Demi Monde, NPS is NPC/Demi Monde/Creature)
 Concealment question for damage only shown if damage type is not Magic or Vorpal0
 Fixed issue with potential damage (issue with correctly getting damageBonus)
 Fixed issue with targeting not being called where base damage was zero for weapons
 Removed actor from message - to reduce  message size
+
+V3 skipped to align numbering with system.json file
 
 V2 25/02/2023
 Changed template.json - added defaults for a number of options on items
