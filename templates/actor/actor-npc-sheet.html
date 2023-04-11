@@ -21,7 +21,7 @@
   {{!-- Stats --}}  
   <div class="npc-statblock grid grid-10col">
     {{#each system.abilities as |ability key|}}
-      <div class="resource-label fixed-stats-content skill-rollable attribute-name rollable align-center" data-type="Attribute" data-target ={{ability.value}} data-formula="1d100" data-label="{{ability.label}}">{{ability.label}}</div>
+      <div class="fixed-stats-content skill-rollable attribute-name rollable align-center" data-target ={{ability.value}}  data-label="{{ability.label}}">{{ability.label}}</div>
       {{#if ../system.flags.locked}}
         <div class="npc-stats-content">{{ability.value}}</div>
       {{else}}
@@ -31,27 +31,27 @@
   </div>  
   <br>
   <div class="npc-statblock grid grid-10col">
-    <div class="resource-label fixed-stats-content align-center" title = "{{ localize 'DamageBonus' }}" >{{ localize 'ROL.db' }}:</div>
-      <input class="stats-content" name="system.dmgbonus" type="text" value="{{system.dmgbonus}}" data-dtype="Number"/></span>
-    <div class="resource-label fixed-stats-content align-center" title = "{{ localize 'ROL.mov' }}">{{ localize 'ROL.movShort' }}:</div>
-      <input class="stats-content" name="system.mov" type="text" value="{{system.mov}}" data-dtype="Number"/></span>
-    <div class="resource-label align-center resource-label-gap" title = "{{ localize 'ROL.mp' }}">{{ localize 'ROL.mpShort' }}</div>
-      <input class="stats-content" name="system.mp.value" type="text" value="{{system.mp.value}}" data-dtype="Number">   
-    <div class="resource-label align-center skill-rollable luck-name rollable resource-label-gap" title = "{{ localize 'ROL.luck' }}" data-target={{system.luck.value}} data-type="Luck" data-formula="1d100" data-label="{{localize 'ROL.luckShort'}}">{{ localize 'ROL.luckShort' }}</div>
-      <input class="stats-content" name="system.luck.value" type="text" value="{{system.luck.value}}" data-dtype="Number"/> 
-    <div class="resource-label align-center resource-label-gap" title = "{{ localize 'damage' }}">{{ localize 'ROL.damShort' }}</div>
-      <input class="stats-content" name="system.damage.value" type="text" value="{{system.damage.value}}" data-dtype="Number"/> 
+    <div class="fixed-stats-content align-center" title = "{{ localize 'DamageBonus' }}" >{{ localize 'ROL.db' }}:</div>
+      <input class="npc-stats-input" name="system.dmgbonus" type="text" value="{{system.dmgbonus}}" data-dtype="Number"/></span>
+    <div class="fixed-stats-content align-center" title = "{{ localize 'ROL.mov' }}">{{ localize 'ROL.movShort' }}:</div>
+      <input class="npc-stats-input" name="system.mov" type="text" value="{{system.mov}}" data-dtype="Number"/></span>
+    <div class="fixed-stats-content align-center resource-label-gap" title = "{{ localize 'ROL.mp' }}">{{ localize 'ROL.mpShort' }}</div>
+      <input class="npc-stats-input" name="system.mp.value" type="text" value="{{system.mp.value}}" data-dtype="Number">   
+    <div class="fixed-stats-content align-center skill-rollable luck-name rollable resource-label-gap" title = "{{ localize 'ROL.luck' }}">{{ localize 'ROL.luckShort' }}</div>
+      <input class="npc-stats-input" name="system.luck.value" type="text" value="{{system.luck.value}}" data-dtype="Number"/> 
+    <div class="fixed-stats-content align-center resource-label-gap" title = "{{ localize 'damage' }}">{{ localize 'ROL.damShort' }}</div>
+      <input class="npc-stats-input" name="system.damage.value" type="text" value="{{system.damage.value}}" data-dtype="Number"/> 
 
-    <div class="resource-label align-center resource-label-gap" title = "{{ localize 'ROL.natural' }} {{ localize 'ROL.armour' }}">{{ localize 'ROL.natArmShort' }}:</div>
-      <input class="stats-content" name="system.armour.natural" type="text" value="{{system.armour.natural}}" data-dtype="Number"/> 
-    <div class="resource-label align-center resource-label-gap" title = "{{ localize 'ROL.regular' }}  {{ localize 'ROL.armour' }}">{{ localize 'ROL.regArmShort' }}:</div>
-      <input class="stats-content" name="system.armour.regular" type="text" value="{{system.armour.regular}}" data-dtype="Number"/> 
-    <div class="resource-label align-center resource-label-gap" title = "{{ localize 'ROL.ballistic' }}  {{ localize 'ROL.armour' }}">{{ localize 'ROL.balArmShort' }}:</div>
-      <input class="stats-content" name="system.armour.ballistic" type="text" value="{{system.armour.ballistic}}" data-dtype="Number"/> 
-    <div class="resource-label align-center resource-label-gap" title = "{{ localize 'ROL.shield' }}  {{ localize 'ROL.armour' }}">{{ localize 'ROL.shieldArmShort' }}:</div>
-      <input class="stats-content" name="system.armour.shieldBlock" type="text" value="{{system.armour.shieldBlock}}" data-dtype="Number"/> 
-    <div class="resource-label align-center resource-label-gap" title = "{{ localize 'ROL.shield' }}  {{ localize 'ROL.hp' }}">{{ localize 'ROL.shieldHPShort' }}:</div>
-      <input class="stats-content" name="system.armour.shieldHP" type="text" value="{{system.armour.shieldHP}}" data-dtype="Number"/> 
+    <div class="fixed-stats-content align-center resource-label-gap" title = "{{ localize 'ROL.natural' }} {{ localize 'ROL.armour' }}">{{ localize 'ROL.natArmShort' }}:</div>
+      <input class="npc-stats-input" name="system.armour.natural" type="text" value="{{system.armour.natural}}" data-dtype="Number"/> 
+    <div class="fixed-stats-content align-center resource-label-gap" title = "{{ localize 'ROL.regular' }}  {{ localize 'ROL.armour' }}">{{ localize 'ROL.regArmShort' }}:</div>
+      <input class="npc-stats-input" name="system.armour.regular" type="text" value="{{system.armour.regular}}" data-dtype="Number"/> 
+    <div class="fixed-stats-content align-center resource-label-gap" title = "{{ localize 'ROL.ballistic' }}  {{ localize 'ROL.armour' }}">{{ localize 'ROL.balArmShort' }}:</div>
+      <input class="npc-stats-input" name="system.armour.ballistic" type="text" value="{{system.armour.ballistic}}" data-dtype="Number"/> 
+    <div class="fixed-stats-content align-center resource-label-gap" title = "{{ localize 'ROL.shield' }}  {{ localize 'ROL.armour' }}">{{ localize 'ROL.shieldArmShort' }}:</div>
+      <input class="npc-stats-input" name="system.armour.shieldBlock" type="text" value="{{system.armour.shieldBlock}}" data-dtype="Number"/> 
+    <div class="fixed-stats-content align-center resource-label-gap" title = "{{ localize 'ROL.shield' }}  {{ localize 'ROL.hp' }}">{{ localize 'ROL.shieldHPShort' }}:</div>
+      <input class="npc-stats-input" name="system.armour.shieldHP" type="text" value="{{system.armour.shieldHP}}" data-dtype="Number"/> 
   </div>
   </div>
 
@@ -59,6 +59,18 @@
     <div class="image-panel">
       <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
     </div>
+  
+    {{!-- HTD Box --}}
+    <div class="npc-htd-boxed">
+      {{#if isLocked}}
+        <div class="resource-label align-center skill-rollable htd-name rollable  {{#if system.properties.htd}} control-active {{/if}}" title="{{ localize 'ROL.htd' }}">{{ localize 'ROL.htdShort' }}</div>
+      {{else}}
+        <div class="resource-label align-center tough-toggle  {{#if system.properties.htd}} control-active {{/if}}" title="{{ localize 'ROL.htd' }}" data-property="htd">{{ localize 'ROL.htdShort' }}</div>
+      {{/if}}
+    </div> 
+    <br>
+  
+  
   </div>  
 
   <div>
@@ -71,146 +83,78 @@
 
 </header>
 
-  <section>
+  <section class="npc-section">
+
   {{!-- Advantages --}}
   <div class="resource-label">{{ localize 'ROL.advType' }}</div>
-  <div class="flexrow" style="max-width: 480px;">
+  <div class="npc-grid npc-adv grid grid-4col">
   {{#each advantages as |advantage id|}}
-    <div class="item flexrow" style="flex: 0 0 155px;flex-wrap: wrap" data-item-id="{{advantage._id}}">
-      <div style="flex-basis: 90px;"> {{advantage.name}}</div>  
-      {{#if ../system.flags.locked}}
-        <a class="item-control item-delete " style="flex-basis: 15px;padding-left: 3px;margin-right: 5px;border-right: 2px groove;" ></a> 
-      {{else}}
-        <a class="item-control item-delete " style="flex-basis: 15px;padding-left: 3px;margin-right: 5px;border-right: 2px groove;" title="{{ localize 'ROL.deleteItem' }}"><i class="fas fa-trash"></i></a>
-      {{/if}}
-    </div>
+      <div class="item trait-name-context border-right" data-item-id="{{advantage._id}}"> {{advantage.name}}</div>  
   {{/each}}
   </div>
   <br>
 
   {{!-- Skills --}}
-  <div class="resource-label">{{ localize 'ROL.skills' }}</div>
-  <div class="flexrow" style="max-width: 480px;">
+  <span class="resource-label">{{ localize 'ROL.skills' }}
+  <a class="item-control item-create" title="{{ localize 'ROL.createSkills' }}" data-type="skill"><i class="fas fa-plus"></i></a>
+  </span>
+  <div class="npc-grid npc-skills grid grid-8col">
   {{#each skills as |skill id|}}
     {{#unless isType}}
       {{#unless isSpecialisation}}
-        {{#unless (eq skill.system.subtype "Language")}}
-          <div class="item flexrow" style="flex: 0 0 155px;flex-wrap: wrap"  data-item-id="{{skill._id}}">
             {{#if ../system.flags.locked}}
-              <div class="skill-rollable skill-name rollable " style="flex-basis: 90px;" data-type="Skill" data-subtype = {{skill.system.subType}} data-item-id="{{skill._id}}" data-formula="1d100" data-target ={{skill.system.score}} data-label={{skill.name}}>{{skill.system.skillName}}</div>
-              <div class="loc-label-inp centre" style="flex-basis: 25px; height:12px;">{{skill.system.score}}</div>
+              <div class="item skill-rollable skill-name rollable " data-item-id="{{skill._id}}">{{skill.system.skillName}}</div>
+              <div class="centre border-right">{{skill.system.score}}</div>
             {{else}}
-              <input class="inline-edit" style="flex-basis: 80px; height:12px;margin-right:5px;" data-field="system.skillName" data-item-id="{{skill._id}}"  name="skill.system.skillName" type="text" value="{{skill.system.skillName}}"/>
-              <input class="loc-label-inp centre inline-edit"  data-field="system.score" data-item-id="{{skill._id}}" style="flex-basis: 25px; height:12px;" name="skill.system.score" type="text" value="{{skill.system.score}}" data-dtype="Number"/>
+              <input class="item skill-label-inp inline-edit" data-item-id="{{skill._id}}"  data-field="system.name" name="skill.system.skillName" type="text" value="{{skill.system.skillName}}"/>
+              <input class="item loc-label-inp centre inline-edit" data-item-id="{{skill._id}}" data-field="system.score" name="skill.system.score" type="text" value="{{skill.system.score}}"/>
             {{/if}}
-            <a class="item-control item-edit" style="flex-basis: 15px;padding-left: 3px;" title="Edit Skill"><i class="fas fa-info-circle"></i></a>
-            {{#if ../system.flags.locked}}
-              <a class="item-control item-delete " style="flex-basis: 15px;padding-left: 3px;margin-right: 5px;border-right: 2px groove;" ></a> 
-            {{else}}
-              <a class="item-control item-delete " style="flex-basis: 15px;padding-left: 3px;margin-right: 5px;border-right: 2px groove;" title="{{ localize 'ROL.deleteSkill' }}"><i class="fas fa-trash"></i></a>
-             {{/if}}
-          </div>
-        {{/unless}}  
       {{/unless}}
     {{/unless}}
   {{/each}}
   </div>
   <br>
-
-  {{!-- Languages --}}
-  <div class="resource-label">{{ localize 'ROL.languages' }}</div>
-  <div class="flexrow" style="max-width: 480px;">
-  {{#each skills as |skill id|}}
-    {{#unless isType}}
-      {{#unless isSpecialisation}}
-        {{#if (eq skill.system.subtype "Language")}}
-          <div class="item flexrow" style="flex: 0 0 155px;flex-wrap: wrap"  data-item-id="{{skill._id}}">
-            {{#if ../system.flags.locked}}
-              <div class="item skill-rollable skill-name rollable " style="flex-basis: 90px;" data-type="Skill" data-subtype = {{skill.system.subType}} data-item-id="{{skill._id}}" data-formula="1d100" data-target ={{skill.system.score}} data-label={{skill.name}}>{{skill.system.skillName}}</div>
-              <div class="loc-label-inp centre" style="flex-basis: 25px; height:12px;">{{skill.system.score}}</div>
-            {{else}}
-              <input class="inline-edit" style="flex-basis: 80px; height:12px;margin-right:5px;" data-field="system.skillName" data-item-id="{{skill._id}}"  name="skill.system.skillName" type="text" value="{{skill.system.skillName}}"/>
-              <input class="loc-label-inp centre inline-edit"  data-field="system.score" data-item-id="{{skill._id}}" style="flex-basis: 25px; height:12px;" name="skill.system.score" type="text" value="{{skill.system.score}}" data-dtype="Number"/>
-            {{/if}}
-            <a class="item-control item-edit" style="flex-basis: 15px;padding-left: 3px;" title="{{ localize 'ROL.editSkill' }}"><i class="fas fa-info-circle"></i></a>
-            {{#if ../system.flags.locked}}
-              <a class="item-control item-delete " style="flex-basis: 15px;padding-left: 3px;margin-right: 5px;border-right: 2px groove;" ></a> 
-            {{else}}
-              <a class="item-control item-delete " style="flex-basis: 15px;padding-left: 3px;margin-right: 5px;border-right: 2px groove;" title="{{ localize 'ROL.deleteSkill' }}"><i class="fas fa-trash"></i></a>
-             {{/if}}
-          </div>
-        {{/if}}  
-      {{/unless}}
-    {{/unless}}
-  {{/each}}
-  </div>
-  <br>
-
 
   {{!-- Spells --}}  
   <div class="resource-label">{{ localize 'ROL.spells' }}</div>
-  <div class="flexrow" style="max-width: 480px;">
+  <div class="npc-grid npc-spells grid grid-8col">
   {{#each spells as |spell id|}}
     {{#unless isType}}
-      <div class="item flexrow" style="flex: 0 0 155px;flex-wrap: wrap"  data-item-id="{{spell._id}}">
-        <div class="item skill-rollable spell-name rollable" style="flex-basis: 90px;" data-type="Spell" data-item-id="{{spell._id}}" data-formula="1d100" data-target ={{../system.magicScore}} data-damageformula = "1d100" data-damage = {{spell.system.damage}} data-damagetarget = {{../system.abilities.dex.value}} data-label={{spell.name}}>{{spell.name}}
+        <div class="item skill-rollable spell-name rollable" data-item-id="{{spell._id}}">{{spell.name}}
         {{#if system.mastered}}
           ({{ localize 'ROL.masteredShort' }})</div>
         {{else}}
           </div>
         {{/if}}  
         {{#if (eq spell.system.damage 0) }}
-          <div style="flex-basis: 15px;padding-left: 3px;"></div>
+          <div class="border-right"></div>
         {{else}}
-          <div class="skill-rollable damage-name rollable centre" style="flex-basis: 15px;padding-left: 3px;" data-type="Damage" data-subtype="Magic" data-formula = "1d100" data-target = {{../system.abilities.dex.value}} data-label={{spell.name}} data-damage = {{spell.system.damage}} title= "{{ localize 'ROL.damage' }}">{{spell.system.damage}}</div>
+          <div class="skill-rollable damage-name rollable centre border-right" title= "{{ localize 'ROL.damage' }}">{{spell.system.damage}}</div>
         {{/if}}
-        <a class="item-control item-edit" style="flex-basis: 15px;padding-left: 3px;" title="{{ localize 'ROL.editSpell' }}"><i class="fas fa-info-circle"></i></a>
-        {{#if ../system.flags.locked}}
-        <a class="item-control item-delete " style="flex-basis: 15px;padding-left: 3px;margin-right: 5px;border-right: 2px groove;" ></a> 
-      {{else}}
-      <a class="item-control item-delete " style="flex-basis: 15px;padding-left: 3px;margin-right: 5px;border-right: 2px groove;" title="{{ localize 'ROL.deleteSpell' }}"><i class="fas fa-trash"></i></a>
-      {{/if}}
-      </div>
     {{/unless}}
   {{/each}}
   </div>
+  <br>
 
-  {{!-- HTD Box --}}
-  <div class="npc-htd-boxed">
-    {{#if isLocked}}
-      <div class="resource-label align-center skill-rollable htd-name rollable  {{#if system.properties.htd}} control-active {{/if}}" title="{{ localize 'ROL.htd' }}" data-target={{system.abilities.pow.value}} data-type="HTD" data-formula="1d100" data-label="HTD">{{ localize 'ROL.htdShort' }}</div>
-    {{else}}
-      <div class="resource-label align-center tough-toggle  {{#if system.properties.htd}} control-active {{/if}}" title="{{ localize 'ROL.htd' }}" data-property="htd">{{ localize 'ROL.htdShort' }}</div>
-    {{/if}}
-  </div> 
+  {{!-- Weapons --}}  
+  <span class="resource-label">{{ localize 'ROL.weapons' }}
+    <a class="item-control item-create" title="{{ localize 'ROL.createWeapon' }}" data-type="weapons"><i class="fas fa-plus"></i></a>
+  </span>
+  <div class="npc-grid npc-spells grid grid-8col">
+  {{#each weapons as |weapon id|}}
+    <div class="item skill-rollable weapon-name rollable"  data-item-id="{{weapon._id}}">{{weapon.name}}  {{#if weapon.system.signature}}(S){{/if}}</div>
+    <div class="skill-rollable damage-name rollable centre border-right" title="{{ localize 'ROL.damage' }}">{{weapon.system.damage}}</div>
+  {{/each}}
+  </div>
   <br>
 
   {{!-- Equipment --}}  
-  <div class="resource-label">{{ localize 'ROL.weapons' }}</div>
-  <div class="flexrow" style="max-width: 480px;">
-  {{#each weapons as |weapon id|}}
-  <div class="item flexrow" style="flex: 0 0 155px;flex-wrap: wrap" data-item-id="{{weapon._id}}">
-    
-    {{#if (eq weapon.system.type "Melee")}}
-        <div class="item skill-rollable weapon-name rollable"  style="flex-basis: 90px;" data-type="Weapon"  data-subtype="Melee" data-item-id="{{weapon._id}}" data-formula="1d100" data-target = {{../system.meleeScore}} data-damage = {{weapon.system.damage}} data-damageformula = "1d100" data-damagetarget = {{../system.abilities.str.value}} data-label={{weapon.name}}>{{weapon.name}}  {{#if weapon.system.signature}}(S){{/if}}</div>
-        <div class="skill-rollable damage-name rollable centre" style="flex-basis: 15px;padding-left: 3px;" data-type="Damage" data-subtype="Melee" data-formula = "1d100" data-target = {{../system.abilities.str.value}} data-label={{weapon.name}} data-damage = {{weapon.system.damage}} title="{{ localize 'ROL.damage' }}">{{weapon.system.damage}}</div>
-
-    {{else}}  
-      {{#if (eq weapon.system.type "Firearms")}}  
-          <div class="item skill-rollable weapon-name rollable"  style="flex-basis: 90px;" data-type="Weapon" data-subtype="Missile" data-item-id="{{weapon._id}}" data-formula="1d100" data-target = {{../system.firearmsScore}} data-damage = {{weapon.system.damage}} data-damageformula = "1d100" data-damagetarget = {{../system.abilities.dex.value}} data-label={{weapon.name}}>{{#if weapon.system.signature}}(S){{/if}}</div>
-          <div class="skill-rollable damage-name rollable centre" style="flex-basis: 15px;padding-left: 3px;" data-type="Damage" data-subtype="Missile" data-formula = "1d100" data-target = {{../system.abilities.dex.value}} data-label={{weapon.name}} data-damage = {{weapon.system.damage}} title="{{ localize 'ROL.damage' }}">{{weapon.system.damage}}</div>
-      {{else}}
-      <div class="item skill-rollable weapon-name rollable"  style="flex-basis: 90px;" data-type="Weapon"  data-subtype="Thrown" data-item-id="{{weapon._id}}" data-formula="1d100" data-target = {{../system.throwScore}} data-damage = {{weapon.system.damage}} data-damageformula = "1d100" data-damagetarget = {{../system.abilities.dex.value}} data-label={{weapon.name}}>{{weapon.name}}</div>
-        <div class="skill-rollable damage-name rollable centre" style="flex-basis: 15px;padding-left: 3px;" data-type="Damage" data-subtype="Thrown" data-formula = "1d100" data-target = {{../system.abilities.dex.value}} data-label={{weapon.name}} data-damage = {{weapon.system.damage}} title="{{ localize 'ROL.damage' }}">{{weapon.system.damage}}</div>
-      {{/if}}
-    {{/if}}
-      <a class="iitem-control item-edit" style="flex-basis: 15px;padding-left: 3px;" title="Edit Weapon"><i class="fas fa-info-circle"></i></a>
-      {{#if ../system.flags.locked}}
-        <a class="item-control item-delete " style="flex-basis: 15px;padding-left: 3px;margin-right: 5px;border-right: 2px groove;" ></a> 
-      {{else}}
-        <a class="item-control item-delete" style="flex-basis: 15px;padding-left: 3px; border-right: 2px groove;" title="Delete Weapon"><i class="fas fa-trash"></i></a>
-      {{/if}}
-    </div>
+  <span class="resource-label">{{ localize 'ROL.equipment' }}
+    <a class="item-control item-create" title="{{ localize 'ROL.createEquipment' }}" data-type="equipment"><i class="fas fa-plus"></i></a>
+  </span>
+  <div class="npc-grid npc-adv grid grid-4col">
+  {{#each equipment as |equipment id|}}
+    <div class="item skill-rollable equip-name-context rollable border-right"  data-item-id="{{equipment._id}}">{{equipment.name}}</div>
 
   {{/each}}
   </div>
@@ -218,7 +162,7 @@
 
   {{!-- Signare/Vestigia --}}  
   <div class="resource-label"> {{ localize 'ROL.signare' }}/{{ localize 'ROL.vestigia' }}</div>
-  <input class="" type="text" name="system.signare.sound" value="{{system.signare.sound}}"/>
+  <input class="biography-doc" type="text" name="system.signare.sound" value="{{system.signare.sound}}"/>
   <div></div>
   <br>
 
@@ -226,7 +170,7 @@
   {{!-- Thematic Power --}}  
   {{#if system.ThematicPower}}
     <div class="resource-label"> {{localize 'ThematicPower' }}</div>
-    <input class="" type="text" name="system.thematic" value="{{system.thematic}}"/>
+    <input class="trait-doc" type="text" name="system.thematic" value="{{system.thematic}}"/>
     <div></div>
     <br>
   {{/if}}
@@ -234,12 +178,12 @@
   {{!-- Notes --}}
   <div class="resource-label">{{ localize 'ROL.description' }}:</div>
   <div>
-    {{editor system.description class="background-doc" target="system.description" button=true owner=owner editable=editable}}
+    {{editor system.description class="npc-doc" target="system.description" button=true owner=owner editable=editable}}
   </div>
   <br>
   <div class="resource-label">{{ localize 'ROL.notes' }}:</div>
   <div>
-    {{editor system.notes class="background-doc" target="system.notes" button=true owner=owner editable=editable}}
+    {{editor system.notes class="npc-doc" target="system.notes" button=true owner=owner editable=editable}}
   </div>
 
 </section>

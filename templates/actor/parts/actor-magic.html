@@ -1,34 +1,29 @@
-<ol class="items-list">
+<ol class="skill-list">
+  
   {{#each spells as |spell id|}}
    
     {{#if isType}}
       {{#unless (lt spell.system.spellOrder 1)}}
         <br>
       {{/unless}}
-      <li class="order-name"> {{spell.name}}</li>
+      <li class="police-header spell-header"> {{spell.name}}</li>
     {{else}}
 
       <li class="item spell-listitem" data-item-id="{{spell._id}}">
-        <div class="item-name">
-          <div class="skill-rollable spell-name rollable" data-type="Spell" data-formula="1d100" data-target = {{../system.magicScore}} data-damageformula = "1d100" data-damage = {{spell.system.damage}} data-damagetarget = {{../system.abilities.dex.value}} data-subtype="Magic" data-label={{spell.name}}> {{spell.name}}</div>
+        <div>
+          <div class="skill-rollable spell-name rollable"> {{spell.name}} 
+
+          {{#if system.mastered}}
+            <i title="{{ localize 'ROL.mastered' }}" class="result-success fas fa-certificate"></i>
+          {{/if}}
+          </div>
         </div>
+        <div></div>
         {{#if (eq spell.system.damage 0) }}
           <div></div>
         {{else}}
-          <div class="skill-rollable damage-name rollable centre" data-type="Damage" data-subtype="Magic" data-formula = "1d100" data-target = {{../system.abilities.dex.value}} data-label={{spell.name}} data-damage = {{spell.system.damage}} title= "{{ localize 'ROL.damage' }}">{{spell.system.damage}}</div>
+          <div class="skill-rollable damage-name rollable centre" title= "{{ localize 'ROL.damage' }}">{{spell.system.damage}}</div>
         {{/if}}
-        
-        {{#if system.mastered}}
-          <div class = "centre" title="{{ localize 'ROL.mastered' }}" ><i class="result-success fas fa-certificate"></i></div>
-        {{else}}
-          <div></div>
-        {{/if}}
-        <div class="item-controls">
-          <a class="item-control item-edit" title="{{ localize 'ROL.editSpell' }}"><i class="fas fa-info-circle"></i></a>
-          {{#unless ../system.flags.locked}}
-            <a class="item-control item-delete" title="{{ localize 'ROL.deleteSpell' }}"><i class="fas fa-trash"></i></a>
-          {{/unless}}
-        </div>
       </li>
     {{/if}}
   {{/each}}

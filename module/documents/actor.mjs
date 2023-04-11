@@ -96,6 +96,8 @@ export class ROLActor extends Actor {
     //Set Natural Armour
     if (systemData.Toughness){
       this.update({'system.armour.natural' : 1});
+    } else {
+      this.update({'system.armour.natural' : 0})
     }
 
     // Produce Damage Status

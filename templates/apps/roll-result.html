@@ -120,7 +120,7 @@
       {{#isAnd (gt damage 0) (gt resultLevel 0)}}
           <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.rollDamage'}}</button>
       {{else}}
-        {{#isAnd (eq damage 0) (eq rollType 'Weapon')}}
+        {{#isAnd (eq damage 0) (eq rollType 'weapons')}}
           {{#if (gt resultLevel 0)}}
             <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.rollDamage'}}</button>        
           {{/if}}

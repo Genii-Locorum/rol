@@ -1,22 +1,20 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-  <header class="sheet-header">
-    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+  <div class="police-header item-hdr"> {{ localize 'ROL.equipment' }}</div>
+  <br>
 
-    <div class="skillheader-fields  grid grid-3col">
-      <div class="skillname">
-          <input name="name" type="text" value="{{item.name}}" placeholder="name"/>
+     <header class="sheet-header">
+      <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+      <div class="header-fields">
+        <div class="skillname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></div>
       </div>
-      <div></div>
-      <div></div>
-    </div>  
-  </header>
+    </header>
 
   {{!-- Description  --}}
     <section class="sheet-body">
-      <div class="charname">{{ localize 'ROL.description' }}:</div>
+      <div class="item-label">{{ localize 'ROL.description' }}:</div>
       <div>
-        {{editor system.equipment.description class="biography-doc" target="system.equipment.description" button=true owner=owner editable=editable}}
+        {{editor system.equipment.description class="background-doc" target="system.equipment.description" button=true owner=owner editable=editable}}
       </div>
     </section>
 </form>

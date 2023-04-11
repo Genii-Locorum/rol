@@ -9,7 +9,7 @@ export class ROLItemSheet extends ItemSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["rol", "sheet", "item"],
       width: 550,
-      height: 480,
+      height: 620,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
     });
   }
@@ -114,7 +114,7 @@ export class ROLItemSheet extends ItemSheet {
     const prop=event.currentTarget.closest('.toggle-switch').dataset.property;
     const state=this.object.system[prop];
     let checkProp={};
-   
+
     if (prop==='common') {
       checkProp={'system.type' : "Common"};
     } else if (prop==='expert') {

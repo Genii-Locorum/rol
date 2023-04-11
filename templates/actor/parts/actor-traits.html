@@ -1,10 +1,12 @@
 <header>
 
+
+
 <ol class="items-list effects-list">
-  <div class="skilltype-header">{{ localize 'ROL.advType' }}</div>
+  <div class="police-header spell-header">{{ localize 'ROL.advType' }}</div>
   {{#each advantages as |advantage id|}}
   <li class="item spell-listitem" data-item-id="{{advantage._id}}">
-    <div class="item-name">
+    <div class="item-name trait-name-context">
       <div> {{advantage.name}}</div>
     </div>
     <div></div>
@@ -13,12 +15,6 @@
     {{else}}
       <div></div>
     {{/unless}}
-    <div class="item-controls">
-      <a class="item-control item-edit" title="{{ localize 'ROL.editAdvantage' }}"><i class="fas fa-info-circle"></i></a>
-      {{#unless ../system.flags.locked}}
-        <a class="item-control item-delete" title="{{ localize 'ROL.deleteAdvantage' }}"><i class="fas fa-trash"></i></a>
-      {{/unless}}
-    </div>
   </li>
   {{/each}}
   <br>
@@ -26,14 +22,14 @@
 
 <ol class="items-list effects-list">
   <li class="flexrow contacts-header">
-    <div class="skilltype-header">{{ localize 'ROL.contacts' }}</div>
+    <div class="police-header spell-header">{{ localize 'ROL.contacts' }}</div>
     <div class="item-controls">
-      <a class="item-control item-create" title="{{ localize 'ROL.createContact' }}" data-type="contacts"><i class="fas fa-plus"></i> {{ localize 'ROL.addContact' }}</a>
+      <div class="item-control item-create" title="{{ localize 'ROL.createContact' }}" data-type="contacts"> +{{ localize 'ROL.addContact' }}</div>
     </div>  
   </li>
   {{#each contacts as |contacts id|}}
   <li class="item spell-listitem" data-item-id="{{contacts._id}}">
-    <div class="item-name">
+    <div class="item-name trait-name-context">
       <div> {{contacts.name}}</div>
     </div>
     <div></div>
@@ -46,34 +42,35 @@
         <div></div>
       {{/if}}
     {{/if}}  
-    <div class="item-controls">
-      <a class="item-control item-edit" title="{{ localize 'ROL.editContact' }}"><i class="fas fa-info-circle"></i></a>
-      {{#unless ../system.flags.locked}}
-        <a class="item-control item-delete" title="{{ localize 'ROL.deleteContact' }}"><i class="fas fa-trash"></i></a>
-      {{/unless}}
-    </div>
-  </li>
+    </li>
   {{/each}}
   <br>
 </ol>
 
 {{#if system.Magic}}
-<div class="spell-name">{{ localize 'ROL.signare' }}</div>
+<div class="police-header spell-header">{{ localize 'ROL.signare' }}</div>
   <div class="signare-name">{{ localize 'ROL.sound' }}:</div>
-    <input class="" type="text" name="system.signare.sound" value="{{system.signare.sound}}"/>
+  <div>
+    {{editor system.signare.sound class="trait-doc" target="system.signare.sound" button=true owner=owner editable=editable}}
+  </div>
   <div class="signare-name">{{ localize 'ROL.smell' }}:</div>
-    <input class="" type="text" name="system.signare.smell" value="{{system.signare.smell}}"/>
+  <div>
+    {{editor system.signare.smell class="trait-doc" target="system.signare.smell" button=true owner=owner editable=editable}}
+  </div>
   <div class="signare-name">{{ localize 'ROL.other' }}:</div>
-    <input class="" type="text" name="system.signare.other" value="{{system.signare.other}}"/>
-
+  <div>
+    {{editor system.signare.other class="trait-doc" target="system.signare.other" button=true owner=owner editable=editable}}
+  </div>
 <div class="resource-label-gap"></div>
 <br>
 {{/if}}
 
 {{#if system.ThematicPower}}
-
-  <div class="spell-name">{{ localize 'ThematicPower' }}</div>
-    <input class="" type="text" name="system.thematic" value="{{system.thematic}}"/>
-{{/if}}
+  <div class="police-header spell-header">{{ localize 'ThematicPower' }}</div>
+  <div class="spellname">
+    <br> 
+    {{editor system.thematic class="background-doc" target="system.thematic" button=true owner=owner editable=editable}}
+</div>  
+    {{/if}}
 
 </header>

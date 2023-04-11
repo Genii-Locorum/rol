@@ -1,13 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 /* Global styles */
 .window-app {
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 12px;
 }
 
-.rollable:hover, .rollable:focus, .skill-rollable:hover, .skill-rollable:focus, .healing-phase:hover, .healing-phase:focus, .luckreset-rollable:hover, .luckreset-rollable:focus, .luckrecovery-rollable:hover, .luckrecovery-rollable:focus, .next-scene:hover, .next-scene:focus {
+.rollable:hover, .rollable:focus, .item-create:hover, .skill-rollable:hover, .skill-rollable:focus, .healing-phase:hover, .healing-phase:focus, .luckreset-rollable:hover, .luckreset-rollable:focus, .luckrecovery-rollable:hover, .luckrecovery-rollable:focus, .next-scene:hover, .next-scene:focus {
   color: #000;
-  text-shadow: 0 0 10px red;
+  text-shadow: 0 0 10px blue;
   cursor: pointer;
 }
 
@@ -239,9 +239,18 @@
 /* Styles limited to rol sheets-------------------------------------------------------------------------------------------------------------------------------------- */ 
 
 .rol .window-content {
-  background-image:url("./images/cream-paper.jpg");
+  background-image:url("./images/blue-paper.jpg");
   background-size: cover;
   overflow-y:hidden ;
+  background-color: rgb(255, 255, 255);
+}
+
+.rol .tabs .item.active {
+  text-shadow: 0 0 10px blue;
+}
+
+.rol .tabs .item.navtitle:hover {
+  text-shadow: 0 0 10px blue;
 }
 
 
@@ -260,7 +269,7 @@
 }
 
 .rol .item-form {
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 
@@ -285,7 +294,7 @@
   margin-bottom: 10px;
   max-height: 140px;
 }
-.rol img .sheet-header .profile-img {
+.rol .img .sheet-header .profile-img {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 100px;
   flex: 0 0 100px;
@@ -293,12 +302,20 @@
   margin-right: 10px;
 }
 
+.rol .profile-img {
+  border: 2px solid blue;
+}
+
+.rol .item-image {
+  border: 2px solid blue;
+}
+
 .rol .charname input[type="text"] {
   width: 100%;
   height: calc(100% - 2px);
   padding-left: 5px;
+  border: solid blue 1px;
 }
-
 
 .rol .chartype {
   min-width: 100%;
@@ -316,29 +333,104 @@
   font-size: 14px;
   background: transparent;
   margin-bottom: 5px;
-  
+}
+
+.rol .section-title {
+  font-size: 16px;
+  font-weight: normal;
+  width:240 px;
+  max-width: 240px;
+  color: white;
+  background: solid;
+  background-color: rgb(60, 86, 141);
+  border: 2px solid blue;
+  text-align: center;
+}
+
+.rol .section-vertical {
+  font-size: 16px;
+  font-weight: normal;
+  padding-top:3px;
+  width:240 px;
+  max-width: 240px;
+  color: white;
+  background: solid;
+  background-color: rgb(60, 86, 141);
+  border-left: 2px solid blue;
+  border-top: 2px solid blue;
+  border-bottom: 2px solid blue;
+  writing-mode: vertical-rl;
+}
+
+.rol .section-title-left {
+  font-size: 16px;
+  font-weight: normal;
+  width:240 px;
+  max-width: 240px;
+  color: white;
+  background: solid;
+  background-color: rgb(60, 86, 141);
+  border-bottom: 2px solid blue;
+  text-align: center;
+}
+
+
+.rol .section-title-large {
+  font-size: 16px;
+  font-weight: normal;
+  padding-left: 3px;
+  width:320 px;
+  max-width: 320px;
+  text-align: left;
+  color: white;
+  background: solid;
+  background-color: rgb(60, 86, 141);
+  border: 2px solid blue;
 }
 
 .rol .abilities{
-  row-gap: 5px;
-  min-height: 50px;
-  max-height: 50px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 3px;
-  border: 1px solid black;
-  background-color: cornsilk;
+  display: grid;
+  grid-template-columns: 106px 40px;
+  margin: 0px;
+  gap: 0px;
+  min-height: 142px;
+  max-height: 142px;
+  padding-top:7px;
+  padding-left: 20px;
+  border-left: 2px solid blue;
+  border-right: 2px solid blue;
+  border-bottom: 2px solid blue;
+  width:240 px;
+  max-width: 240px;
 }
 
+
 .rol .abilities-max{
-  row-gap: 5px;
-  min-height: 50px;
-  max-height: 50px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 3px;
-  border: 1px solid black;
+  margin: 0px;
+  gap: 0px;
+  min-height: 142px;
+  max-height: 142px;
+  padding-left: 20px;
+  border-left: 2px solid blue;
+  border-right: 2px solid blue;
+  border-bottom: 2px solid blue;
   background-color: crimson;
+  width:240 px;
+  max-width: 240px;
+}
+
+.rol .info-panel {
+  margin: 0px;
+  gap: 0px;
+  min-height: 142px;
+  max-height: 142px;
+  padding-top: 5px;
+  padding-left: 3px;
+  border-left: 2px solid blue;
+  border-right: 2px solid blue;
+  border-bottom: 2px solid blue;
+  width:310px;
+  max-width: 310px;
 }
 
 .rol .right {
@@ -351,14 +443,23 @@
 }
 
 .rol .stats-content {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  max-height: 16px;
+}
+
+.rol .stats-content-left {
+  font-size: 12px;
   font-weight: bold;
   text-align: center;
   max-height: 20px;
-
   height: calc(100% - 2px);
 }
 
+
 .rol .stats-total {
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   margin: 1px;
@@ -368,13 +469,15 @@
 
 .rol .npc-stats-content {
   text-align: center;
+  font-size: 14px;
+  font-weight: bold;
   height: 18px;
-  padding:2px;
   margin: 0px;
 }
 
 .rol .npc-stats-input {
   text-align: center;
+  font-size: 14px;
   font-weight: bold;
   height: 18px;
   padding:1px;
@@ -383,16 +486,17 @@
 }
 
 .rol .fixed-stats-content {
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
   height: 18px;
-  padding-top:2px;
   padding-bottom:2px;
 }
 
 .rol .charname {
-  margin-bottom: 4px;
   font-weight: bold;
+  padding-top: 2px;
+  padding-right: 4px;
 }
 
 .rol .charname label{
@@ -419,9 +523,10 @@
 }
 
 .rol .sheet-tabs {
-  -webkit-box-flex: 0;
-  -ms-flex: 0;
-  flex: 0;
+  flex: none;
+  min-width: 685px;
+  max-width: 685px;
+  max-height: 37px;
 }
 
 .rol .sheet-body,
@@ -429,6 +534,7 @@
 .rol .sheet-body .tab .editor {
   height: 100%;
 }
+
 
 .rol .tox .tox-editor-container {
   background: #fff;
@@ -439,7 +545,29 @@
 }
 
 .rol .resource-label {
+  font-size: 16px;
   font-weight: bold;
+  max-height: 16px;
+  border-color: blue;
+}
+
+.rol .resource-label-diff {
+  font-size: 14px;
+  font-weight: bold;
+  max-height: 20px;
+  border-color: blue;
+}
+
+.rol .resource-label-left {
+  font-size: 12px;
+  font-weight: bolder;
+}
+
+.rol .resource-label-topgap {
+  font-size: 12px;
+  font-weight: bolder;
+  margin-top: 1px;
+  padding-top: 2px;
 }
 
 .rol .items-header {
@@ -455,10 +583,11 @@
 }
 
 .rol .contacts-header {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-weight: bold;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+
 }
 
 .rol .items-header > * {
@@ -479,9 +608,8 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  overflow-y: auto;
   scrollbar-width: thin;
-  color: #444;
+  color: black;
 }
 
 .rol .items-list .item-list {
@@ -491,18 +619,11 @@
 }
 
 .rol .items-list .item-name {
-  -webkit-box-flex: 2;
-  -ms-flex: 2;
   flex: 2;
   margin: 0;
-  overflow: hidden;
-  font-size: 13px;
+  font-size: 14px;
   text-align: left;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -513,29 +634,27 @@
 }
 
 .rol .items-list .item-controls {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 100px;
   flex: 0 0 100px;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
 }
 
 .rol .items-list .item-controls a {
-  font-size: 12px;
-  text-align: center;
+  font-size: 16px;
+  text-align: left;
   margin: 0 6px;
 }
 
+.rol .item-create {
+  font-size: 12px;
+  text-align: left;
+  margin: 0 6px;
+  min-width: 150px;
+}
+
 .rol .items-list .item {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   padding: 0 2px;
-  border-bottom: 1px solid #c9c7b8;
 }
 
 .rol .items-list .item:last-child {
@@ -543,7 +662,7 @@
 }
 
 .rol .items-list .item .item-name {
-  color: #191813;
+  color: black;
 }
 
 .rol .items-list .item .item-name .item-image {
@@ -606,9 +725,10 @@
 }
 
 .rol .multi-panel-content {
-  display: flex;
-  flex-direction: row;
-  max-height:157px;
+  display:flex; 
+  max-height:165px;
+  width: 700px;
+  max-width: 700px;
 }
 
 .rol .npc-multi-panel-content {
@@ -618,41 +738,49 @@
 }
 
 .rol .multi-panel-content .left-panel {
-  flex: 1;
+  flex: none;
   padding-left: 10px;
-  width: 100%;  
+  width: 320px;  
 }
 
 .rol .multi-panel-content .right-panel {
   flex: none;
    padding-left: 10px;
-  width: 95px;
+  width: 180px;
+}
+
+.rol .navtitle {
+font-size: 16px;
+font-weight: bold;
 }
 
 .rol .two-panel-content {
   display: flex;
   flex-direction: row;
-  max-height: 60%;
+  max-height: calc(100% - 210px);
+  min-width: 685px;
+  max-width: 685px;
+  border: solid blue 2px;
 }
 
 .rol .two-panel-content .left-panel {
   flex: 1;
-  padding-right: 5px;
   max-width: 100px;
-  margin: 4px 0px;
-  border-right: 1px solid black;
+  min-width: 100px;
+  border-right: 2px solid blue;
 }
 
 .rol .two-panel-content .right-panel {
   flex: 1;
+  padding-top: 5px;
   padding-left: 10px;
 }
 
 .rol .multi-panel-content .image-panel {
   display: block;
   flex: 0.5;
-  min-width: 157px;
-  max-width: 157px;
+  min-width: 165px;
+  max-width: 165px;
 }
 
 .rol .statdisplay {
@@ -695,44 +823,100 @@
 }
 
 .rol .plainboxed {
-  border: 1px solid black;  
+  border: 1px solid blue;  
   padding-left: 3px;
   border-radius: 3px;
 }
 
+.rol .icon{
+  font-size: 16px !important;
+}
+
 .rol .boxed {
-  border: 1px solid grey;
+  border: 1px solid blue;
   padding: 3px;
-  background-color: cornsilk;
+  margin-left: 5px;
+  margin-right: 5px;
+}  
+
+.rol .boxed-move{
+    border: 1px solid blue;
+    margin: 0px 5px 0px 5px;
+    gap: 0px;
+}
+
+.rol .move {
+  display: grid;
+  gap: 0px;
+  padding: 0px;
 }
 
 .rol .npc-boxed {
   display: grid;
   gap: 0px;
+  margin: 0px;
   grid-template-columns: 470px 100px 20px;
   padding: 3px;
-  max-height: 170px;
+  min-height: 150px;
+  max-height: 150px;
   max-width: 600px;
+  border: 2px solid blue;
+}
+
+.rol .npc-section {
+  max-width: 600px;
+  padding: 3px;
+  margin: 0px;
+  border-left: 2px solid blue;
+  border-right: 2px solid blue;
+  border-bottom: 2px solid blue;
+}
+
+.rol .npc-grid {
+  display: grid;
+  font-size:14px;
+  min-height:16px;
+  gap: 0px;
+  margin: 0px;
+ }
+
+ .rol .npc-adv{
+  grid-template-columns: 145px 145px 145px 145px;
+ }
+
+ .rol .npc-skills{
+  grid-template-columns: 110px 35px 110px 35px 110px 35px 110px 35px;
+ }
+
+ .rol .npc-spells{
+  grid-template-columns: 125px 20px 125px 20px 125px 20px 125px 20px;
+ }
+
+.rol .border-right{
+  border-right: 1px solid darkgray;
+  margin-right: 2px;
 }
 
 .rol .npc-boxed-right {
   padding: 3px;
-  max-height: 170px;
+  max-height: 150px;
   max-width: 110px;
 }
 
 .rol .npc-boxed-left {
   padding: 3px;
-  max-height: 170px;
+  max-height: 150px;
   max-width: 470px;
 }
 
 .rol .npc-htd-boxed {
   margin-top: 5px;
   margin-bottom: 0px;
-  border: 1px solid grey;
+  margin-left:auto;
+  margin-right: auto;
+  border: 1px solid blue;
   padding: 3px;
-  background-color: cornsilk;
+  background-color: lightgray;
   max-width: 50px;
 }
 
@@ -744,13 +928,13 @@
 }
 
 .rol .tough-control {
-  color: lightgray;
+  color: gray;
   font-size: 18px;
 }
 
 .rol .control-active {
   color: black;
-  text-shadow: 0 0 10px red;
+  text-shadow: 0 0 10px red, 0 0 1em red, 0 0 0.2em red;
 }
 
 .rol .npc-header {
@@ -774,12 +958,29 @@
 .rol .display-switch {
   display: inline-block;
   margin: 2px 2px 0 0;
-  padding: 0 10px;
-  margin: 0 10px;
+  padding: 0 5px;
+  margin: 0 5px;
   line-height: 16px;
   min-height: 16px;
   min-width: 60px;
-  border: 1px solid black;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid blue;
+  border-radius: 3px;
+  color: black;
+}
+
+.rol .display-switch-small {
+  display: inline-block;
+  margin: 2px 2px 0 0;
+  padding: 0 5px;
+  margin: 0 5px;
+  line-height: 16px;
+  min-height: 16px;
+  min-width: 60px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid blue;
   border-radius: 3px;
   color: black;
 }
@@ -791,15 +992,47 @@
   line-height: 16px;
   min-height: 16px;
   min-width: 100px;
+  font-size: 14px;
+  font-weight: bold;
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid blue;
+  border-radius: 3px;
+  color: black;
+}
+
+.rol .skill-prop {
+  font-size: 14px;
+  font-weight: bold;
+  min-height: 23px;
+  max-height: 23px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.rol .skill-prop .display-switch {
+  display: inline-block;
+  margin: 2px 2px 0 0;
+  min-height: 20px;
+  max-height: 20px;
+  min-width: 100px;
+  max-width: 150px;
+  text-align: center;
+  border: 1px solid blue;
   border-radius: 3px;
   color: black;
 }
 
 .rol .skillname {
   margin: auto 0 auto 0;
-  font-weight:normal;
+  font-size: 14px;
+  font-weight:bold;
+}
+
+.rol .skillname input {
+  margin: auto 0 auto 0;
+  font-size: 14px;
+  font-weight:bold;
+  border: solid blue 1px;
 }
 
 .rol .skillname-gap {
@@ -814,6 +1047,20 @@
   min-width: 440px;
   display:grid;
   grid-template-columns: 100px 100px;
+}
+
+.rol .adv-resource{
+  max-width: 440px;
+  min-width: 440px;
+  display:grid;
+  grid-template-columns: 100px 200px;
+}
+
+.rol .develop-resource{
+  max-width: 440px;
+  min-width: 440px;
+  display:grid;
+  grid-template-columns: 200px 200px;
 }
 
 .rol .spell-resource{
@@ -832,27 +1079,64 @@
 }
 
 .rol .loc-label-inp {
+  font-size: 14px;
+  font-weight: bold;
   text-align:center;
   height: calc(100% - 2px);
+  border-color: blue;
+}
+
+.rol .skill-label-inp {
+  font-size: 14px;
+  font-weight: bold;
+  height: calc(100% - 2px);
+  border-color: blue;
 }
 
 .rol .skill-score-inp {
   height:14px;
+  font-size: 14px;
+  font-weight:bold;
+  border-color: blue;
 }
 
 .rol .biography-doc{
-  border: 1px solid black;
+  border: 1px solid blue;
   padding-left: 10px;
   padding-right: 10px;
-  min-height: 150px;
+  height: 30px;
 
 }
 
 .rol .background-doc{
-  border: 1px solid black;
+  border: 1px solid blue;
+  font-size:14px;
+  font-weight: bold;
   padding-left: 10px;
   padding-right: 10px;
-  min-height: 50px;
+  margin-right:10px;
+  height: 140px;
+}
+
+.rol .npc-doc{
+  border: 1px solid blue;
+  font-size:14px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100px;
+  max-width: 588px;
+}
+
+.rol .trait-doc{
+  border: 1px solid blue;
+  font-size:14px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right:10px;
+  height: 50px;
+  width: 560px;
 }
 
 .rol .skill-list {
@@ -867,21 +1151,48 @@
 .rol .specialisation-header {
   list-style: none;
   width: 180px;
-  margin-right: 0.5rem;
+  margin-right: 5px;
+  font-size: 14px;
+  font-weight:bold;
 }
 
-.rol .skilltype-header {
+.rol .police-header {
   list-style: none;
-  width: 180px;
-  margin-right: 0.5rem;
-  font-weight: bolder;
   font-size: 16px;
+  font-weight: normal;
+  color: white;
+  background: solid;
+  background-color: rgb(60, 86, 141);
+}
+
+.rol .develop-header {
+  width:300 px;
+  max-width: 300px;
+}
+
+.rol .equip-header {
+  width:350 px;
+  max-width: 350px;
+}
+
+.rol .spell-header {
+  width:250 px;
+  max-width: 250px;
+}
+
+.rol .skill-header {
+  width:180 px;
+  max-width: 180px;
+}
+
+.rol .item-hdr {
+  padding-left: 5px;
 }
 
 .rol .skillpoint-header {
   list-style: none;
   width: 360px;
-  margin-right: 0.5rem;
+  margin-right: 5px;
   font-weight: bolder;
   font-size: 16px;
 }
@@ -889,29 +1200,44 @@
 .rol .specialisation {
   margin-left: 5px;
   padding-left: 5px;
-  max-width: 185px;
+  width: 175px;
+  font-size: 14px;
+  font-weight:bold;
+  display: grid;
+  grid-template-columns: 130px auto 35px;
   border-left: 1px solid;
 }
 
 .rol .skill-listitem {
-  width: 190px;
+  width: 180px;
   display: grid;
-  grid-template-columns: 100px auto 35px 40px ;
-  border-bottom: 1px black solid;
+  font-size: 14px;
+  font-weight:bold;
+  grid-template-columns: 130px auto 35px;
 }
 
 .rol .spell-listitem {
-  width: 350px;
+  width: 250px;
   display: grid;
-  grid-template-columns: 200px auto 40px 60px ;
-  border-bottom: 1px black solid;
+  font-size: 14px;
+  font-weight:bold;
+  grid-template-columns: 200px 20px 20px;
 }
 
 .rol .weapons-listitem {
   width: 350px;
   display: grid;
-  grid-template-columns: 150px auto 60px 90px ;
-  border-bottom: 1px black solid;
+  grid-template-columns: 160px auto 80px 60px ;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.rol .armour-listitem {
+  width: 350px;
+  display: grid;
+  grid-template-columns: 250px auto 60px ;
+  font-size:14px;
+  font-weight:bold;
 }
 
 .rol .skill-score {
@@ -929,12 +1255,22 @@
 
 .rol .detailblockbottom{
   margin: 0;
-  grid-template-columns: 180px 180px;
+  grid-template-columns: 220px 140px;
 }
 
 .rol .detailblockbottom {
   max-width: 90px;
   min-width: 90px;
+}
+
+.rol .detailblockbottominput {
+  max-width: 90px;
+  min-width: 90px;
+}
+
+.rol .detailblockbottom-short {
+  max-width: 40px;
+  min-width: 40px;
 }
 
 .rol .damage-status {
@@ -971,8 +1307,18 @@
 }
 
 .rol .signare-name {
+  padding-top: 5px;
+  font-size: 14px;
   font-weight: bold;
   margin: auto 0px;
+}
+.rol .signare-value {
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 5px;
+  max-width: 560px;
+  border: solid blue 1px;
+  margin-right:10px;
 }
 
 .rol .dropdown{
@@ -984,7 +1330,7 @@
   height: calc (100%-2px);
   padding: 1px 3px 1px 5px;
   font-weight: normal;
-  border: 1px solid #7a7971;
+  border: 1px solid blue;
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.05);
 }
@@ -994,12 +1340,6 @@
   margin-top: 0px;
   max-width: 470 px;
   grid-template-columns: 100px 100px 100px;
-}
-
-.rol .npc-skills{
- display: flex;
- flex: 0 0 33%;
- flex-wrap: wrap;
 }
 
 .rol .partyOrder {
@@ -1029,4 +1369,23 @@
   padding-top:10px;
   margin-bottom: 5px;
   border-bottom: solid black 1px;
+}
+
+.rol .bold {
+  font-weight: bold;
+}
+
+.rol .right-gap{
+  max-width: 32px;
+}
+
+.rol .item-label{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.rol .prereq {
+  font-size: 14px;
+  font-weight: bold;
+  border-color: blue;
 }

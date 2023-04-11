@@ -1,8 +1,8 @@
 {{#if isGM}}
 <div class="spell-resource grid grid-2col"></div>
-<div>
-  <label class="charname">{{ localize 'ROL.preReq' }}:</label>
-  <input class="prereq" list="preReqLogicList" type="text" name="system.preReq.logic" value="{{system.preReq.logic}}"/>
+<div class = "prereq">
+  <label class="item-label">{{ localize 'ROL.preReq' }}:</label>
+  <input class="rol prereq" list="preReqLogicList" type="text" name="system.preReq.logic" value="{{system.preReq.logic}}"/>
   <datalist id="preReqLogicList">
     <option value="A"> {{ localize 'ROL.A' }}</option>
     <option value="A and B"> {{ localize 'ROL.AandB' }}</option>
@@ -15,7 +15,7 @@
 <div class=" grid grid-4col">
 
   {{#unless (eq system.preReq.logic "") }}
-    <div class="skillname">{{ localize 'ROL.optA' }}</div>
+    <div class="item-label">{{ localize 'ROL.optA' }}</div>
     <input class="prereq" list="preReqTypeList" type="text" name="system.preReq.1.preType" value="{{system.preReq.1.preType}}"/>
     {{#if (eq system.preReq.1.preType "Not Advantage")}}
       <input class="prereq" list="preReqAdv" type="text" name="system.preReq.1.preOpt" value="{{system.preReq.1.preOpt}}"/>
@@ -29,7 +29,7 @@
     <input class="prereq" type="text" name="system.preReq.1.preVal" value="{{system.preReq.1.preVal}}" data-dtype="Number"/>
  
     {{#unless (eq system.preReq.logic "A") }}  
-    <div class="skillname">{{ localize 'ROL.optB' }}</div>
+    <div class="item-label">{{ localize 'ROL.optB' }}</div>
     <input class="prereq" list="preReqTypeList" type="text" name="system.preReq.2.preType" value="{{system.preReq.2.preType}}"/>
     {{#if (eq system.preReq.2.preType "Not Advantage")}}
       <input class="prereq" list="preReqAdv" type="text" name="system.preReq.2.preOpt" value="{{system.preReq.2.preOpt}}"/>
@@ -43,7 +43,7 @@
     <input class="prereq" type="text" name="system.preReq.2.preVal" value="{{system.preReq.2.preVal}}" data-dtype="Number"/>
   
     {{#isOr (eq system.preReq.logic "A and B and C") (eq system.preReq.logic "A and (B or C)") }}
-    <div class="skillname">{{ localize 'ROL.optC' }}</div>
+    <div class="item-label">{{ localize 'ROL.optC' }}</div>
     <input class="prereq" list="preReqTypeList" type="text" name="system.preReq.3.preType" value="{{system.preReq.3.preType}}"/>
     {{#if (eq system.preReq.3.preType "Not Advantage")}}
       <input class="prereq" list="preReqAdv" type="text" name="system.preReq.3.preOpt" value="{{system.preReq.3.preOpt}}"/>
@@ -63,25 +63,25 @@
 </div>
 {{else}}
   <div class="spell-resource grid grid-2col"></div>
-  <div class="charname">{{ localize 'ROL.preReq' }}:</div>
+  <div class="item-label">{{ localize 'ROL.preReq' }}:</div>
   <div class="prereq plainboxed">{{system.preReq.logic}}</div>
 
 <div class=" grid grid-4col">
 
   {{#unless (eq system.preReq.logic "") }}
-    <div class="skillname plainboxed">{{ localize 'ROL.optA' }}</div>
+    <div class="item-label plainboxed">{{ localize 'ROL.optA' }}</div>
     <div class="prereq plainboxed">{{system.preReq.1.preType}}</div>
     <div class="prereq plainboxed">{{system.preReq.1.preOpt}}</div>
     <div class="prereq plainboxed">{{system.preReq.1.preVal}}</div>
  
     {{#unless (eq system.preReq.logic "A") }}  
-      <div class="skillname plainboxed">{{ localize 'ROL.optB' }}</div>
+      <div class="item-label plainboxed">{{ localize 'ROL.optB' }}</div>
       <div class="prereq plainboxed">{{system.preReq.2.preType}}</div>
       <div class="prereq plainboxed">{{system.preReq.2.preOpt}}</div>
       <div class="prereq plainboxed">{{system.preReq.2.preVal}}</div>
   
       {{#isOr (eq system.preReq.logic "A and B and C") (eq system.preReq.logic "A and (B or C)") }}
-        <div class="skillname plainboxed">{{ localize 'ROL.optC' }}</div>
+        <div class="item-label plainboxed">{{ localize 'ROL.optC' }}</div>
         <div class="prereq plainboxed">{{system.preReq.3.preType}}</div>
         <div class="prereq plainboxed">{{system.preReq.3.preOpt}}</div>
         <div class="prereq plainboxed">{{system.preReq.3.preVal}}</div>

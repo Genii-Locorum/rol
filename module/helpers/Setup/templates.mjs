@@ -6,7 +6,7 @@
  export const preloadHandlebarsTemplates = async function() {
   return loadTemplates([
 
-    // Actor partials.
+    // Actor and Item partials.
     "systems/rol/templates/actor/parts/actor-skills.html",
     "systems/rol/templates/actor/parts/actor-equipment.html",
     "systems/rol/templates/actor/parts/actor-magic.html",

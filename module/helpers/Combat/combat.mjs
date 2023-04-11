@@ -36,8 +36,6 @@ export class ROLCombat extends Combat {
   //Over-ride rollAll Initiative
   async rollAll(options) {
 
-    console.log(game.combat.turns[0])
-
     let combatList = this.combatants;  
     const data = {
       type : combatList
@@ -110,7 +108,6 @@ export class ROLCombat extends Combat {
 
   
     for (const c of this.combatants){
-      console.log(c)
       let thisActor = game.actors.get(c.actorId)
       let thisOrder = c.initiative
     if(adjust === 1){  

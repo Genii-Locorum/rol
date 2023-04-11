@@ -9,7 +9,7 @@ static async RollDice (rollFormula){
   
 //Function to Produce Result from DiceRoll
 static async RollResult(roll,bonusDice){
-    let rollResult=0;
+  let rollResult=0;
     if (bonusDice === 0){
       rollResult = roll.result;
     }else {

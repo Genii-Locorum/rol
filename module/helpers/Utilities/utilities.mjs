@@ -262,14 +262,12 @@ static async mortalDialog (actor, limited) {
 }
 
 
-
-
-
-
-
-
-
-
+//Get Dataset--------------------------------------------------------------------------------
+static getDataset(el, dataset) {
+  const elem = el.target ? el.target : el[0];
+  const element = elem?.closest(".item");
+  return element?.dataset[dataset];
+}      
 
 //MP Regen------------------------------------------------------------------------------------
 static async _toggleMPRegen(){

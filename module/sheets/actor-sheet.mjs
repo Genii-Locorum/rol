@@ -1,8 +1,10 @@
 import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/effects.mjs";
 import { ROLChecks } from "../helpers/Utilities/checks.mjs";
-import { ROLCombatChat } from "../helpers/Combat/combat-chat.mjs";
 import { ROLUtilities } from "../helpers/Utilities/utilities.mjs";
-import { ROLOpposed } from '../helpers/Utilities/opposed.mjs';
+import {spellMenuOptions} from "../helpers/Menus/spell-menu.mjs";
+import {skillMenuOptions} from "../helpers/Menus/skill-menu.mjs";
+import {weaponMenuOptions} from "../helpers/Menus/weapon-menu.mjs";
+import {traitMenuOptions} from "../helpers/Menus/trait-menu.mjs";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -16,7 +18,7 @@ export class ROLActorSheet extends ActorSheet {
       classes: ["rol", "sheet", "actor"],
       template: "systems/rol/templates/actor/actor-sheet.html",
       width: 705,
-      height: 750,
+      height: 800,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" }]
     });
   }
@@ -27,6 +29,13 @@ export class ROLActorSheet extends ActorSheet {
   }
 
   /* -------------------------------------------- */
+
+  static confirmItemDelete(actor, itemId) {
+    let item = actor.items.get(itemId);
+    item.delete();
+  }
+
+
 
   /** @override */
   getData() {
@@ -178,6 +187,10 @@ export class ROLActorSheet extends ActorSheet {
       return 0;
     });
 
+    //If this is an actor add specialiased categories and types and resort
+    console.log(this.actor.type)
+    if (this.actor.type === 'character') {
+      console.log(this.actor.type)
     //Get unique list of specialized categories in Skills
    
     let previousSpec = "";
@@ -216,6 +229,8 @@ export class ROLActorSheet extends ActorSheet {
       if (x > y) {return 1};
       return 0;
    });
+
+  }
 
    //Sort Advantages by type and name
    advantages.sort(function(a, b){
@@ -298,6 +313,13 @@ export class ROLActorSheet extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
 
+ 
+    new ContextMenu(html, '.skill-name.rollable', skillMenuOptions(this.actor, this.token));
+    new ContextMenu(html, '.spell-name.rollable', spellMenuOptions(this.actor, this.token));
+    new ContextMenu(html, '.weapon-name.rollable', weaponMenuOptions(this.actor, this.token));
+    new ContextMenu(html, '.trait-name-context', traitMenuOptions(this.actor, this.token));
+    new ContextMenu(html, '.equip-name-context', traitMenuOptions(this.actor, this.token));
+
     // Lock/Unlock the sheet
     html.find(".unlock-character-sheet").click((event) => this._onLockToggle(event));
 
@@ -309,7 +331,6 @@ export class ROLActorSheet extends ActorSheet {
 
     // Rollable Skills
     html.find('.skill-name.rollable').click(ROLChecks._onRollSkillTest.bind(this));
-    html.find('.skill-name.rollable').contextmenu(ROLOpposed._onOpposedRoll.bind(this))
 
     // Rollable Attributes
     html.find('.attribute-name.rollable').click(ROLChecks._onRollAttributeTest.bind(this));
@@ -328,9 +349,6 @@ export class ROLActorSheet extends ActorSheet {
 
     // Rollable Weapon
     html.find('.weapon-name.rollable').click(ROLChecks._onRollWeaponTest.bind(this));
-
-//    html.find('.weapon-name.rollable').click(ROLCombatChat._startCombatChat.bind(this));
-
 
     // Add Inventory Item
     html.find('.item-create').click(this._onItemCreate.bind(this));
@@ -432,6 +450,10 @@ export class ROLActorSheet extends ActorSheet {
     // Initialize a default name.
     const name = `New ${type.capitalize()}`;
     // Prepare the item object.
+    if (type === "skill") {
+      data.skillName = name
+    }
+    console.log(name,type,data)
     const itemData = {
       name: name,
       type: type,
@@ -446,6 +468,7 @@ export class ROLActorSheet extends ActorSheet {
 
   // Change default on Drop Item Create routine for requirements (single items and folder drop)-----------------------------------------------------------------
   async _onDropItemCreate(itemData) {
+ 
     const newItemData = [];
     itemData = itemData instanceof Array ? itemData : [itemData];
 

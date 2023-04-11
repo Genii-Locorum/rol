@@ -1,18 +1,20 @@
 <form class = "rol" id="mortalWound-form">
-  <div class = "charname">{{ localize 'ROL.medical'}}</div>
+  <div class = "resource-label-diff"> {{ localize 'ROL.medical' }}</div>
   <br>
-  <div class = "charname">{{ localize 'ROL.twoOptions'}}</div>
+  <br>
+
+  <div class = "resource-label-diff"> {{ localize 'ROL.twoOptions'}}:</div>
   <br>  
 
   <div class="flexrow">
-    <label>Injured</label>
+    <label class="resource-label-diff"> {{ localize 'ROL.injured' }}</label>
     <input type="checkbox" name="injured" {{#if limited}} checked {{/if}}></input>
   </div>
   <br>
 
   {{#if (gt luck 20)}}
   <div class="flexrow">
-    <label>Luck Loss</label>
+    <label class="resource-label-diff"> {{ localize 'ROL.luckLoss' }}</label>
     <input type="checkbox" name="luck"></input>
   </div>
   <br>
@@ -20,14 +22,14 @@
 
 
   <div class="flexrow">
-    <label>Development Loss</label>
+    <label class="resource-label-diff"> {{ localize 'ROL.developLoss' }}</label>
     <input type="checkbox" name="develop" {{#if limited}} checked {{/if}}></input>
   </div>
   <br>
 
   {{#unless disfigured}}
   <div class="flexrow">
-    <label>Disfigurement</label>
+    <label class="resource-label-diff"> {{ localize 'ROL.disfigured' }}</label>
     <input type="checkbox" name="disfigured"></input>
   </div>    
   <br>

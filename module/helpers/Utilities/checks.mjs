@@ -56,18 +56,99 @@ static async _getVictimId() {
   return result;
 }
 
+//
+// Start from Macro
+//
+static async _onRollMacro(itemId, actorId, shiftKey) {
+  let target = ({targetId : actorId, targetType: "actor"})
+  let actor = await ROLChecks._getTarget(target.targetId, target.targetType);
+  let victim = await ROLChecks._getVictimId();
+  let item = actor.items.get(itemId);
+  let targetScore = item.system.score;
+  let damageTarget = 0;
+  let damageBoost = false;
+  let bonusDamage = 0;
+  let subType="";
+  let damType = "";
+  let damage = -1;
+  let mastered = false;
+  let bonusDice = 0;
+  let type = item.type;
+  let allowResolve = false;
+  let spendMP=0;
+  let automatic = false;
+  let semiauto = false;
+
+  if (type === 'spell') {
+    targetScore = actor.system.magicScore
+    mastered = item.system.mastered;
+    if (mastered) {bonusDice = 1}
+    damageTarget = actor.system.abilities.dex.value;
+    damType = item.system.damType;    
+    damage = item.system.damage;
+    damageBoost = item.system.damageBoost;
+    allowResolve = true;
+    spendMP = item.system.spellOrder
+  }
+
+  if (type === 'weapons') {
+    damageTarget = actor.system.abilities.dex.value;
+    damType = item.system.damType;    
+    damage = item.system.damage;
+    allowResolve = true;
+    subType = item.system.type;
+    if (subType === 'Melee'){
+      damageTarget = actor.system.abilities.str.value;
+      targetScore = actor.system.meleeScore;
+    }else if (subType === 'Firearms') {
+            targetScore = actor.system.firearmsScore;
+      automatic= item.system.automatic,
+      semiauto = item.system.semiauto
+      let signature = item.system.signature;
+      if (signature) {bonusDamage = 1}
+    } else {
+      targetScore = actor.system.throwScore;
+    }
+  }
+
+  ROLChecks.startCheck ({
+    shiftKey,
+    target,
+    victim,
+    damageTarget,
+    damType,
+    damage,
+    damageBoost,
+    spendMP,
+    itemId,
+    type,
+    subType,
+    mastered,
+    bonusDice,
+    bonusDamage,
+    allowResolve,
+    automatic,
+    semiauto,
+    targetScore
+  })
+  return
+}
 
 //
-// Start Skill Check 
+// Start Skill Check
 //
 static async _onRollSkillTest(event){
   let target =await ROLChecks._getTargetId(this.token,this.actor); 
   let actor = await ROLChecks._getTarget(target.targetId, target.targetType);
+  let itemId = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).id
+  let item = actor.items.get(itemId);
+
   ROLChecks.startCheck ({
-    event,
+    shiftKey: event.shiftKey,
     target,
-    actor: actor,
-    label: actor.items.get($(event.currentTarget).closest(".item").data("itemId")).name
+    itemId,
+    type: 'skill',
+    targetScore: item.system.score
   })
   return
 }
@@ -77,11 +158,13 @@ static async _onRollSkillTest(event){
 //
 static async _onRollAttributeTest(event){
   let target =await ROLChecks._getTargetId(this.token,this.actor); 
-  let actor = await ROLChecks._getTarget(target.targetId, target.targetType);
+  const dataset = event.currentTarget.dataset;
   ROLChecks.startCheck ({
-    event,
+    shiftKey: event.shiftKey,
     target,
-    actor: actor
+    type: 'attribute',
+    name: dataset.label,
+    targetScore: dataset.target
   })
   return
 }
@@ -93,9 +176,11 @@ static async _onRollLuckTest(event){
   let target =await ROLChecks._getTargetId(this.token,this.actor); 
   let actor = await ROLChecks._getTarget(target.targetId, target.targetType);
   ROLChecks.startCheck ({
-    event,
+    shiftKey: event.shiftKey,
     target,
-    actor: actor,
+    type: 'luck',
+    name: game.i18n.localize("ROL.luckShort"),
+    targetScore: actor.system.luck.value,
     allowPush: false,
     allowLuck: false
   })
@@ -112,16 +197,16 @@ static async _onRollHTDTest(event){
     ui.notifications.error(game.i18n.localize("ROL.noHTD"));
     return
   }
-  
   let bonusDice = 0;
   if (actor.system.properties.htdFumble) {
     bonusDice = -1;
   }
-
   ROLChecks.startCheck ({
-    event,
+    shiftKey: event.shiftKey,
     target,
-    actor: actor,
+    type: "HTD",
+    name: game.i18n.localize("ROL.htd"),
+    targetScore: actor.system.abilities.pow.value,
     allowPush: false,
     allowResolve: true,
     bonusDice: bonusDice
@@ -139,12 +224,12 @@ static async _onLuckRecovery(event){
     ui.notifications.error(game.i18n.localize("ROL.luckRollMade"));
     return;
   }  
-
   ROLChecks.startCheck ({
-    event,
+    shiftKey: event.shiftKey,
     target,
-    actor: actor,
-    label: game.i18n.localize("ROL.luckRecovery"),
+    type: "LuckRecovery",
+    name: game.i18n.localize("ROL.luckRecovery"),
+    targetScore: actor.system.luck.value,
     improvRoll: "1d10",
     dialog: false,
     allowPush: false,
@@ -166,14 +251,23 @@ static async _onLuckReset(event){
     ui.notifications.error(game.i18n.localize("ROL.luckRollMade"));
     return;
   } 
+  let targetScore = actor.system.luck.value;
+  let formula = '2d10';
+  let flatAdj = 50;
   if(actor.system.charType === "DemiMonde"){
     chatType = "OTHER";
+    targetScore = actor.system.abilities.pow.value;
+    formula = '1d0';
+    flatAdj = actor.system.abilities.pow.value;
   }  
   ROLChecks.startCheck ({
-    event,
+    shiftKey: event.shiftKey,
     target,
-    actor: actor,
-    label: game.i18n.localize("ROL.luckReset"),
+    type:"LuckReset",
+    name: game.i18n.localize("ROL.luckReset"),
+    targetScore,
+    formula,
+    flatAdj,
     dialog: false,
     allowPush: false,
     allowLuck: false,
@@ -185,87 +279,119 @@ static async _onLuckReset(event){
 }
 
 //
-// Start Spell Check 
+// Start Spell Check
 //
 static async _onRollSpellTest(event){
   let target =await ROLChecks._getTargetId(this.token,this.actor); 
   let actor = await ROLChecks._getTarget(target.targetId, target.targetType);
   let victim = await ROLChecks._getVictimId();
   let mastered = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.mastered;
-  let damageBoost = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.damageBoost;
-  let damType = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.damType;
   let bonusDice = 0
     if (mastered) {bonusDice = 1}
-  let spendMP = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.spellOrder
  
   let options = {
-    event,
+    shiftKey: event.shiftKey,
     target,
     victim,
-    damType,
-    actor: actor,
-    label: actor.items.get($(event.currentTarget).closest(".item").data("itemId")).name,
-    mastered: mastered,
-    bonusDice: bonusDice,
-    damageBoost: damageBoost,
+    type: 'spell',
+    subtype: "Magic",
+    targetScore: actor.system.magicScore,
+    damageTarget: actor.system.abilities.dex.value,
+    damType: actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.damType,
+    damage: actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.damage,
+    name: actor.items.get($(event.currentTarget).closest(".item").data("itemId")).name,
+    mastered,
+    bonusDice,
+    damageBoost: actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.damageBoost,
     allowResolve: true,
-    spendMP: spendMP
+    spendMP: actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.spellOrder
   }
-
   ROLChecks.startCheck (options);
   return
 }
 
 //
-// Start Damage Check 
+// Start Damage Check
 //
 static async _onRollDamageTest(event){
   let target =await ROLChecks._getTargetId(this.token,this.actor); 
   let actor = await ROLChecks._getTarget(target.targetId, target.targetType);
   let victim = await ROLChecks._getVictimId();
-  let signature = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.signature;
-  let damageBoost = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.damageBoost;
-  let damType = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.damType;
+  let itemId = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).id
+  let subType = "Thrown";
+  let item = actor.items.get(itemId);
+  let targetScore = actor.system.abilities.dex.value;
+  if (item.type === 'weapons' && item.system.type === 'Melee') {
+    targetScore = actor.system.abilities.str.value
+  }
+  if (item.type === 'spell') {
+    subType = 'Magic'
+  } else{
+    if (item.system.type === 'Firearms') {subType = 'Missile'} 
+    if (item.system.type === 'Melee') {subType = 'Melee'}
+  }
+  let signature = item.system.signature;
   let bonusDice = 0
     if (signature) {bonusDice = 1}
   ROLChecks.startCheck ({
-    event,
+    shiftKey: event.shiftKey,
     target,
+    itemId,
+    type: 'Damage',
+    subType,
+    targetScore,
     victim,
-    damType,
-    actor: actor,
-    label: game.i18n.localize("ROL.damage") + ": " + actor.items.get($(event.currentTarget).closest(".item").data("itemId")).name,
-    bonusDice: bonusDice,
-    damageBoost: damageBoost,
+    damType: item.system.damType,
+    damage: item.system.damage,
+    name: game.i18n.localize("ROL.damage") + ": " + item.name,
+    bonusDice,
+    damageBoost: item.system.damageBoost,
     allowPush: false,
     allowResolve: true
   })
   return
 }
 
+//
+// Start Weapon Check
+//
 static async _onRollWeaponTest(event){
   let target =await ROLChecks._getTargetId(this.token,this.actor);
   let actor = await ROLChecks._getTarget(target.targetId, target.targetType);
   let victim = await ROLChecks._getVictimId();
-  let signature = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.signature;
-  let automatic = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.automatic;
-  let semiauto = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.semiauto;
-  let damType = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).system.damType;
+  let itemId = actor.items.get($(event.currentTarget).closest(".item").data("itemId")).id
+  let subType = "Thrown";
+  let targetScore = actor.system.throwScore;
+  let damageTarget = actor.system.abilities.dex.value;
+  let item = actor.items.get(itemId);
+  if (item.system.type === 'Firearms') {
+    subType = 'Missile';
+    targetScore = actor.system.firearmsScore;
+  } 
+  if (item.system.type === 'Melee') {
+    subType = 'Melee';
+    targetScore = actor.system.meleeScore;
+    damageTarget = actor.system.abilities.str.value;
+  }
+  let signature = item.system.signature;
   let bonusDamage = 0
   if (signature) {bonusDamage = 1}
   let options = {
-    event,
+    shiftKey: event.shiftKey,
     target,
+    targetScore,
+    damageTarget,
+    type: 'weapons',
+    subType,
     victim,
-    damType,
-    actor: actor,
+    itemId,
+    damType: item.system.damType,
+    damage: item.system.damage,
     allowResolve: true,
     bonusDamage: bonusDamage,
-    automatic: automatic,
-    semiauto: semiauto,
-    label: actor.items.get($(event.currentTarget).closest(".item").data("itemId")).name
+    automatic: item.system.automatic,
+    semiauto: item.system.semiauto
   }
-
   await ROLChecks.startCheck (options);
   return
 }
@@ -274,39 +400,34 @@ static async _onRollWeaponTest(event){
 // Set Roll and Dialog options for the check
 //
 static async initiateConfig(options){
-  if (typeof options.event === 'undefined'){
-    ui.notifications.error("No event detected");
-    return false
-  }
-
-  const element = options.event.currentTarget;
-  const dataset = element.dataset;
+  let actor = await ROLChecks._getTarget(options.target.targetId, options.target.targetType);
+  let item = actor.items.get(options.itemId);
 
   const config = {
-    event: options.event,
     origin: game.user.id,
     originGM: game.user.isGM,
+    shiftKey: options.shiftKey,
     target: options.target,
     victim: options.victim,
-    damType: options.damType,
-    type: dataset.type ? `${dataset.type}` : '',               
-    subType: dataset.subtype ? `${dataset.subtype}` : '',  
-    targetScore: Number(dataset.target ? `${dataset.target}` : 0),
+    damType: options.damType ? options.damType : '',
+    targetScore: options.targetScore ? options.targetScore : 0,
+    type: options.type ? options.type : '',               
+    subType: options.subType ? options.subType : '',  
+    damage: options.damage ? options.damage : -1,
     multiShot: "",
     boostMP: 0,
     totalMP: 0,
-    rollFormula: dataset.formula.toLowerCase(),
+    rollFormula: options.formula ? options.formula : "1d100",
     diff: "Regular",
     resultLevel: 0,
     luckSpent: 0,
-    flatAdj: Number(dataset.flatadj ? `${dataset.flatadj}` : 0),
+    flatAdj: options.flatAdj ? options.flatAdj : 0,
     wasPushed: false,
     isPushed: false,
     resolved: false,
     newRollVal: 0,
-    damage: Number(dataset.damage ? `${dataset.damage}` : -1),
-    damageTarget: Number(dataset.damagetarget ? `${dataset.damagetarget}` : 0),
-    damageFormula: dataset.damageformula ? dataset.damageformula.toLowerCase() : "",
+    damageTarget: options.damageTarget ? options.damageTarget : 0,
+    damageFormula: "1d100",
     damageDealt: 0,
     critChance: 1,
     winTitle: options.winTitle,
@@ -314,14 +435,20 @@ static async initiateConfig(options){
     dialogTemplate: 'systems/rol/templates/apps/difficulty.html',
     winTitle: game.i18n.localize("ROL.diffWindow")
   }
- 
+
+  if ((config.subType && config.damage < 0)) {
+    config.damage = 0
+  }
+  
   //If this is a damage causing roll then check that target is selected
-    if (config.damage > 0 || config.type === 'Damage' || (config.type === "Weapon" && config.damage === 0)) {
+    if (config.damage > 0 || config.type === 'Damage' || (config.type === "weapons" && config.damage === 0)) {
       let check  = await ROLChecks.dummyVictim(config.victim, config.target)
       if (!check) {
         return false}
     }
  
+
+
     config.automatic = options.automatic??false;
     config.semiauto = options.semiauto??false;
     config.spendMP = options.spendMP??0;
@@ -334,9 +461,7 @@ static async initiateConfig(options){
     config.allowLuck = options.allowLuck??true; 
     config.dialog = options.dialog??true;
     config.cover = 0; 
-    config.label = options.label??dataset.label; 
-    config.skillId = options.skillId??options.event?.currentTarget.closest('.item')?.dataset.itemId;
-    config.itemId = options.event?.currentTarget.closest('.item')?.dataset.itemId  ;
+    config.label = options.name??item.name; 
     config.bonusDice = options.bonusDice??0;
     config.bonusDamage = options.bonusDamage??0;
     config.improvRoll = options.improvRoll??0;  
@@ -377,7 +502,7 @@ static async runCheck (config) {
 
 
   //If Shift key has been held then accept the defaults above otherwise call a Dialog box for Difficulty, Modifier etc
-  if (config.event.shiftKey || !config.dialog ){
+  if (config.shiftKey || !config.dialog ){
   } else{
     let usage = await ROLChecks.RollDialog(config);
       if (usage) {
@@ -437,7 +562,7 @@ static async makeRoll(config) {
   }
 
   //Check to Allow Pushed roll in follow up
-  if (config.resultLevel != 0 || config.wasPushed || config.type === "Weapon" || config.subType === "Firearms" || config.subType === "Fighting") {
+  if (config.resultLevel != 0 || config.wasPushed || config.type === "weapons" || config.subType === "Firearms" || config.subType === "Fighting") {
     config.allowPush = false;
   }
 
@@ -729,6 +854,7 @@ static async RollDialog (options) {
       automatic: options.automatic,
       semiauto: options.semiauto,
       label: options.label,
+      diff: options.diff,
       damType: options.damType,
       bonusDice: options.defaultBonusDice
     }
@@ -756,6 +882,12 @@ static async RollDialog (options) {
     })
   }
 
+static async triggerDiffButton(event){
+  console.log("TEST DIFF");
+}
+
+
+//Function when Chat Message buttons activated to call socket---------------------------------------------------------------------------------------------------
 static async triggerChatButton(event){
   const targetElement = event.currentTarget;
   const presetType = targetElement.dataset?.preset;
@@ -865,7 +997,7 @@ static async handleChatButton(data) {
       }
 
       //Update MP & HTD for spellcasting 
-      if (targetMsg.flags.config.type === "Spell") {
+      if (targetMsg.flags.config.type === "spell") {
      
         totalMP = targetMsg.flags.config.spendMP + targetMsg.flags.config.boostMP;
         if(actor.system.Exhausting){totalMP++;}
@@ -919,10 +1051,11 @@ static async handleChatButton(data) {
         const resolvehtml = await ROLChecks.startChat(targetMsg.flags.config);
         await targetMsg.update({content: resolvehtml});
 
-      if (((targetMsg.flags.config.type === "Spell"  && targetMsg.flags.config.damage > 0) || targetMsg.flags.config.type === "Weapon") && targetMsg.flags.config.resolved && targetMsg.flags.config.resultLevel > 0) {
+      if (((targetMsg.flags.config.type === "spell"  && targetMsg.flags.config.damage > 0) || targetMsg.flags.config.type === "weapons") && targetMsg.flags.config.resolved && targetMsg.flags.config.resultLevel > 0) {
         await targetMsg.update({
           'flags.config.type' : "Damage",
           'flags.config.allowPush' : false,
+          'flags.config.shiftKey': false,
           'flags.config.wasPushed' : false,
           'flags.config.isPushed' : false,
           'flags.config.allowLuck' : true,

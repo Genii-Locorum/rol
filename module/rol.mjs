@@ -165,8 +165,7 @@ Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
 
-Hooks.once("ready", async function() {
-
+Hooks.once("ready", async function () {
   // Always reset GM Tool toggles to False
   if (game.user.isGM) {
     if (game.settings.get('rol' , 'developmentEnabled')) {game.settings.set('rol','developmentEnabled', false)};
@@ -176,7 +175,12 @@ Hooks.once("ready", async function() {
   }
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
+  Hooks.on("hotbarDrop", (bar, data, slot) => {
+    if (game.user) {
+      createItemMacro(data, slot);
+      return false;
+    }
+  });  
 });
 
 
