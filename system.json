@@ -2,7 +2,7 @@
   "id": "rol",
   "title": "Rivers of London",
   "description": "Rivers of London implementation for FoundryVTT!",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "compatibility": {
     "minimum": "10",
     "verified": "10.291",
@@ -46,15 +46,23 @@
     "system": "rol",
     "private": false,
     "flags": {}
-  },
-  { "label": "Weapons",
-  "type": "Item",
-  "name": "weapons",
-  "path": "packs/weapons.db",
-  "system": "rol",
-  "private": false,
-  "flags": {}
-}
+    },
+    { "label": "Weapons",
+    "type": "Item",
+    "name": "weapons",
+    "path": "packs/weapons.db",
+    "system": "rol",
+    "private": false,
+    "flags": {}
+    },
+    { "label": "Instructions",
+    "type": "JournalEntry",
+    "name": "instructions",
+    "path": "packs/instructions.db",
+    "system": "rol",
+    "private": false,
+    "flags": {}
+    }
   ],
   
   "esmodules": [
