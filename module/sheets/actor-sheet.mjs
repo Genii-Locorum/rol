@@ -188,9 +188,7 @@ export class ROLActorSheet extends ActorSheet {
     });
 
     //If this is an actor add specialiased categories and types and resort
-    console.log(this.actor.type)
-    if (this.actor.type === 'character') {
-      console.log(this.actor.type)
+      if (this.actor.type === 'character') {
     //Get unique list of specialized categories in Skills
    
     let previousSpec = "";
@@ -453,7 +451,7 @@ export class ROLActorSheet extends ActorSheet {
     if (type === "skill") {
       data.skillName = name
     }
-    console.log(name,type,data)
+    
     const itemData = {
       name: name,
       type: type,
@@ -560,8 +558,23 @@ export class ROLActorSheet extends ActorSheet {
           default:
         }  
       }
-    //Check to see if we can drop the Item
-      if (reqResult !=1) {
+
+      //Check that for skills, spells and traits the item doesn't already exist in the list
+        if (reqResult = 1 && (k.type === 'advantages' || k.type === 'spell' || k.type === 'skill')){
+          for (let j of this.actor.items) {
+             if (j.name === k.name && j.type === k.type) {
+               reqResult = -2 
+             }
+          }
+        }
+
+
+
+
+      //Check to see if we can drop the Item
+      if (reqResult === -2) {
+        ui.notifications.error(game.i18n.localize("ROL.duplicate") + game.i18n.localize('ROL.' + k.type) +" : " + k.name);
+      } else if (reqResult !=1) {
         ui.notifications.error(game.i18n.localize("ROL.preRequisites") + game.i18n.localize('ROL.' + k.type) +" : " + k.name);
       } else if(k.type === "spell" && k.system.spellOrder > 1){
           let thisSpellCount = 0;

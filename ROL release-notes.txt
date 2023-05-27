@@ -1,3 +1,7 @@
+V7 27/05/2023
+- checked for compatability with Foundry V11
+- added check to stop duplicate skills, spells or advantages being added to the character sheet
+
 V6 11/04/2023
 -The three instructions documents moved to a Journal compendium to make them visible in game
 -Checks rolls code refactored to enable item macros

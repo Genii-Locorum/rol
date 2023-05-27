@@ -104,6 +104,7 @@
   "ROL.dmgMagic": "No armour, except for a Shield spell, will block this damage",
   "ROL.dmgVorpal": "No types of armour or Shield spell will block this damage",
   "ROL.down": "Downed",
+  "ROL.duplicate": "This item already exists on the character sheet ",
   "ROL.edit": "Edit",
   "ROL.editAdvantage": "Edit Advantage",
   "ROL.editArmour": "Edit Armour",
