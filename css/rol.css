@@ -5,11 +5,14 @@
   font-size: 12px;
 }
 
+
 .rollable:hover, .rollable:focus, .item-create:hover, .skill-rollable:hover, .skill-rollable:focus, .healing-phase:hover, .healing-phase:focus, .luckreset-rollable:hover, .luckreset-rollable:focus, .luckrecovery-rollable:hover, .luckrecovery-rollable:focus, .next-scene:hover, .next-scene:focus {
   color: #000;
-  text-shadow: 0 0 10px blue;
+  text-shadow: 0 0 10px var(--main-colour);
   cursor: pointer;
 }
+
+
 
 .grid,
 .grid-2col {
@@ -238,19 +241,32 @@
 
 /* Styles limited to rol sheets-------------------------------------------------------------------------------------------------------------------------------------- */ 
 
-.rol .window-content {
-  background-image:url("./images/blue-paper.jpg");
+
+.rol .DemiMonde {
+  background-image:url("./images/grey-paper.jpg");
   background-size: cover;
   overflow-y:hidden ;
   background-color: rgb(255, 255, 255);
+  --main-colour: green;
+  --police-colour: rgb(73, 141, 107);
+}
+
+.rol .window-content {
+  background-image:url("./images/grey-paper.jpg");
+  background-size: cover;
+  padding: 8px;
+  overflow-y:hidden ;
+  background-color: rgb(255, 255, 255);
+  --main-colour: blue;
+  --police-colour: rgb(60, 86, 141);
 }
 
 .rol .tabs .item.active {
-  text-shadow: 0 0 10px blue;
+  text-shadow: 0 0 10px var(--main-colour);
 }
 
 .rol .tabs .item.navtitle:hover {
-  text-shadow: 0 0 10px blue;
+  text-shadow: 0 0 10px var(--main-colour);
 }
 
 
@@ -303,18 +319,18 @@
 }
 
 .rol .profile-img {
-  border: 2px solid blue;
+  border: 2px solid var(--main-colour);
 }
 
 .rol .item-image {
-  border: 2px solid blue;
+  border: 2px solid var(--main-colour);
 }
 
 .rol .charname input[type="text"] {
   width: 100%;
   height: calc(100% - 2px);
   padding-left: 5px;
-  border: solid blue 1px;
+  border: solid var(--main-colour) 1px;
 }
 
 .rol .chartype {
@@ -342,8 +358,8 @@
   max-width: 240px;
   color: white;
   background: solid;
-  background-color: rgb(60, 86, 141);
-  border: 2px solid blue;
+  background-color: var(--police-colour);
+  border: 2px solid var(--main-colour);
   text-align: center;
 }
 
@@ -355,10 +371,10 @@
   max-width: 240px;
   color: white;
   background: solid;
-  background-color: rgb(60, 86, 141);
-  border-left: 2px solid blue;
-  border-top: 2px solid blue;
-  border-bottom: 2px solid blue;
+  background-color: var(--police-colour);
+  border-left: 2px solid var(--main-colour);
+  border-top: 2px solid var(--main-colour);
+  border-bottom: 2px solid var(--main-colour)e;
   writing-mode: vertical-rl;
 }
 
@@ -369,8 +385,8 @@
   max-width: 240px;
   color: white;
   background: solid;
-  background-color: rgb(60, 86, 141);
-  border-bottom: 2px solid blue;
+  background-color: var(--police-colour);
+  border-bottom: 2px solid var(--main-colour);
   text-align: center;
 }
 
@@ -384,8 +400,8 @@
   text-align: left;
   color: white;
   background: solid;
-  background-color: rgb(60, 86, 141);
-  border: 2px solid blue;
+  background-color: var(--police-colour);
+  border: 2px solid var(--main-colour);
 }
 
 .rol .abilities{
@@ -397,9 +413,9 @@
   max-height: 142px;
   padding-top:7px;
   padding-left: 20px;
-  border-left: 2px solid blue;
-  border-right: 2px solid blue;
-  border-bottom: 2px solid blue;
+  border-left: 2px solid var(--main-colour);
+  border-right: 2px solid var(--main-colour);
+  border-bottom: 2px solid var(--main-colour);
   width:240 px;
   max-width: 240px;
 }
@@ -411,9 +427,9 @@
   min-height: 142px;
   max-height: 142px;
   padding-left: 20px;
-  border-left: 2px solid blue;
-  border-right: 2px solid blue;
-  border-bottom: 2px solid blue;
+  border-left: 2px solid var(--main-colour);
+  border-right: 2px solid var(--main-colour);
+  border-bottom: 2px solid var(--main-colour);
   background-color: crimson;
   width:240 px;
   max-width: 240px;
@@ -426,9 +442,9 @@
   max-height: 142px;
   padding-top: 5px;
   padding-left: 3px;
-  border-left: 2px solid blue;
-  border-right: 2px solid blue;
-  border-bottom: 2px solid blue;
+  border-left: 2px solid var(--main-colour);
+  border-right: 2px solid var(--main-colour);
+  border-bottom: 2px solid var(--main-colour);
   width:310px;
   max-width: 310px;
 }
@@ -548,14 +564,14 @@
   font-size: 16px;
   font-weight: bold;
   max-height: 16px;
-  border-color: blue;
+  border-color: var(--main-colour);
 }
 
 .rol .resource-label-diff {
   font-size: 14px;
   font-weight: bold;
   max-height: 20px;
-  border-color: blue;
+  border-color: var(--main-colour);
 }
 
 .rol .resource-label-left {
@@ -760,14 +776,14 @@ font-weight: bold;
   max-height: calc(100% - 210px);
   min-width: 685px;
   max-width: 685px;
-  border: solid blue 2px;
+  border: solid var(--main-colour) 2px;
 }
 
 .rol .two-panel-content .left-panel {
   flex: 1;
   max-width: 100px;
   min-width: 100px;
-  border-right: 2px solid blue;
+  border-right: 2px solid var(--main-colour);
 }
 
 .rol .two-panel-content .right-panel {
@@ -823,7 +839,7 @@ font-weight: bold;
 }
 
 .rol .plainboxed {
-  border: 1px solid blue;  
+  border: 1px solid var(--main-colour);  
   padding-left: 3px;
   border-radius: 3px;
 }
@@ -833,14 +849,14 @@ font-weight: bold;
 }
 
 .rol .boxed {
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   padding: 3px;
   margin-left: 5px;
   margin-right: 5px;
 }  
 
 .rol .boxed-move{
-    border: 1px solid blue;
+    border: 1px solid var(--main-colour);
     margin: 0px 5px 0px 5px;
     gap: 0px;
 }
@@ -860,16 +876,16 @@ font-weight: bold;
   min-height: 150px;
   max-height: 150px;
   max-width: 600px;
-  border: 2px solid blue;
+  border: 2px solid var(--main-colour);
 }
 
 .rol .npc-section {
   max-width: 600px;
   padding: 3px;
   margin: 0px;
-  border-left: 2px solid blue;
-  border-right: 2px solid blue;
-  border-bottom: 2px solid blue;
+  border-left: 2px solid var(--main-colour);
+  border-right: 2px solid var(--main-colour);
+  border-bottom: 2px solid var(--main-colour);
 }
 
 .rol .npc-grid {
@@ -914,7 +930,7 @@ font-weight: bold;
   margin-bottom: 0px;
   margin-left:auto;
   margin-right: auto;
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   padding: 3px;
   background-color: lightgray;
   max-width: 50px;
@@ -965,7 +981,7 @@ font-weight: bold;
   min-width: 60px;
   font-size: 14px;
   font-weight: bold;
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   border-radius: 3px;
   color: black;
 }
@@ -980,7 +996,7 @@ font-weight: bold;
   min-width: 60px;
   font-size: 12px;
   font-weight: bold;
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   border-radius: 3px;
   color: black;
 }
@@ -995,7 +1011,7 @@ font-weight: bold;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   border-radius: 3px;
   color: black;
 }
@@ -1017,7 +1033,7 @@ font-weight: bold;
   min-width: 100px;
   max-width: 150px;
   text-align: center;
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   border-radius: 3px;
   color: black;
 }
@@ -1032,7 +1048,7 @@ font-weight: bold;
   margin: auto 0 auto 0;
   font-size: 14px;
   font-weight:bold;
-  border: solid blue 1px;
+  border: solid var(--main-colour) 1px;
 }
 
 .rol .skillname-gap {
@@ -1083,25 +1099,25 @@ font-weight: bold;
   font-weight: bold;
   text-align:center;
   height: calc(100% - 2px);
-  border-color: blue;
+  border-color: var(--main-colour);
 }
 
 .rol .skill-label-inp {
   font-size: 14px;
   font-weight: bold;
   height: calc(100% - 2px);
-  border-color: blue;
+  border-color: var(--main-colour);
 }
 
 .rol .skill-score-inp {
   height:14px;
   font-size: 14px;
   font-weight:bold;
-  border-color: blue;
+  border-color: var(--main-colour);
 }
 
 .rol .biography-doc{
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   padding-left: 10px;
   padding-right: 10px;
   height: 30px;
@@ -1109,7 +1125,7 @@ font-weight: bold;
 }
 
 .rol .background-doc{
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   font-size:14px;
   font-weight: bold;
   padding-left: 10px;
@@ -1119,7 +1135,7 @@ font-weight: bold;
 }
 
 .rol .npc-doc{
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   font-size:14px;
   font-weight: bold;
   padding-left: 10px;
@@ -1129,7 +1145,7 @@ font-weight: bold;
 }
 
 .rol .trait-doc{
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   font-size:14px;
   font-weight: bold;
   padding-left: 10px;
@@ -1162,7 +1178,7 @@ font-weight: bold;
   font-weight: normal;
   color: white;
   background: solid;
-  background-color: rgb(60, 86, 141);
+  background-color: var(--police-colour);
 }
 
 .rol .develop-header {
@@ -1317,7 +1333,7 @@ font-weight: bold;
   font-weight: bold;
   padding-left: 5px;
   max-width: 560px;
-  border: solid blue 1px;
+  border: solid var(--main-colour) 1px;
   margin-right:10px;
 }
 
@@ -1330,7 +1346,7 @@ font-weight: bold;
   height: calc (100%-2px);
   padding: 1px 3px 1px 5px;
   font-weight: normal;
-  border: 1px solid blue;
+  border: 1px solid var(--main-colour);
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.05);
 }
@@ -1387,5 +1403,5 @@ font-weight: bold;
 .rol .prereq {
   font-size: 14px;
   font-weight: bold;
-  border-color: blue;
+  border-color: var(--main-colour);
 }

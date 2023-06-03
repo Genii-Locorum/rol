@@ -1,0 +1,7 @@
+2023/06/03-06:04:37.844 205c Recovering log #40
+2023/06/03-06:04:37.964 205c Delete type=0 #40
+2023/06/03-06:04:37.964 205c Delete type=3 #38
+2023/06/03-06:05:00.446 3170 Level-0 table #45: started
+2023/06/03-06:05:00.446 3170 Level-0 table #45: 0 bytes OK
+2023/06/03-06:05:00.546 3170 Delete type=0 #43
+2023/06/03-06:05:00.547 3170 Manual compaction at level-0 from '!journal!FNCMFyinJubCRwmo' @ 72057594037927935 : 1 .. '!journal.pages!FNCMFyinJubCRwmo.yJ2UxYSSbIsPxLuN' @ 0 : 0; will stop at (end)

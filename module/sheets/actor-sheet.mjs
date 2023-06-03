@@ -17,7 +17,7 @@ export class ROLActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["rol", "sheet", "actor"],
       template: "systems/rol/templates/actor/actor-sheet.html",
-      width: 705,
+      width: 720,
       height: 800,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" }]
     });
@@ -123,7 +123,6 @@ export class ROLActorSheet extends ActorSheet {
 
 
     // Iterate through items, allocating to containers
-
     for (let i of context.items) {
       i.img = i.img || DEFAULT_TOKEN;
       // Append to equipment.
@@ -145,6 +144,7 @@ export class ROLActorSheet extends ActorSheet {
       // Append to advantages 
       else if (i.type === 'advantages'){
         advantages.push(i);
+
       }
       // Append to contacts.
       else if (i.type === 'contacts'){

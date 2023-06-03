@@ -94,11 +94,10 @@ export class ROLActor extends Actor {
     }  
 
     //Set Natural Armour
+    systemData.armour.natural = 0;
     if (systemData.Toughness){
-      this.update({'system.armour.natural' : 1});
-    } else {
-      this.update({'system.armour.natural' : 0})
-    }
+      systemData.armour.natural = 1;
+    } 
 
     // Produce Damage Status
     let dmgVal = Number(systemData.damage.value);
@@ -236,8 +235,8 @@ for (let i of actorData.items) {
 
 //Calculate hp for display bar
   if (game.user.isGM) {
-    let hp = Math.max(3 - systemData.damage.value,0);
-    this.update({'system.hp.value' : hp});
+    actorData.system.hp.value = Math.max(3 - systemData.damage.value,0);
+    //actorData.update({'system.hp.value' : hp});
   }  
 
 return magic_id;
