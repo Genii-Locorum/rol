@@ -1,3 +1,7 @@
+V8
+- Character and NPC sheets will now be coloured green for Demi Monde.  Everything else remains blue.
+- Moved hp.max and armour.natural for permanent stats to derived stats to remove an _id error on creating actor
+
 V7 27/05/2023
 - checked for compatability with Foundry V11
 - added check to stop duplicate skills, spells or advantages being added to the character sheet

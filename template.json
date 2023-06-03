@@ -9,14 +9,12 @@
           "max": 0
         },
         "armour": {
-          "natural" : 0,
           "regular" : 0,
           "ballistic": 0,
           "shieldBlock": 0,
           "shiedlHP" : 0
           },
         "hp": {
-          "value": 0,
           "min": 0,
           "max": 3
         },
