@@ -1,3 +1,6 @@
+V9
+-Minor tweak on Difficulty Dialog to change text colour
+
 V8
 - Character and NPC sheets will now be coloured green for Demi Monde.  Everything else remains blue.
 - Moved hp.max and armour.natural for permanent stats to derived stats to remove an _id error on creating actor
