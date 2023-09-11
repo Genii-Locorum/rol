@@ -560,7 +560,7 @@ export class ROLActorSheet extends ActorSheet {
       }
 
       //Check that for skills, spells and traits the item doesn't already exist in the list
-        if (reqResult = 1 && (k.type === 'advantages' || k.type === 'spell' || k.type === 'skill')){
+        if (reqResult === 1 && (k.type === 'advantages' || k.type === 'spell' || k.type === 'skill')){
           for (let j of this.actor.items) {
              if (j.name === k.name && j.type === k.type) {
                reqResult = -2 
@@ -569,7 +569,7 @@ export class ROLActorSheet extends ActorSheet {
         }
 
 
-
+      console.log(k.type, reqResult)  
 
       //Check to see if we can drop the Item
       if (reqResult === -2) {
