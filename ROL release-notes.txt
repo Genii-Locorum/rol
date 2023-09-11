@@ -1,5 +1,9 @@
+V11
+-Fixed a bug with dropping items on character sheet
+-Checked system runs under Foundry V11.308
+
 V10
--No changes made, just checked compatability to Found V11.306
+-No changes made, just checked compatability to Foundry V11.306
 
 V9
 -Minor tweak on Difficulty Dialog to change text colour

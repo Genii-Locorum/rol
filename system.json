@@ -2,10 +2,10 @@
   "id": "rol",
   "title": "Rivers of London",
   "description": "Rivers of London implementation for FoundryVTT!",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "compatibility": {
     "minimum": "10",
-    "verified": "11.306",
+    "verified": "11.308",
     "maximum": "11"
   },
   "authors": [
