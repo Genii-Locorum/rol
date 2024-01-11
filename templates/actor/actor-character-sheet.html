@@ -76,7 +76,7 @@
 
     {{!-- Stats Block --}}
     <div class="right-panel">
-    <div class="section-title">{{localize 'ROL.characteristics'}}</div>
+    <div class="section-title" title="{{localize 'ROL.charHint'}}">{{localize 'ROL.characteristics'}}</div>
       {{#unless isCreation}}  
       <div class="abilities grid grid-2col">
         {{#each system.abilities as |ability key|}}
@@ -85,7 +85,7 @@
         {{/each}}
       </div>    
       {{else}}
-      <div class="{{#if (gt system.abilityTotal maxStats)}} abilities-max {{else}} abilities {{/if}} grid grid-2col">
+      <div class="{{#if (gt system.abilityTotal maxStats)}} abilities-max  {{/if}} abilities">
         {{#each system.abilities as |ability key|}}
           <div class="resource-label rollable" data-target ={{ability.value}} data-label="{{ability.label}}">{{ability.label}}</div>
           <input class="stats-content" type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
