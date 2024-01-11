@@ -422,17 +422,7 @@
 
 
 .rol .abilities-max{
-  margin: 0px;
-  gap: 0px;
-  min-height: 142px;
-  max-height: 142px;
-  padding-left: 20px;
-  border-left: 2px solid var(--main-colour);
-  border-right: 2px solid var(--main-colour);
-  border-bottom: 2px solid var(--main-colour);
   background-color: crimson;
-  width:240 px;
-  max-width: 240px;
 }
 
 .rol .info-panel {
