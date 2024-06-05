@@ -4,7 +4,7 @@
   "description": "Rivers of London implementation for FoundryVTT!",
   "version": "12.1.13",
   "compatibility": {
-    "minimum": "10",
+    "minimum": "12",
     "verified": "12.325",
     "maximum": "12"
   },
