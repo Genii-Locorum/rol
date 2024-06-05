@@ -116,7 +116,7 @@
   <section class="sheet-body">
     <div class="item-label">{{ localize 'ROL.description' }}:</div>
     <div>
-      {{editor system.advantages.description class="background-doc" target="system.advantages.description" button=true owner=owner editable=editable}}
+      {{editor enrichedDescriptionValue engine="prosemirror" class="background-doc" target="system.description" button=true owner=owner editable=editable}}
     </div>
   </section>
 </form>

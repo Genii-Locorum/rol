@@ -817,7 +817,6 @@ let chatData={};
 if (config.chatType === "ROLL") {
   chatData = {
     user: game.user.id,
-    type: CONST.CHAT_MESSAGE_TYPES.ROLL,
     rolls: [config.roll],
     content: html,
     flags: {config: config},
@@ -830,7 +829,7 @@ if (config.chatType === "ROLL") {
 } else {
   chatData = {
     user: game.user.id,
-    type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+    type: CONST.CHAT_MESSAGE_STYLES.OTHER,
     rolls: [config.roll],
     content: html,
     flags: {config: config},
@@ -882,10 +881,6 @@ static async RollDialog (options) {
     })
   }
 
-static async triggerDiffButton(event){
-  console.log("TEST DIFF");
-}
-
 
 //Function when Chat Message buttons activated to call socket---------------------------------------------------------------------------------------------------
 static async triggerChatButton(event){
@@ -906,10 +901,16 @@ static async triggerChatButton(event){
   if (game.user.isGM){
     ROLChecks.handleChatButton ({presetType, targetChatId, luckCost, luckLevel,origin, originGM})
   } else {
+    const availableGM = game.users.find(d => d.active && d.isGM)?.id
+    if (availableGM) {
     game.socket.emit('system.rol', {
       type: 'chatUpdate',
+      to:availableGM,
       value: {presetType, targetChatId, luckCost, luckLevel, origin, originGM}
     })
+  } else {
+    ui.notifications.warn(game.i18n.localize('ROL.noAvailableGM'))        
+  }
   }
 }
   
@@ -1077,12 +1078,17 @@ static async handleChatButton(data) {
       if (targetMsg.flags.config.originGM) {    
         await ROLChecks.runCheck (targetMsg.flags.config)
       } else {
+        const availableGM = game.users.find(d => d.active && d.isGM)?.id
+        if (availableGM) {
         game.socket.emit('system.rol', {
           type: 'chatDamage',
+          to: availableGM,
           value: {targetMsg}
         })
+      } else {
+        ui.notifications.warn(game.i18n.localize('ROL.noAvailableGM'))     
       }
-      }
+      }}
       break;
     }
   return 

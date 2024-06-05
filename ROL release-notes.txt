@@ -1,3 +1,10 @@
+V13
+- Updated for Foundry V12.325
+- Removed dependency of socketlib
+- Added language localization for Create Items and Actors
+- Added rich text editors to "description" sections in actors and items
+- Corrected location of description data in item and added a migration script.  PLEASE BACKUP YOUR WORLD BEFORE RUNNING THE MIGRATION SCRIPT FROM THE GM Tools
+
 V11
 -Fixed a bug with dropping items on character sheet
 -Checked system runs under Foundry V11.308

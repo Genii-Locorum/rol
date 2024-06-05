@@ -14,7 +14,7 @@ export class ROLActorSheet extends ActorSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["rol", "sheet", "actor"],
       template: "systems/rol/templates/actor/actor-sheet.html",
       width: 720,
@@ -38,7 +38,7 @@ export class ROLActorSheet extends ActorSheet {
 
 
   /** @override */
-  getData() {
+  async getData() {
     const context = super.getData();
 
     // Use a safe clone of the actor data for further operations.
@@ -75,6 +75,73 @@ export class ROLActorSheet extends ActorSheet {
 
     // Prepare active effects
     context.effects = prepareActiveEffectCategories(this.actor.effects);
+
+    context.enrichedPresentValue = await TextEditor.enrichHTML(
+      context.data.system.background.present,
+      {
+        async: true,
+        secrets: context.editable
+      }
+    )
+    context.enrichedSupernaturalValue = await TextEditor.enrichHTML(
+      context.data.system.background.supernatural,
+      {
+        async: true,
+        secrets: context.editable
+      }
+    ) 
+    context.enrichedChildhoodValue = await TextEditor.enrichHTML(
+      context.data.system.background.childhood,
+      {
+        async: true,
+        secrets: context.editable
+      }
+    ) 
+    if (this.actor.type === 'character') {
+      context.enrichedDevPointsHistoryValue = await TextEditor.enrichHTML(
+        context.data.system.devPoints.history,
+        {
+          async: true,
+          secrets: context.editable
+        }
+      ) 
+      context.enrichedSigSoundValue = await TextEditor.enrichHTML(
+        context.data.system.signare.sound,
+        {
+          async: true,
+          secrets: context.editable
+        }
+      ) 
+      context.enrichedSigSmellValue = await TextEditor.enrichHTML(
+        context.data.system.signare.smell,
+        {
+          async: true,
+          secrets: context.editable
+        }
+      ) 
+      context.enrichedSigOtherValue = await TextEditor.enrichHTML(
+        context.data.system.signare.other,
+        {
+          async: true,
+          secrets: context.editable
+        }
+      )           
+    } else {
+      context.enrichedDescriptionValue = await TextEditor.enrichHTML(
+        context.data.system.description,
+        {
+          async: true,
+          secrets: context.editable
+        }
+      )
+      context.enrichedNotesValue = await TextEditor.enrichHTML(
+        context.data.system.notes,
+        {
+          async: true,
+          secrets: context.editable
+        }
+      )
+    }   
 
     return context;
   }
@@ -387,7 +454,8 @@ export class ROLActorSheet extends ActorSheet {
 
   //Handle lockable toggle
   async _onLockToggle(event) {
-    this.actor.toggleActorFlag("locked");
+    await this.actor.update({'system.flags.locked': !this.actor.system.flags.locked})
+       
   }
 
   //Handle other toggle
@@ -444,7 +512,7 @@ export class ROLActorSheet extends ActorSheet {
     // Get the type of item to create.
     const type = header.dataset.type;
     // Grab any data associated with this control.
-    const data = duplicate(header.dataset);
+    const data = foundry.utils.duplicate(header.dataset);
     // Initialize a default name.
     const name = `New ${type.capitalize()}`;
     // Prepare the item object.
@@ -568,8 +636,6 @@ export class ROLActorSheet extends ActorSheet {
           }
         }
 
-
-      console.log(k.type, reqResult)  
 
       //Check to see if we can drop the Item
       if (reqResult === -2) {

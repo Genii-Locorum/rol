@@ -51,15 +51,15 @@
 <div class="police-header spell-header">{{ localize 'ROL.signare' }}</div>
   <div class="signare-name">{{ localize 'ROL.sound' }}:</div>
   <div>
-    {{editor system.signare.sound class="trait-doc" target="system.signare.sound" button=true owner=owner editable=editable}}
+    {{editor enrichedSigSoundValue engine="prosemirror" class="trait-doc" target="system.signare.sound" button=true owner=owner editable=editable}}
   </div>
   <div class="signare-name">{{ localize 'ROL.smell' }}:</div>
   <div>
-    {{editor system.signare.smell class="trait-doc" target="system.signare.smell" button=true owner=owner editable=editable}}
+    {{editor enrichedSigSmellValue engine="prosemirror" class="trait-doc" target="system.signare.smell" button=true owner=owner editable=editable}}
   </div>
   <div class="signare-name">{{ localize 'ROL.other' }}:</div>
   <div>
-    {{editor system.signare.other class="trait-doc" target="system.signare.other" button=true owner=owner editable=editable}}
+    {{editor enrichedSigOtherValue engine="prosemirror" class="trait-doc" target="system.signare.other" button=true owner=owner editable=editable}}
   </div>
 <div class="resource-label-gap"></div>
 <br>

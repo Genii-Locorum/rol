@@ -2,11 +2,11 @@
   "id": "rol",
   "title": "Rivers of London",
   "description": "Rivers of London implementation for FoundryVTT!",
-  "version": "0.1.12",
+  "version": "12.1.13",
   "compatibility": {
     "minimum": "10",
-    "verified": "11.315",
-    "maximum": "11"
+    "verified": "12.325",
+    "maximum": "12"
   },
   "authors": [
     {
@@ -84,19 +84,11 @@
       "flags": {}
     }
   ],
-  "relationships": {
-    "requires": [
-      {
-        "type": "module",
-        "id": "socketlib",
-        "manifest": "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/master/module.json",
-        "compatibility": {}
-      }
-    ]
-  },
   "socket": true,
-  "gridDistance": 5,
-  "gridUnits": "ft",
+  "grid":{
+    "distance": 5,
+    "units": "ft"
+  }, 
   "primaryTokenAttribute": "hp",
   "url": "https://github.com/Genii-Locorum/Rivers-of-London",
   "manifest": "https://github.com/Genii-Locorum/Rivers-of-London/releases/latest/download/system.json",

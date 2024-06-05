@@ -8,18 +8,14 @@ import { ROLItemSheet } from "./sheets/item-sheet.mjs";
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from "./helpers/Setup/templates.mjs";
 import { ROL } from "./helpers/Setup/config.mjs";
-import { ROLLayer } from "./helpers/Setup/layers.mjs"
+import { ROLMenu } from "./helpers/Setup/layers.mjs"
 import { registerSettings } from './helpers/Setup/register-settings.mjs'
 import { ROLHooks } from './helpers/Setup/hooks-index.mjs'
 import { handlebarsHelper } from './helpers/Setup/handlebar-helper.mjs'
-import { ROLSocket } from './helpers/Sockets/socket.mjs'
+//import { ROLSocket } from './helpers/Sockets/socket.mjs'
 import { ROLSystemSocket } from './helpers/Sockets/rol-system-socket.mjs'
-import { ROLUtilities } from "./helpers/Utilities/utilities.mjs";
 import { ROLCombat } from "./helpers/Combat/combat.mjs";
 import { ROLCombatTracker } from "./helpers/Combat/combatTracker.mjs";
-import { ROLChecks } from './helpers//Utilities/checks.mjs';
-
-
 
 
 /* -------------------------------------------- */
@@ -66,12 +62,6 @@ Hooks.once('init', async function() {
   return preloadHandlebarsTemplates();
 });
 
-  // Set Up Layers for Toolbar
-  const layers = { rolgmtools: { layerClass: ROLLayer, group: "primary" } };
-  CONFIG.Canvas.layers = foundry.utils.mergeObject(Canvas.layers, layers);
-
-//Set up sockets
-Hooks.once('socketlib.ready', ROLSocket)
 
 Hooks.on('ready', async () => {
   game.socket.on('system.rol', async data => {
@@ -103,57 +93,11 @@ Hooks.on('renderSettingsConfig', (app, html, options) => {
         '</h2>'
     )});
 
-//Add GM controls to Scene
-Hooks.on('getSceneControlButtons', (buttons) => {
-  if(game.user.isGM) {
-    const rolGMTool = {
-      activeTool: "select",
-      icon: "fas fa-tools",
-      layer: "rolgmtools",
-      name: "rolgmtools",
-      title: game.i18n.localize('ROL.GMTools'),
-      tools: [],
-      visible: true
-    };
-    // End of Session Phase
-    rolGMTool.tools.push({
-      name: "Session",
-      icon: "fas fa-moon",
-      title:  game.i18n.localize('ROL.sessionEnd'),
-      toggle: true,
-      active: game.settings.get('rol','sessionendEnabled'),
-      onClick: async toggle => await ROLUtilities.toggleSession(toggle)
-    });
-    // Development Phase
-    rolGMTool.tools.push({
-      name: "Development",
-      icon: "fas fa-key",
-      title: game.i18n.localize('ROL.developPhase'),
-      toggle: true,
-      active: game.settings.get('rol','developmentEnabled'),
-      onClick: async toggle => await  ROLUtilities.toggleDevelopment(toggle)
-    });
-    // Creation Phase
-    rolGMTool.tools.push({
-      name: "Creation",
-      icon: "fas fa-child",
-      title: game.i18n.localize('ROL.createPhase'),
-      toggle: true,
-      active: game.settings.get('rol','characterCreation'),
-      onClick: async toggle => await ROLUtilities.toggleCreation(toggle)
-    });
-    // Set Character Order
-    rolGMTool.tools.push({
-      name: "Initiative",
-      icon: "fas fa-swords",
-      title: game.i18n.localize('ROL.initiative'),
-      onClick: async toggle => await ROLUtilities.setPartyOrder(toggle)
-    });
+//Add GM Tool Layer
+Hooks.on('getSceneControlButtons', ROLMenu.getButtons)
+Hooks.on('renderSceneControls', ROLMenu.renderControls)
 
-       buttons.push(rolGMTool);
-    };
-    ROLHooks.listen();
-  })
+ROLHooks.listen();
 
 //Add Chat Log Hooks
 Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));

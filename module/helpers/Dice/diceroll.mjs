@@ -3,7 +3,7 @@ export class ROLDiceRoll {
 //Function to Roll Dice
 static async RollDice (rollFormula){
     let roll = new Roll(rollFormula);
-    await roll.roll({ async: true});
+    await roll.evaluate();
     return roll;  
   }
   

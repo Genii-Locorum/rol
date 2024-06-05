@@ -30,45 +30,45 @@
     <div class="info-panel">  
       <div class="charname row flexrow">
         <label class="charname">{{ localize 'ROL.name' }} :</label>
-        <input class="bold" name="name" type="text" value="{{actor.name}}"/>
+        <input class="" name="name" type="text" value="{{actor.name}}"/>
       </div>  
       
       <div class="charname row flexrow">
         <label>{{ localize 'ROL.occupation' }} :</label>
-        <input class="bold" name="system.occupation" type="text" value="{{system.occupation}}"/>
+        <input class="" name="system.occupation" type="text" value="{{system.occupation}}"/>
       </div>
          
       <div class=" charname row flexrow">
         <label>{{ localize 'ROL.placeOfBirth' }} :</label>
-        <input class="bold" name="system.placeOfBirth" type="text" value="{{system.placeOfBirth}}"/>
+        <input class="" name="system.placeOfBirth" type="text" value="{{system.placeOfBirth}}"/>
       </div>
     
       <div class=" charname row flexrow">
         <label>{{ localize 'ROL.residence' }} :</label>
-        <input class="bold" name="system.residence" type="text" value="{{system.residence}}"/>
+        <input class="" name="system.residence" type="text" value="{{system.residence}}"/>
       </div>
 
       <div class=" charname row flexrow">
         <label>{{ localize 'ROL.affluence' }} :</label>
         {{#if isCreation}}
-          <input class="bold" list="affluenceList" name="system.affluence" type="text" value="{{system.affluence}}"/>
+          <input class="" list="affluenceList" name="system.affluence" type="text" value="{{system.affluence}}"/>
             <datalist id="affluenceList">
               <option value="{{ localize 'ROL.poor' }}"></option>
               <option value="{{ localize 'ROL.average' }}"></option>
             </datalist>
         {{else}}  
-            <div class="bold affluence">{{system.affluence}}</div>
+            <div class=" affluence">{{system.affluence}}</div>
         {{/if}}  
       </div>
    
       <div class=" charname row flexrow">
         <label class="detailblockbottom">{{ localize 'ROL.pronouns' }} :</label>
-        <input class = "detailblockbottominput bold" name="system.pronouns" type="text" value="{{system.pronouns}}"/>
+        <input class = "detailblockbottominput" name="system.pronouns" type="text" value="{{system.pronouns}}"/>
     
         <div></div>
 
         <label class="detailblockbottom-short">{{ localize 'ROL.age' }} :</label>
-        <input class ="bold" name="system.age" type="text" value="{{system.age}}" data d-type="Number"/>
+        <input class ="" name="system.age" type="text" value="{{system.age}}" data d-type="Number"/>
       </div>
     
       </div>
@@ -152,7 +152,7 @@
         <div class="resource-label-left next-scene align-center resource-label-gap" title="{{ localize 'ROL.mpRegen' }}">{{ localize 'ROL.mp' }}</div>
           <div class="statblock grid grid-3col">
             <input class="bold" name="system.mp.value" title = "{{ localize 'ROL.mpCurr' }}" type="text" value="{{system.mp.value}}" data-dtype="Number"/> 
-            <div class="statdisplay bold"> / </div>
+            <div class="statdisplay"> / </div>
             {{#if system.flags.locked}}   
               <div class="statdisplay bold" title = "{{ localize 'ROL.mpMax' }}">{{system.mp.max}}</div>
             {{else}}

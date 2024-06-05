@@ -178,12 +178,12 @@
   {{!-- Notes --}}
   <div class="resource-label">{{ localize 'ROL.description' }}:</div>
   <div>
-    {{editor system.description class="npc-doc" target="system.description" button=true owner=owner editable=editable}}
+    {{editor enrichedDescriptionValue engine="prosemirror" class="npc-doc" target="system.description" button=true owner=owner editable=editable}}
   </div>
   <br>
   <div class="resource-label">{{ localize 'ROL.notes' }}:</div>
   <div>
-    {{editor system.notes class="npc-doc" target="system.notes" button=true owner=owner editable=editable}}
+    {{editor enrichedNotesValue engine="prosemirror" class="npc-doc" target="system.notes" button=true owner=owner editable=editable}}
   </div>
 
 </section>

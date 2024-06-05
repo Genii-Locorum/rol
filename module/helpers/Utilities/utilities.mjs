@@ -275,4 +275,33 @@ static async _toggleMPRegen(){
   this.actor.update({'system.mp.value': newMP});
 } 
 
+
+//Item Migration - temp fix
+static async itemMigration () {
+
+  let confirmation = await Dialog.confirm({
+    title: game.i18n.localize('Migrate Item Data'),
+    content: "<br><p><b>" + game.i18n.localize('ROL.confirmation') + "</p><br>",
+  });
+
+  if (!confirmation) {return}
+
+  for (let itm of game.items) {
+      if (itm.system[itm.type] !== undefined) {
+        if (itm.system.description != null){
+          await itm.update({'system.description':itm.system[itm.type].description})
+        }
+      } 
+    }
+  for (let act of game.actors){
+    for (let itm of act.items){
+      if (itm.system[itm.type] !== undefined) {
+        if (itm.system.description != null){
+          await itm.update({'system.description':itm.system[itm.type].description})
+        }
+      } 
+    }
+  }
+  ui.notifications.warn("Migration Completed")
+  }
 }

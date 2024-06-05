@@ -243,7 +243,7 @@
 
 
 .rol .DemiMonde {
-  background-image:url("./images/grey-paper.jpg");
+  background-image:url("./images/grey-paper2.jpg");
   background-size: cover;
   overflow-y:hidden ;
   background-color: rgb(255, 255, 255);
@@ -252,7 +252,7 @@
 }
 
 .rol .window-content {
-  background-image:url("./images/grey-paper.jpg");
+  background-image:url("./images/grey-paper2.jpg");
   background-size: cover;
   padding: 8px;
   overflow-y:hidden ;
@@ -329,8 +329,10 @@
 .rol .charname input[type="text"] {
   width: 100%;
   height: calc(100% - 2px);
+  font-weight: bold;
   padding-left: 5px;
   border: solid var(--main-colour) 1px;
+  background-color: transparent;
 }
 
 .rol .chartype {
@@ -1117,17 +1119,15 @@ font-weight: bold;
 .rol .background-doc{
   border: 1px solid var(--main-colour);
   font-size:14px;
-  font-weight: bold;
   padding-left: 10px;
   padding-right: 10px;
   margin-right:10px;
-  height: 140px;
+  min-height: 140px;
 }
 
 .rol .npc-doc{
   border: 1px solid var(--main-colour);
   font-size:14px;
-  font-weight: bold;
   padding-left: 10px;
   padding-right: 10px;
   height: 100px;
@@ -1137,7 +1137,6 @@ font-weight: bold;
 .rol .trait-doc{
   border: 1px solid var(--main-colour);
   font-size:14px;
-  font-weight: bold;
   padding-left: 10px;
   padding-right: 10px;
   margin-right:10px;
@@ -1335,10 +1334,10 @@ font-weight: bold;
   width: 100%;
   height: calc (100%-2px);
   padding: 1px 3px 1px 5px;
-  font-weight: normal;
+  font-weight: bold;
   border: 1px solid var(--main-colour);
   border-radius: 3px;
-  background: rgba(0, 0, 0, 0.05);
+  background-color:transparent
 }
 
 .rol .npc-advantages{
@@ -1394,4 +1393,13 @@ font-weight: bold;
   font-size: 14px;
   font-weight: bold;
   border-color: var(--main-colour);
+}
+
+.rol .prosemirror .trait-doc{
+  height: 50px;
+  max-width: 530px;
+}
+
+.rol .prosemirror {
+  min-height: 200px;
 }

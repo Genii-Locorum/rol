@@ -1,6 +1,6 @@
 /* global DiceTerm */
 
-export class ROLDecaderDie extends DiceTerm {
+export class ROLDecaderDie extends foundry.dice.terms.DiceTerm {
   constructor (termData) {
     super(termData)
     this.faces = 10
