@@ -88,7 +88,7 @@ Hooks.on('renderSettingsConfig', (app, html, options) => {
     .find('input[name=rol\\.tenDieBonus]')
     .closest('div.form-group')
     .before(
-      '<h2 class="setting-header">' +
+      '<br><h2 class="setting-header">' +
         game.i18n.localize('ROL.Settings.Dice3D') +
         '</h2>'
     )});

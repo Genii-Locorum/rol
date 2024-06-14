@@ -129,6 +129,15 @@ export function registerSettings () {
     type: Number
   })
 
+  game.settings.register('rol', 'targetWarn', {
+    name: 'ROL.Settings.targetWarn',
+    hint: 'ROL.Settings.targetWarnHint',
+    scope: 'world',
+    config: true,
+    default: true,
+    type: Boolean
+  })  
+
   //Dice So Nice Settings 
     game.settings.register('rol', 'tenDieBonus', {
       name: 'ROL.Settings.TenDieBonus',

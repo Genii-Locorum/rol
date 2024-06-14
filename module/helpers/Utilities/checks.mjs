@@ -613,7 +613,9 @@ static async dummyVictim(victim, target){
   let subject = await ROLChecks._getTarget(victim.victimId, victim.victimType)
   let actor = await ROLChecks._getTarget(target.targetId, target.targetType)
   if (victim.victimType === "none"){
-    msg = game.i18n.localize('ROL.noTarget');
+    if (game.settings.get('rol',"targetWarn")) {
+     msg = game.i18n.localize('ROL.noTarget');
+    } else {return true}
   } else if (victim.victimId === target.targetId) {
     msg = game.i18n.localize('ROL.targetSelf');
   } else if (actor.type === 'character' && subject.type === 'character') {
