@@ -1,3 +1,6 @@
+V15
+- Change to manifest URL to correct it
+
 V14
 - Added a system option to turn off the "No Target" warning message.
 
