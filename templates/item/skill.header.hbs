@@ -1,0 +1,88 @@
+<header class="{{cssClass}}" autocomplete="off">
+  <div class="police-header item-hdr"> {{ localize 'ROL.skill' }}</div>
+  <br>
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <img class="item-image" src="{{item.img}}"  data-action ="onEditImage" data-edit="img" title="{{item.name}}" height="75" width="75"/>
+
+    {{!--Display skill name and Parent Skill if specialisation is toggled on --}}  
+  
+    <div class="skillheader-fields grid grid-3col">
+  
+      {{#if system.special}} 
+        <div class="skillname">   
+          <input name="system.skillName" type="text" value="{{system.skillName}}" placeholder="skill name"/>
+        </div>  
+        <div class="skillname-gap">/</div>
+        
+        {{#if isGM}}
+          <div class="skillname">   
+            <input name="system.specialisation" type="text" value="{{system.specialisation}}" placeholder="Parent Skill Name"/>
+          </div>
+        {{else}}
+          <div class="skillname">{{system.specialisation}}</div>                
+        {{/if}}
+          
+      {{else}}
+        <div class="skillname">   
+          <input name="system.skillName" type="text" value="{{system.skillName}}" placeholder="Name"/>
+        </div>  
+      {{/if}}   
+  
+    </div>      
+  </header>
+  
+  {{!--Display the Skill Properties as toggleable boxes  --}}
+  <div class="item-label" style="display: block;" data-set="properties">
+
+  <div class="charname">{{ localize 'ROL.skillType' }}:</div>
+    <div class="display-switch {{#if (eq system.type 'Common')}} control-active {{/if}}" data-action="skillType" data-property='Common'>{{ localize 'ROL.common' }}  </div>
+    <div class="display-switch {{#if (eq system.type 'Expert')}} control-active {{/if}}" data-action="skillType" data-property='Expert'>{{ localize 'ROL.expert' }}  </div>
+    <div class="display-switch {{#if (eq system.type 'Weapons')}} control-active {{/if}}" data-action="skillType" data-property='Weapons'>{{ localize 'ROL.weapons' }}  </div>
+
+  <div></div>  
+  <br>
+
+  <div class="item-label">{{ localize 'ROL.skillSubType' }}:</div>
+    <div class="align-centre display-switch {{#if (eq system.subType 'Athletics')}} control-active {{/if}}" data-action="skillSubType" data-property='Athletics'>{{ localize 'ROL.athletics' }}  </div>
+    <div class="align-centre display-switch {{#if (eq system.subType 'Language')}} control-active {{/if}}" data-action="skillSubType" data-property='Language'>{{ localize 'ROL.language' }}  </div>
+    <div class="align-centre display-switch {{#if (eq system.subType 'Magic')}} control-active {{/if}}" data-action="skillSubType" data-property='Magic'>{{ localize 'ROL.magic' }}  </div>
+    <div class="align-centre display-switch {{#if (eq system.subType 'Firearms')}} control-active {{/if}}" data-action="skillSubType" data-property='Firearms'>{{ localize 'ROL.firearms' }}  </div>
+    <div class="align-centre display-switch {{#if (eq system.subType 'Fighting')}} control-active {{/if}}" data-action="skillSubType" data-property='Fighting'>{{ localize 'ROL.fighting' }}  </div>
+    <div class="align-centre display-switch {{#if (eq system.subType 'None')}} control-active {{/if}}" data-action="skillSubType" data-property='None'>{{ localize 'ROL.none' }}  </div>
+  
+  <div></div>
+  <br>
+
+  <div class="item-label">{{ localize 'ROL.properties' }}:</div>
+    <div class="display-switch {{#if system.special}} control-active {{/if}}" {{#if isGM}} data-action='itemToggle' data-property="special">{{/if}} {{ localize 'ROL.special' }}  </div>
+
+    
+  <br>
+
+  {{!-- Input the skill chance if sheet isGM otherwise display --}} 
+  <div class="skill-resource grid grid-2col">
+    {{#if isGM}}
+      <label class="item-label">{{ localize 'ROL.score' }}:</label>
+      <input class="loc-label-inp" type="text" name="system.score" value="{{system.score}}" data-dtype="Number"/>
+    {{else}}
+      <div class="item-label">{{ localize 'ROL.score' }}:</div>
+      <div class="loc-label-inp">{{system.score}}</div>  
+    {{/if}}  
+  </div>
+  
+  {{!-- Description  --}}
+    <section class="sheet-body">
+      <div class="item-label">{{ localize 'ROL.description' }}:</div>
+      <div class="background-doc">
+        {{#if editable}}
+          <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}"
+            collaborate="true" toggled="true">
+            {{{enrichedDescription}}}
+          </prose-mirror>
+        {{else}}
+          {{{enrichedDescription}}}
+        {{/if}}
+      </div>
+    </section>
+</header>

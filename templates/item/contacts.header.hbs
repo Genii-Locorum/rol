@@ -1,0 +1,24 @@
+<header class="{{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <img class="item-image" src="{{item.img}}"  data-action ="onEditImage" data-edit="img" title="{{item.name}}" height="75" width="75"/>
+    <div class="itemheader-fields grid grid-3col">
+      <div class="skillname">
+        <input name="name" type="text" value="{{item.name}}" placeholder="name"/>
+      </div>
+    </div> 
+  </header>
+
+
+    <div>
+      <label class="item-label">{{ localize 'ROL.relationship' }}:</label>
+        <input class="prereq" type="text" name="system.description" value="{{system.description}}"/>
+    </div>
+
+    <br>
+
+    <div class="skill-prop" style="display: block;" data-set="properties">
+      <span class="item-label">{{ localize 'ROL.properties' }}:</span>
+      <span class="centre display-switch {{#if system.secure}} control-active {{/if}}" data-action="itemToggle" data-property='secure'>{{ localize 'ROL.secure' }}  </span>
+      <span class="centre display-switch {{#if system.sour}} control-active {{/if}}" data-action="itemToggle" data-property='sour'>{{ localize 'ROL.sour' }}  </span>
+    </div>
+</header>

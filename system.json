@@ -2,15 +2,15 @@
   "id": "rol",
   "title": "Rivers of London",
   "description": "Rivers of London implementation for FoundryVTT!",
-  "version": "12.1.15",
+  "version": "13.1",
   "compatibility": {
-    "minimum": "12",
-    "verified": "12.330",
-    "maximum": "12"
+    "minimum": "13",
+    "verified": "13.345",
+    "maximum": "13"
   },
   "authors": [
     {
-      "name": "Boilerplate by Asacolips, heavily based on Call of Cthulhu by Misaktonic Investigative Society, Rivers of London adaption by Dangermouse",
+      "name": "Rivers of London adaption by Dangermouse",
       "flags": {}
     }
   ],
@@ -71,7 +71,7 @@
     }
   ],
   "esmodules": [
-    "module/rol.mjs"
+    "system/rol.mjs"
   ],
   "styles": [
     "css/rol.css"
@@ -90,9 +90,10 @@
     "units": "ft"
   }, 
   "primaryTokenAttribute": "hp",
-  "url": "https://github.com/Genii-Locorum/Rivers-of-London",
+  "url": "https://github.com/Genii-Locorum/rol",
   "manifest": "https://github.com/Genii-Locorum/rol/releases/latest/download/system.json",
-  "download": "https://github.com/Genii-Locorum/rol/releases/download/v15/system.zip",
+  "download": "https://github.com/Genii-Locorum/rol/releases/download/v13.1/system.zip",
   "license": "LICENSE.txt",
-  "changelog": "CHANGELOG.md"
+  "changelog": "CHANGELOG.md",
+      "bugs": "https://github.com/Genii-Locorum/rol/issues"
 }

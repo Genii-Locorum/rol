@@ -1,0 +1,649 @@
+<header class="{{cssClass}} {{actor.type}} {{actor.system.charType}} standard-form flexcol" autocomplete="off">
+
+  {{!-- Sheet Header --}}
+  <section class="multi-panel-content">
+
+
+    {{!-- Portrait --}}  
+    <div class="section-vertical"> {{ localize 'ROL.portrait' }}</div>
+    <div class="image-panel">
+      <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="175" width="175"/>
+    </div>
+
+
+    {{!-- Investigator Info Block --}}
+    <div class="left-panel">
+      <div>
+    {{#isAnd isCreation isDemiMonde}} 
+    <div class="skill-prop grid grid-2col" style="display: grid; justify-items: center;" data-set="properties">
+      <div class="display-switch-small {{#if (eq system.charType 'Investigator')}} control-active {{/if}}" data-action="otherToggle" data-property='typeInv'>{{ localize 'ROL.investigator' }}  </div>
+      <div class="display-switch-small {{#if (eq system.charType 'DemiMonde')}} control-active {{/if}}" data-action="otherToggle" data-property='typeDemi'>{{ localize 'ROL.demiMonde' }}  </div>
+    </div>
+    {{else}}
+      {{#if (eq  system.charType 'Investigator')}}  
+        <div class="section-title-large">{{ localize 'ROL.investigator' }}</div>
+      {{else}}
+        <div class="section-title-large">{{ localize 'ROL.demiMonde' }}</div>
+      {{/if}}
+    {{/isAnd}}  
+    </div>
+    <div class="info-panel">  
+      <div class="charname row flexrow">
+        <label class="charname">{{ localize 'ROL.name' }} :</label>
+        <input class="" name="name" type="text" value="{{actor.name}}"/>
+      </div>  
+      
+      <div class="charname row flexrow">
+        <label>{{ localize 'ROL.occupation' }} :</label>
+        <input class="" name="system.occupation" type="text" value="{{system.occupation}}"/>
+      </div>
+         
+      <div class=" charname row flexrow">
+        <label>{{ localize 'ROL.placeOfBirth' }} :</label>
+        <input class="" name="system.placeOfBirth" type="text" value="{{system.placeOfBirth}}"/>
+      </div>
+    
+      <div class=" charname row flexrow">
+        <label>{{ localize 'ROL.residence' }} :</label>
+        <input class="" name="system.residence" type="text" value="{{system.residence}}"/>
+      </div>
+
+      <div class=" charname row flexrow">
+        <label>{{ localize 'ROL.affluence' }} :</label>
+        {{#if isCreation}}
+          <input class="" list="affluenceList" name="system.affluence" type="text" value="{{system.affluence}}"/>
+            <datalist id="affluenceList">
+              <option value="{{ localize 'ROL.poor' }}"></option>
+              <option value="{{ localize 'ROL.average' }}"></option>
+            </datalist>
+        {{else}}  
+            <div class=" affluence">{{system.affluence}}</div>
+        {{/if}}  
+      </div>
+   
+      <div class=" charname row flexrow">
+        <label class="detailblockbottom">{{ localize 'ROL.pronouns' }} :</label>
+        <input class = "detailblockbottominput" name="system.pronouns" type="text" value="{{system.pronouns}}"/>
+    
+        <div></div>
+
+        <label class="detailblockbottom-short">{{ localize 'ROL.age' }} :</label>
+        <input class ="" name="system.age" type="text" value="{{system.age}}" data d-type="Number"/>
+      </div>
+    
+      </div>
+    </div>
+
+    {{!-- Stats Block --}}
+    <div class="right-panel">
+    <div class="section-title" title="{{localize 'ROL.charHint'}}">{{localize 'ROL.characteristics'}}</div>
+      {{#unless isCreation}}  
+      <div class="abilities grid grid-2col">
+        {{#each system.abilities as |ability key|}}
+          <div class="resource-label attribute-name rollable" data-target ={{ability.value}} data-label="{{ability.label}}">{{ability.label}}</div>
+             <div class="stats-content">{{ability.value}}</div>
+        {{/each}}
+      </div>    
+      {{else}}
+      <div class="{{#if (gt system.abilityTotal maxStats)}} abilities-max  {{/if}} abilities">
+        {{#each system.abilities as |ability key|}}
+          <div class="resource-label rollable" data-target ={{ability.value}} data-label="{{ability.label}}">{{ability.label}}</div>
+          <input class="stats-content" type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
+        {{/each}}
+      </div>
+      {{/unless}}
+   
+    </div>  
+  </section>
+
+  {{!-- Pseudo Nav Panel--}}
+    <nav class="sheet-tabs tabs">
+      <a class="change-tab {{#if (eq system.currTab 'skills')}} active bold{{/if}}" data-tab="skills">{{ localize 'ROL.skills' }}</a>
+      {{#unless system.isFae}}
+        <a class="change-tab {{#if (eq system.currTab 'magic')}} active bold {{/if}}" data-tab="magic">{{ localize 'ROL.magic' }}</a>
+      {{/unless}}
+      <a class="change-tab {{#if (eq system.currTab 'traits')}} active bold {{/if}}" data-tab="traits">{{ localize 'ROL.traits' }}</a>
+      <a class="change-tab {{#if (eq system.currTab 'equipment')}} active bold {{/if}}" data-tab="equipment">{{ localize 'ROL.equipment' }}</a>
+      <a class="change-tab {{#if (eq system.currTab 'biography')}} active bold {{/if}}" data-tab="biography">{{ localize 'ROL.biography' }}</a>
+      <a class="change-tab {{#if (eq system.currTab 'development')}} active bold {{/if}}" data-tab="development">{{ localize 'ROL.development' }}</a>
+  
+      {{#if system.flags.locked}}
+        <a class="padlock" data-action="toggleActor" data-property="locked" title="{{ localize 'ROL.unlock' }}"> <i class="fas fa-lock"></i> </a>
+      {{else}}
+        <a class="padlock" data-action="toggleActor" data-property="locked" title="{{ localize 'ROL.lock' }}"> <i class="fas fa-lock-open"></i></a>
+      {{/if}}
+    </nav>
+
+  {{!-- Two panel --}}
+  <div class="two-panel-content">
+
+
+  {{!-- Left two panel --}}  
+
+  <div class="left-panel">  
+  <div class="section-title-left">{{ localize 'ROL.info'}}</div>    
+
+
+    <div class="boxed-top">  
+      <div class="resource-label-left align-center luck-name rollable resource-label-gap">{{ localize 'ROL.luck' }}</div>
+    {{#if isLuckDetail}}
+    <div class="statblock grid grid-3col">
+      <input name="system.luck.value" title = "{{ localize 'ROL.luckCurr' }}" type="text" value="{{system.luck.value}}" data-dtype="Number"/> 
+      <div class="statdisplay"> / </div>
+      {{#if system.flags.locked}}   
+        <div class="statdisplay" title = "{{ localize 'ROL.luckMax' }}">{{system.luck.max}}</div>
+      {{else}}
+        <input name="system.luck.max" type="text" title = "{{ localize 'ROL.luckMax' }}" value="{{system.luck.max}}" data-dtype="Number"/>
+      {{/if}}    
+    </div>
+    {{else}}
+        <input class="stats-content-left resource-label-gap" title = "{{ localize 'ROL.luckCurr' }}" name="system.luck.value" type="text" value="{{system.luck.value}}" data-dtype="Number">
+    {{/if}}
+    {{#if system.Boon}}
+      <div class="resource-label-left align-center resource-label-gap">{{ localize 'ROL.luckBoon' }}</div>  
+      <input class="stats-content-left" name="system.luck.min" type="text" value="{{system.luck.min}}" data-dtype="Number"/>  
+    {{/if}}
+    </div>  
+
+
+    {{#unless system.isFae}}
+      <div class="boxed-top">
+        <div class="resource-label-left next-scene align-center resource-label-gap" title="{{ localize 'ROL.mpRegen' }}">{{ localize 'ROL.mp' }}</div>
+          <div class="statblock grid grid-3col">
+            <input class=" centre bold" name="system.mp.value" title = "{{ localize 'ROL.mpCurr' }}" type="text" value="{{system.mp.value}}" data-dtype="Number"/> 
+            <div class="statdisplay"> / </div>
+            {{#if system.flags.locked}}   
+              <div class="statdisplay bold" title = "{{ localize 'ROL.mpMax' }}">{{system.mp.max}}</div>
+            {{else}}
+              <input class="right-gap bold centre" name="system.mp.max" type="text" title = "{{ localize 'ROL.mpMax' }}" value="{{system.mp.max}}" data-dtype="Number"/>
+            {{/if}}
+          </div>  
+      </div>  
+    {{/unless}}
+
+    {{#if isCreation}} 
+      <div class="boxed-move move grid grid-2col resource-label-left align-center" style="margin-top: 5px;">
+      <div class="resource-label-topgap">{{ localize 'ROL.movShort' }}:</div>
+      <input class="resource-label-topgap stats-content-left" name="system.mov" type="text" value="{{system.mov}}" data-dtype="Number"/>
+      </div>
+    {{else}}
+      <div class="boxed-top resource-label-left align-center">
+        <span class="resource-label-gap">{{ localize 'ROL.movShort' }}:
+        <span class="stats-content-left">{{system.mov}}</span></span>
+      </div>
+    {{/if}}
+  
+      <div class="boxed-top resource-label-left align-center">
+        <div class="resource-label-gap healing-phase" title="{{ localize 'ROL.healing' }}">{{ localize 'ROL.damage' }}</div>
+        <input class="stats-content-left" name="system.damage.value" type="text" value="{{system.damage.value}}" data d-type="Number"/>
+        <div class="damage-status">{{system.damageStatus}}</div>
+        <a class="icon tough-control {{#if system.properties.down}} control-active {{/if}}"  title="{{ localize 'ROL.down' }}"><i class="fas fa-bed"></i></a>
+        <a class="icon tough-control {{#if system.properties.mortal}} control-active {{/if}}" title="{{ localize 'ROL.mortal' }}"><i class="fas fa-heartbeat"></i></a>
+        <a class="icon tough-control {{#if system.properties.fatal}} control-active {{/if}}" title="{{ localize 'ROL.fatal' }}"><i class="fas fa-tombstone"></i></a>
+        <a class="icon tough-control {{#if system.properties.impaired}} control-active {{/if}}" data-action="otherToggle" data-property='impaired' title="{{ localize 'ROL.impaired' }}"><i class="fas fa-eye-slash"></i></a>
+        <a class="icon tough-control {{#if system.properties.hurt}} control-active {{/if}}" data-action="otherToggle" data-property='hurt' title="{{ localize 'ROL.hurt' }}"><i class="fas fa-face-head-bandage"></i></a>
+        <a class="icon tough-control {{#if system.properties.bloodied}} control-active {{/if}}" data-action="otherToggle" data-property='bloodied' title="{{ localize 'ROL.bloodied' }}"><i class="fas fa-user-injured"></i></a>
+        <a class="icon tough-control {{#if system.properties.trauma}} control-active {{/if}}" data-action="otherToggle" data-property='trauma' title="{{ localize 'ROL.trauma' }}"><i class="fas fa-head-side-brain"></i></a>
+        {{#if system.properties.disfigured}}  
+          <a class="icon tough-control control-active {{#if isGM}} {{/if}}" data-action="otherToggle" data-property='disfigured' title="{{ localize 'ROL.disfigured' }}"><i class="fas fa-hood-cloak"></i></a>                  
+        {{/if}}  
+      </div>
+
+ 
+
+
+      {{#if system.Magic}}  
+      <div class="boxed-top">
+        <div class="resource-label-left align-center resource-label-gap">{{ localize 'ROL.shield' }}  {{ localize 'ROL.spell' }}</div>
+          <div class="statblock grid grid-3col">
+            <input class="bold centre" name="system.armour.shieldBlock" title = "{{ localize 'ROL.shieldBlock' }}" type="text" value="{{system.armour.shieldBlock}}" data-dtype="Number"/> 
+          <div class="statdisplay bold"> / </div>
+            <input class="bold centre right-gap" name="system.armour.shieldHP" type="text" title = "{{ localize 'ROL.shieldHP' }}" value="{{system.armour.shieldHP}}" data-dtype="Number"/>
+          </div>  
+      </div>  
+      {{/if}}
+
+      <div class="boxed-top">
+      {{#if isLocked}}
+        <div class="resource-label bold align-center htd-name rollable resource-label-gap {{#if system.properties.htd}} control-active {{/if}}" title="{{ localize 'ROL.htd' }}">{{ localize 'ROL.htdShort' }}</div>
+      {{else}}
+        <div class="resource-label bold align-center resource-label-gap {{#if system.properties.htd}} control-active {{/if}}" title="{{ localize 'ROL.htd' }}" data-action="otherToggle" data-property="htd">{{ localize 'ROL.htdShort' }}</div>
+      {{/if}}
+      </div> 
+
+      {{#if isSession}}
+        {{#unless system.LuckofDemiMonde}}
+          <div class="boxed-top">
+            <div class="resource-label-left align-center luckrecovery-rollable resource-label-gap" title="{{ localize 'ROL.luckRecovery' }}">{{ localize 'ROL.luckRecovery' }}</div>
+          </div>
+          <br>
+        {{/unless}}
+      {{/if}}
+
+      
+      {{#if system.LuckofDemiMonde}}
+          <div class="boxed-top">
+          <div class="resource-label-left align-center luckreset-rollable resource-label-gap" title="{{ localize 'ROL.luckReset' }}">{{ localize 'ROL.luckReset' }}</div>
+          </div>
+      {{else}}
+        {{#isOr isCreation isDevelopment}}  
+          <div class="boxed-top">
+          <div class="resource-label-left align-center luckreset-rollable resource-label-gap" title="{{ localize 'ROL.luckReset' }}">{{ localize 'ROL.luckReset' }}</div>
+          </div>
+        {{/isOr}}    
+      {{/if}}
+    </div> 
+
+    {{!-- Right Two Panel Block --}}
+    <div class="right-panel">
+
+      {{!-- Skills Tab Block --}}
+      {{#if (eq actor.system.currTab 'skills')}}
+        <div class="tab skills">
+          <ol class="npc-skill-list">
+            {{#each skills as |skill id|}}
+              {{#if isType}}
+                  {{#unless (eq skill.system.type 'Common')}}
+                  <br>
+                  {{/unless}}
+                  <li class="police-header skill-header">{{skill.system.skillName}}</li>
+              {{else}}
+                {{#if isSpecialisation}}
+                  <li class="specialisation-header"> {{skill.name}}</li>
+                {{else}}  
+                  <li class="item {{#if skill.system.special}}specialisation {{else}} skill-listitem {{/if}}" data-document-class='Item' data-item-id="{{skill._id}}">
+                    {{#isOr ../isCreation ../isDevelopment}}
+                    <div class="item-name skill-name context">
+                      <input class="skill-score-inp skill-name inline-edit" name="skill.system.skillName" type="text" value="{{skill.system.skillName}}"/>
+                    </div>
+                    <div></div>
+                    <input class="skill-score-inp centre inline-edit"  data-field="system.score" name="skill.system.score" type="text" value="{{skill.system.score}}" data-dtype="Number"/>
+                    {{else}}
+                    <div class="item-name">
+                      <div class="skill-rollable skill-name rollable">{{skill.system.skillName}}</div>
+                    </div>
+                    <div></div>
+                    <div class="skill-score">{{skill.system.score}}</div>
+                    {{/isOr}}
+                    {{#if ../isLocked}}
+                      <div class='gear-controls right'>
+                        <a class='item-view right' title='{{localize "ROL.viewDoc" type=(localize "TYPES.Item.skill")}}' data-action="viewDoc">
+                          <i class='fas fa-magnifying-glass'></i>
+                        </a>
+                      </div>          
+                    {{else}}
+                      <div class='gear-controls right'>
+                        <a class='item-delete right' title='{{localize "ROL.deleteDoc" type=(localize "TYPES.Item.skill")}}' data-action="deleteDoc">
+                          <i class='fas fa-trash'></i>
+                        </a>
+                      </div>
+                    {{/if}}
+                  </li>
+                {{/if}}  
+              {{/if}}
+            {{/each}}
+          </ol>
+        </div>
+      {{/if}}
+
+      {{!-- Magic Tab Block --}}
+      {{#if (eq actor.system.currTab 'magic')}}
+        <div class="tab magic">
+          <ol class="npc-skill-list">
+            {{#each spells as |spell id|}}
+              {{#if isType}}
+                {{#unless (lt spell.system.spellOrder 1)}}
+                  <br>
+                {{/unless}}
+                <li class="police-header spell-header"> {{spell.name}}</li>
+              {{else}}
+                <li class="item spell-listitem" data-document-class='Item' data-item-id="{{spell._id}}">
+                  <div>
+                    <div class="skill-rollable spell-name rollable"> {{spell.name}} 
+                    {{#if system.mastered}}
+                      <i title="{{ localize 'ROL.mastered' }}" class="result-success fas fa-certificate"></i>
+                    {{/if}}
+                    </div>
+                  </div>
+                  <div></div>
+                  {{#if (eq spell.system.damage 0) }}
+                    <div></div>
+                  {{else}}
+                    <div class="skill-rollable damage-name rollable centre" data-item-id="{{spell._id}}" title= "{{ localize 'ROL.damage' }}">{{spell.system.damage}}</div>
+                  {{/if}}
+                  {{#if ../isLocked}}
+                    <div class='gear-controls right'>
+                      <a class='item-view right' title='{{localize "ROL.viewDoc" type=(localize "TYPES.Item.spell")}}' data-action="viewDoc">
+                        <i class='fas fa-magnifying-glass'></i>
+                      </a>
+                    </div>          
+                  {{else}}
+                    <div class='gear-controls right'>
+                      <a class='item-delete right' title='{{localize "ROL.deleteDoc" type=(localize "TYPES.Item.spell")}}' data-action="deleteDoc">
+                        <i class='fas fa-trash'></i>
+                      </a>
+                    </div>
+                  {{/if}}
+                </li>
+              {{/if}}
+            {{/each}}
+          </ol>
+        </div>
+      {{/if}}  
+
+      {{!-- Traits Tab Block --}}
+      {{#if (eq actor.system.currTab 'traits')}}
+        <div class="tab traits">
+          <ol class="items-list effects-list">
+            <div class="police-header spell-header">{{ localize 'ROL.advType' }}</div>
+            {{#each advantages as |advantage id|}}
+              <li class="item spell-listitem" data-document-class='Item' data-item-id="{{advantage._id}}">
+                <div class="item-name trait-name-context">
+                  <div> {{advantage.name}}</div>
+                </div>
+                <div></div>
+                {{#unless system.advType}}
+                  <div title="{{ localize 'ROL.disadvantage' }}" ><i class="result-fail fas fa-skull"></i></div>
+                {{else}}
+                  <div></div>
+                {{/unless}}
+                {{#if ../isLocked}}
+                  <div class='gear-controls right'>
+                    <a class='item-view right' title='{{localize "ROL.viewDoc" type=(localize "TYPES.Item.advantages")}}' data-action="viewDoc">
+                      <i class='fas fa-magnifying-glass'></i>
+                    </a>
+                  </div>          
+                {{else}}
+                  <div class='gear-controls right'>
+                    <a class='item-delete right' title='{{localize "ROL.deleteDoc" type=(localize "TYPES.Item.advantages")}}' data-action="deleteDoc">
+                      <i class='fas fa-trash'></i>
+                    </a>
+                  </div>
+                {{/if}}    
+              </li>
+            {{/each}}
+            <br>
+          </ol>
+
+          <ol class="items-list effects-list">
+            <li class="flexrow contacts-header">
+              <div class="police-header spell-header">{{ localize 'ROL.contacts' }}</div>
+              <div class="item-controls">
+                <div class="item-control item-create" title="{{ localize 'ROL.createContact' }}" data-type="contacts"> +{{ localize 'ROL.addContact' }}</div>
+              </div>  
+            </li>
+            {{#each contacts as |contacts id|}}
+              <li class="item spell-listitem" data-document-class='Item' data-item-id="{{contacts._id}}">
+                <div class="item-name trait-name-context">
+                  <div> {{contacts.name}}</div>
+                </div>
+                {{#if system.secure}}
+                  <div title="{{ localize 'ROL.secure' }}" ><i class="result-success fas fa-smile"></i></div>
+                {{else}}
+                  <div></div>
+                {{/if}}  
+                {{#if system.sour}}
+                  <div title="{{ localize 'ROL.sour' }}" ><i class="result-fail fas fa-frown"></i></div>
+                {{else}}
+                  <div></div>
+                {{/if}}
+                {{#if ../isLocked}}
+                  <div class='gear-controls right'>
+                    <a class='item-view right' title='{{localize "ROL.viewDoc" type=(localize "TYPES.Item.contacts")}}' data-action="viewDoc">
+                      <i class='fas fa-magnifying-glass'></i>
+                    </a>
+                  </div>          
+                {{else}}
+                  <div class='gear-controls right'>
+                    <a class='item-delete right' title='{{localize "ROL.deleteDoc" type=(localize "TYPES.Item.contacts")}}' data-action="deleteDoc">
+                      <i class='fas fa-trash'></i>
+                    </a>
+                  </div>
+                {{/if}}      
+              </li>
+            {{/each}}
+            <br>
+          </ol>
+
+          {{#if system.Magic}}
+            <div class="police-header spell-header">{{ localize 'ROL.signare' }}</div>
+            <div class="signare-name">{{ localize 'ROL.sound' }}:</div>
+            <textarea class='signare-trait centre' name='system.signare.sound'>{{actor.system.signare.sound}}</textarea>
+            <div class="signare-name">{{ localize 'ROL.smell' }}:</div>
+            <textarea class='signare-trait centre' name='system.signare.smell'>{{actor.system.signare.smell}}</textarea>
+            <div class="signare-name">{{ localize 'ROL.other' }}:</div>
+            <textarea class='signare-trait centre' name='system.signare.other'>{{actor.system.signare.other}}</textarea>
+            <div class="resource-label-gap"></div>
+            <br>
+          {{/if}}
+
+          {{#if system.ThematicPower}}
+            <div class="police-header spell-header">{{ localize 'ThematicPower' }}</div>
+            <textarea class='signare-trait centre' name='system.thematic'>{{actor.system.thematic}}</textarea>
+          {{/if}}
+        </div>
+      {{/if}}  
+
+
+      {{!-- Equipment Tab Block --}}
+      {{#if (eq actor.system.currTab 'equipment')}}
+        <div class="tab equipment">
+          <ol class="items-list effects-list">
+            <div class="police-header equip-header">{{ localize 'ROL.weapons' }}</div>
+            {{#each weapons as |weapon id|}}
+            <li class="item weapons-listitem" data-document-class='Item' data-item-id="{{weapon._id}}">
+              <div class="item-name">
+                  <div class="skill-rollable weapon-name rollable">{{weapon.name}}</div>
+              </div>
+              
+              <div class="skill-rollable damage-name rollable centre" data-item-id="{{weapon._id}}" title="{{ localize 'ROL.damage' }}">{{weapon.system.damage}}</div>
+
+              {{#if (eq weapon.system.type "Melee")}}
+                <div title="{{ localize 'ROL.weaponType' }}" >{{ localize 'ROL.melee' }}</div>
+              {{else}}
+                {{#if (eq weapon.system.type "Thrown")}}
+                  <div title="{{ localize 'ROL.weaponType' }}" >{{ localize 'ROL.thrown' }}</div>
+                {{else}}
+                  <div title="{{ localize 'ROL.weaponType' }}" >{{ localize 'ROL.firearms' }}</div>
+                {{/if}}
+              {{/if}}    
+              
+              <div class="item-controls">
+                {{#if weapon.system.signature}}
+                  <a class="item-control" title="{{ localize 'ROL.signatureWeapon' }}"><i class="result-success fas fa-star"></i></a>
+                {{/if}}
+                {{#if weapon.system.automatic}}
+                  <a class="item-control" title="{{ localize 'ROL.automaticWeapon' }}"><i class="result-success fas fa-crosshairs"></i></a>
+                {{/if}}
+                {{#if weapon.system.semiauto}}
+                  <a class="item-control" title="{{ localize 'ROL.semiautoWeapon' }}"><i class="result-fail fas fa-location-crosshairs"></i></a>
+                {{/if}}
+              </div>
+              {{#if ../isLocked}}
+                <div class='gear-controls right'>
+                  <a class='item-view right' title='{{localize "ROL.viewDoc" type=(localize "TYPES.Item.weapons")}}' data-action="viewDoc">
+                    <i class='fas fa-magnifying-glass'></i>
+                  </a>
+                </div>          
+              {{else}}
+                <div class='gear-controls right'>
+                  <a class='item-delete right' title='{{localize "ROL.deleteDoc" type=(localize "TYPES.Item.weapons")}}' data-action="deleteDoc">
+                    <i class='fas fa-trash'></i>
+                  </a>
+                </div>
+              {{/if}}      
+            </li>
+            {{/each}}
+            <br>
+          </ol>
+          <ol class="items-list effects-list">
+            <div class="police-header equip-header">{{ localize 'ROL.armour' }}</div>
+            {{#each armour as |armour id|}}
+              <li class="item weapons-listitem" data-document-class='Item' data-item-id="{{armour._id}}">
+                <div class="item-name equip-name-context">
+                  <div >{{armour.name}}</div>
+                </div>
+                <div class = "centre" title="{{ localize 'ROL.ap' }}">{{system.ap}}</div>
+                {{#if (eq system.type 'Natural')}}
+                  <div title="{{ localize 'ROL.armourType' }}" >{{ localize 'ROL.natural'}}</div>
+                {{else}}
+                  {{#if (eq system.type 'Regular')}}
+                    <div title="{{ localize 'ROL.armourType' }}" >{{ localize 'ROL.regular'}}</div>
+                  {{else}}
+                    <div title="{{ localize 'ROL.armourType' }}" >{{ localize 'ROL.ballistic'}}</div>
+                  {{/if}}
+                {{/if}}
+                <div></div>
+                {{#if ../isLocked}}
+                  <div class='gear-controls right'>
+                    <a class='item-view right' title='{{localize "ROL.viewDoc" type=(localize "TYPES.Item.armour")}}' data-action="viewDoc">
+                      <i class='fas fa-magnifying-glass'></i>
+                    </a>
+                  </div>          
+                {{else}}
+                  <div class='gear-controls right'>
+                    <a class='item-delete right' title='{{localize "ROL.deleteDoc" type=(localize "TYPES.Item.armour")}}' data-action="deleteDoc">
+                      <i class='fas fa-trash'></i>
+                    </a>
+                  </div>
+                {{/if}}      
+              </li>
+            {{/each}}
+            <br>
+          </ol>
+          <ol class="items-list effects-list">
+            <li class="flexrow contacts-header">
+              <div class="police-header equip-header">{{ localize 'ROL.equipment' }}</div>
+              <div class="item-controls">
+                <div class="item-control item-create" title="{{ localize 'ROL.createEquipment' }}" data-type="equipment"> +{{ localize 'ROL.addItem' }}</div>
+              </div>  
+            </li>
+            {{#each equipment as |equipment id|}}
+              <li class="item weapons-listitem" data-document-class='Item' data-item-id="{{equipment._id}}">
+                <div class="item-name equip-name-context">
+                  <div >{{equipment.name}}</div>
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+                {{#if ../isLocked}}
+                  <div class='gear-controls right'>
+                    <a class='item-view right' title='{{localize "ROL.viewDoc" type=(localize "TYPES.Item.equipment")}}' data-action="viewDoc">
+                      <i class='fas fa-magnifying-glass'></i>
+                    </a>
+                  </div>          
+                {{else}}
+                  <div class='gear-controls right'>
+                    <a class='item-delete right' title='{{localize "ROL.deleteDoc" type=(localize "TYPES.Item.equipment")}}' data-action="deleteDoc">
+                      <i class='fas fa-trash'></i>
+                    </a>
+                  </div>
+                {{/if}}    
+              </li>
+            {{/each}}
+            <br>
+          </ol>
+        </div>  
+      {{/if}}
+
+      {{!-- Biography Tab Block --}}
+      {{#if (eq actor.system.currTab 'biography')}}
+        <div class="tab biography">
+          <div class="police-header spell-header">{{ localize 'ROL.present' }}:</div>
+          <div class="background-doc">
+            {{#if editable}}
+              <prose-mirror name="system.background.present" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.background.present}}"
+                collaborate="true" toggled="true">
+                {{{enrichedPresentValue}}}
+              </prose-mirror>
+            {{else}}
+              {{{enrichedPresentValue}}}
+            {{/if}}
+          </div>          
+          <br>
+          <div class="police-header spell-header">{{ localize 'ROL.supernatural' }}:</div>
+          <div class="background-doc">
+            {{#if editable}}
+              <prose-mirror name="system.background.supernatural" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.background.supernatural}}"
+                collaborate="true" toggled="true">
+                {{{enrichedSupernaturalValue}}}
+              </prose-mirror>
+            {{else}}
+              {{{enrichedSupernaturalValue}}}
+            {{/if}}
+          </div>          
+          <br>
+          
+          <div class="police-header spell-header">{{ localize 'ROL.childhood' }}:</div>
+          <div class="background-doc">
+            {{#if editable}}
+              <prose-mirror name="system.background.childhood" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.background.childhood}}"
+                collaborate="true" toggled="true">
+                {{{enrichedChildhoodValue}}}
+              </prose-mirror>
+            {{else}}
+              {{{enrichedChildhoodValue}}}
+            {{/if}}
+          </div>          
+        </div>
+      {{/if}}
+
+
+
+      {{!-- Development Tab Block --}}
+      {{#if (eq actor.system.currTab 'development')}}
+        <div class="tab development">
+          <div class="police-header develop-header">{{ localize 'ROL.devPoints' }}:</div>
+          <div class="develop-resource grid grid-2col"> 
+            {{#if isGM}}
+              <label class="order-name">{{ localize 'ROL.devPointsEarned' }} :</label>
+              <input class="loc-label-inp centre" name="system.devPoints.earned" type="text" value="{{system.devPoints.earned}}"data-dtype="Number"/>
+              <label class="order-name">{{ localize 'ROL.devPointsHolding' }} :</label>
+              <input class="loc-label-inp centre" name="system.devPoints.holding" type="text" value="{{system.devPoints.holding}}"data-dtype="Number"/>
+              <label class="order-name">{{ localize 'ROL.devPointsSpent' }} :</label>
+              <input class="loc-label-inp centre" name="system.devPoints.spent" type="text" value="{{system.devPoints.spent}}"data-dtype="Number"/>
+            {{else}}
+              <div class="order-name">{{ localize 'ROL.devPointsEarned' }} :</div>
+              <div class="loc-label-inp centre">{{system.devPoints.earned}}</div>
+              <div class="order-name">{{ localize 'ROL.devPointsHolding' }} :</div>
+              <div class="loc-label-inp centre">{{system.devPoints.holding}}</div>
+              {{#if isDevelopment}}
+                <label class="order-name">{{ localize 'ROL.devPointsSpent' }} :</label>
+                <input class="loc-label-inp centre" name="system.devPoints.spent" type="text" value="{{system.devPoints.spent}}"data-dtype="Number"/>
+              {{else}}
+                <div class="order-name">{{ localize 'ROL.devPointsSpent' }} :</div>
+                <div class="loc-label-inp centre">{{system.devPoints.spent}}</div>
+              {{/if}}
+            {{/if}}
+            <div class="order-name">{{ localize 'ROL.devPointsAvailable' }} :</div>
+            <div class="loc-label-inp centre">{{system.devPoints.available}}</div>
+          </div>
+          <br>
+          {{!-- Description  --}}
+          <section class="sheet-body">
+            <div class="police-header develop-header">{{ localize 'ROL.devSpend' }}:</div>
+            <div class="background-doc">
+              {{#if editable}}
+                <prose-mirror name="system.system.devPoints.history" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.system.devPoints.history}}"
+                  collaborate="true" toggled="true">
+                  {{{enrichedDevPointsHistoryValue}}}
+                </prose-mirror>
+              {{else}}
+                {{{enrichedDevPointsHistoryValue}}}
+              {{/if}}
+            </div> 
+            <br>
+            <br>
+            <div>{{localize 'ROL.devPhaseHint'}}</div>
+          </section>
+        </div>
+      {{/if}}
+
+
+
+
+
+    </div>
+  </div>
+</header>
+

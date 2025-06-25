@@ -1,0 +1,27 @@
+<header class="{{cssClass}}" autocomplete="off">
+
+  <div class="police-header item-hdr"> {{ localize 'ROL.equipment' }}</div>
+  <br>
+
+     <header class="sheet-header">
+      <img class="item-image" src="{{item.img}}"  data-action ="onEditImage" data-edit="img" title="{{item.name}}" height="75" width="75"/>
+      <div class="itemheader-fields">
+        <div class="skillname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></div>
+      </div>
+    </header>
+
+  {{!-- Description  --}}
+    <section class="sheet-body">
+      <div class="item-label">{{ localize 'ROL.description' }}:</div>
+      <div class="background-doc">
+        {{#if editable}}
+          <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}"
+            collaborate="true" toggled="true">
+            {{{enrichedDescription}}}
+          </prose-mirror>
+        {{else}}
+          {{{enrichedDescription}}}
+        {{/if}}
+      </div>  
+    </section>
+  </header>

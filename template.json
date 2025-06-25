@@ -84,6 +84,7 @@
 
     "character": {
       "templates": ["base"],
+      "currTab": "skills",
       "devPoints": {
         "earned": 0,
         "holding": 0,

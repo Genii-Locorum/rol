@@ -1,6 +1,6 @@
 <form class="rol">
-  <div class="dice-roll">
-    <div style="display: block">  
+  <div class="dice-roll" data-action="expandRoll">
+    <div>  
       <div class="flavour-result"> 
         {{label}} ({{targetScore}}%)
       </div>
@@ -47,9 +47,9 @@
  
       <div class="dice-result">
 
-        <div class="dice-tooltip">
-          <div class="owner-only" style="display:block">
-            <div class="card-buttons" style="padding: 2px 0;margin: 0;">
+        <div class="actor-roll dice-tooltip">
+          <div class="owner-only" data-partic-id="{{target.targetId}}" data-partic-type="{{target.targetType}}">
+            <div class="rollHidden card-buttons" style="padding: 2px 0;margin: 0;">
               {{#if allowPush}}
                 <button class="cardbutton" data-preset = "push" type = "button" >{{localize 'ROL.chat.actions.push'}}</button>
               {{/if}}
@@ -75,7 +75,7 @@
               {{#if (gt totalMP 0)}}
                 <h4 class = "align-center">{{totalMP}} {{localize 'ROL.mpSpent'}} </h4>
               {{/if}}   
-          </div>
+            </div>
           </div>
         </div>
 
@@ -115,17 +115,17 @@
 
   {{#if allowResolve}}
     {{#if (eq rollType 'Damage')}}  
-      <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.causeDamage'}}</button>  
+      <button class="cardbutton owner-only" data-partic-id="{{target.targetId}}" data-partic-type="{{target.targetType}}" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.causeDamage'}}</button>  
     {{else}}
       {{#isAnd (gt damage 0) (gt resultLevel 0)}}
-          <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.rollDamage'}}</button>
+          <button class="cardbutton owner-only" data-partic-id="{{target.targetId}}" data-partic-type="{{target.targetType}}" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.rollDamage'}}</button>
       {{else}}
         {{#isAnd (eq damage 0) (eq rollType 'weapons')}}
           {{#if (gt resultLevel 0)}}
-            <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.rollDamage'}}</button>        
+            <button class="cardbutton owner-only" data-partic-id="{{target.targetId}}" data-partic-type="{{target.targetType}}" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.rollDamage'}}</button>        
           {{/if}}
         {{else}}
-          <button class="cardbutton owner-only" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.resolve'}}</button>
+          <button class="cardbutton owner-only" data-partic-id="{{target.targetId}}" data-partic-type="{{target.targetType}}" data-preset = "resolve" type = "button" >{{localize 'ROL.chat.actions.resolve'}}</button>
         {{/isAnd}}
       {{/isAnd}}
     {{/if}}

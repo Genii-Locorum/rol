@@ -12,7 +12,19 @@
   cursor: pointer;
 }
 
+:root {
+  --rol-primary-font-colour: black;
+}
 
+body.theme-light .application.rol,
+body.theme-light.application .rol{
+  --rol-primary-font-colour: black;
+}
+
+body.theme-dark .application.rol,
+body.theme-dark.application .rol {
+  --rol-primary-font-colour: black;
+}  
 
 .grid,
 .grid-2col {
@@ -249,6 +261,7 @@
   background-color: rgb(255, 255, 255);
   --main-colour: green;
   --police-colour: rgb(73, 141, 107);
+  color: var(--rol-primary-font-colour);  
 }
 
 .rol .window-content {
@@ -259,6 +272,7 @@
   background-color: rgb(255, 255, 255);
   --main-colour: blue;
   --police-colour: rgb(60, 86, 141);
+  color: var(--rol-primary-font-colour);
 }
 
 .rol .tabs .item.active {
@@ -356,8 +370,8 @@
 .rol .section-title {
   font-size: 16px;
   font-weight: normal;
-  width:240 px;
-  max-width: 240px;
+  width:165px;
+  max-width: 165px;
   color: white;
   background: solid;
   background-color: var(--police-colour);
@@ -369,22 +383,23 @@
   font-size: 16px;
   font-weight: normal;
   padding-top:3px;
-  width:240 px;
-  max-width: 240px;
+  width:25px;
+  max-width: 25px;
+  min-height: 175px;
   color: white;
   background: solid;
   background-color: var(--police-colour);
   border-left: 2px solid var(--main-colour);
   border-top: 2px solid var(--main-colour);
-  border-bottom: 2px solid var(--main-colour)e;
+  border-bottom: 2px solid var(--main-colour);
   writing-mode: vertical-rl;
 }
 
 .rol .section-title-left {
   font-size: 16px;
   font-weight: normal;
-  width:240 px;
-  max-width: 240px;
+  width:100px;
+  max-width: 100px;
   color: white;
   background: solid;
   background-color: var(--police-colour);
@@ -397,8 +412,8 @@
   font-size: 16px;
   font-weight: normal;
   padding-left: 3px;
-  width:320 px;
-  max-width: 320px;
+  width:310px;
+  max-width: 310px;
   text-align: left;
   color: white;
   background: solid;
@@ -411,15 +426,15 @@
   grid-template-columns: 106px 40px;
   margin: 0px;
   gap: 0px;
-  min-height: 142px;
-  max-height: 142px;
+  min-height: 152px;
+  max-height: 152px;
   padding-top:7px;
-  padding-left: 20px;
+  padding-left: 10px;
   border-left: 2px solid var(--main-colour);
   border-right: 2px solid var(--main-colour);
   border-bottom: 2px solid var(--main-colour);
-  width:240 px;
-  max-width: 240px;
+  width:165px;
+  max-width: 165px;
 }
 
 
@@ -430,8 +445,8 @@
 .rol .info-panel {
   margin: 0px;
   gap: 0px;
-  min-height: 142px;
-  max-height: 142px;
+  min-height: 152px;
+  max-height: 152px;
   padding-top: 5px;
   padding-left: 3px;
   border-left: 2px solid var(--main-colour);
@@ -765,7 +780,8 @@ font-weight: bold;
 .rol .two-panel-content {
   display: flex;
   flex-direction: row;
-  max-height: calc(100% - 210px);
+  min-height:455px;
+  max-height: 455px;
   min-width: 685px;
   max-width: 685px;
   border: solid var(--main-colour) 2px;
@@ -782,6 +798,8 @@ font-weight: bold;
   flex: 1;
   padding-top: 5px;
   padding-left: 10px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
 }
 
 .rol .multi-panel-content .image-panel {
@@ -821,11 +839,6 @@ font-weight: bold;
   margin-right: 2px;
 }
 
-.rol .unlock-character-sheet{
-  padding-top:10px;
-  min-width: 14px;
-}
-
 .rol .resource-label-gap {
   margin-bottom: 5px;
 }
@@ -845,6 +858,14 @@ font-weight: bold;
   padding: 3px;
   margin-left: 5px;
   margin-right: 5px;
+}  
+
+.rol .boxed-top {
+  border: 1px solid var(--main-colour);
+  padding: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
 }  
 
 .rol .boxed-move{
@@ -889,15 +910,23 @@ font-weight: bold;
  }
 
  .rol .npc-adv{
-  grid-template-columns: 145px 145px 145px 145px;
+  display: grid;
+  grid-template-columns: 23px 170px 23px 170px 23px 170px;
  }
 
  .rol .npc-skills{
-  grid-template-columns: 110px 35px 110px 35px 110px 35px 110px 35px;
+  display: grid;
+  grid-template-columns: 23px 130px 40px 23px 130px 40px 23px 130px 40px;
  }
 
  .rol .npc-spells{
-  grid-template-columns: 125px 20px 125px 20px 125px 20px 125px 20px;
+  display: grid;
+  grid-template-columns: 23px 130px 40px 23px 130px 40px 23px 140px 40px;
+ }
+
+ .rol .npc-weapons{
+  display: grid;
+  grid-template-columns: 23px 130px 40px 23px 130px 40px 23px 140px 40px;
  }
 
 .rol .border-right{
@@ -945,12 +974,26 @@ font-weight: bold;
   text-shadow: 0 0 10px red, 0 0 1em red, 0 0 0.2em red;
 }
 
+.rol .new-row {
+  grid-column-start: 1;
+}
+
 .rol .npc-header {
   margin-top: 0px;
   max-width: 470px;
   min-width: 470px;
   display:grid;
   grid-template-columns: 240px 200px 30px;
+}
+
+.rol .itemheader-fields {
+  max-width: 440px;
+  min-width: 440px;
+  display:grid;
+  grid-template-columns: 430px;
+  font-weight: bolder; 
+  align-content: center;
+  justify-content: center;
 }
 
 .rol .skillheader-fields {
@@ -1120,7 +1163,6 @@ font-weight: bold;
   border: 1px solid var(--main-colour);
   font-size:14px;
   padding-left: 10px;
-  padding-right: 10px;
   margin-right:10px;
   min-height: 140px;
 }
@@ -1130,7 +1172,7 @@ font-weight: bold;
   font-size:14px;
   padding-left: 10px;
   padding-right: 10px;
-  height: 100px;
+  height: 125px;
   max-width: 588px;
 }
 
@@ -1141,7 +1183,7 @@ font-weight: bold;
   padding-right: 10px;
   margin-right:10px;
   height: 50px;
-  width: 560px;
+  width: 555px;
 }
 
 .rol .skill-list {
@@ -1171,23 +1213,23 @@ font-weight: bold;
 }
 
 .rol .develop-header {
-  width:300 px;
+  width:300px;
   max-width: 300px;
 }
 
 .rol .equip-header {
-  width:350 px;
-  max-width: 350px;
+  width:370px;
+  max-width: 370px;
 }
 
 .rol .spell-header {
-  width:250 px;
-  max-width: 250px;
+  width:270px;
+  max-width: 270px;
 }
 
 .rol .skill-header {
-  width:180 px;
-  max-width: 180px;
+  width:200px;
+  max-width: 200px;
 }
 
 .rol .item-hdr {
@@ -1205,34 +1247,34 @@ font-weight: bold;
 .rol .specialisation {
   margin-left: 5px;
   padding-left: 5px;
-  width: 175px;
+  width: 195px;
   font-size: 14px;
   font-weight:bold;
   display: grid;
-  grid-template-columns: 130px auto 35px;
+  grid-template-columns: 130px auto 35px 20px;
   border-left: 1px solid;
 }
 
 .rol .skill-listitem {
-  width: 180px;
+  width: 200px;
   display: grid;
   font-size: 14px;
   font-weight:bold;
-  grid-template-columns: 130px auto 35px;
+  grid-template-columns: 130px auto 35px 20px;
 }
 
 .rol .spell-listitem {
-  width: 250px;
+  width: 270px;
   display: grid;
   font-size: 14px;
   font-weight:bold;
-  grid-template-columns: 200px 20px 20px;
+  grid-template-columns: 200px 20px 20px 20px;
 }
 
 .rol .weapons-listitem {
-  width: 350px;
+  width: 370px;
   display: grid;
-  grid-template-columns: 160px auto 80px 60px ;
+  grid-template-columns: 160px auto 80px 60px 20px;
   font-size:14px;
   font-weight:bold;
 }
@@ -1343,7 +1385,7 @@ font-weight: bold;
 .rol .npc-advantages{
   display: grid;
   margin-top: 0px;
-  max-width: 470 px;
+  max-width: 470px;
   grid-template-columns: 100px 100px 100px;
 }
 
@@ -1402,4 +1444,59 @@ font-weight: bold;
 
 .rol .prosemirror {
   min-height: 200px;
+}
+
+.rol .npc-doc .prosemirror .editor-content {
+  max-height: 75px;
+}
+
+.rol .npc-doc .prosemirror menu{
+  padding:  0px;
+}
+
+.prosemirror .editor-content, .prose-mirror .editor-content {
+  position: absolute;
+    overflow: hidden auto;
+    padding-right: 25px;
+    inset: 0;
+    outline: 0 solid transparent;
+    cursor: var(--cursor-text);
+    user-select: text;
+}
+
+.rol .padlock {
+  float: right;
+  color: black;
+  margin-right: 3px;
+  min-width: 18px;
+}
+
+.rol .npc-skill-list {
+  list-style: none;
+  display: block;
+  column-count: 2;
+  padding: 0;
+  margin: 0;
+}
+
+.rol textarea.signare-trait{
+  width: 555px;
+  max-height: 45px;
+  min-height: 0px;
+  background-color: transparent;
+}
+
+.rol .dice-roll .dice-tooltip {
+  display: none;
+}
+.rol .dice-roll.expanded .dice-tooltip {
+  display: flex;
+}
+
+.rol .cardbutton {
+  width: 100%;
+}
+
+.rol .owner-only {
+  width: 100%;
 }

@@ -1,0 +1,62 @@
+<header class="{{cssClass}}" autocomplete="off">
+  <div class="police-header item-hdr"> {{ localize 'ROL.spell' }}</div>
+  <br>
+
+  <section class="sheet-header">
+    <img class="item-image" src="{{item.img}}"  data-action ="onEditImage" data-edit="img" title="{{item.name}}" height="75" width="75"/>
+    <div class="itemheader-fields">
+      <div class="skillname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></div>
+    </div>
+  </section>
+
+  <div class="skill-resource grid grid-2col">
+    {{#if isGM}}
+      <label class="item-label">{{ localize 'ROL.spellOrder' }}:</label>
+      <select class="loc-label-inp" data-handle-change name="system.spellOrder">
+        {{selectOptions spellOrderList selected=item.system.spellOrder}}
+      </select>
+      <label class="item-label">{{ localize 'ROL.damage' }}:</label>
+      <input class="loc-label-inp" type="text" name="system.damage" value="{{system.damage}}" data-dtype="Number"/>  
+    {{else}}
+      <div class="item-label">{{ localize 'ROL.spellOrder' }}:</div>
+      <div class="loc-label-inp">{{system.spellOrder}}</div>  
+      <div class="item-label">{{ localize 'ROL.damage' }}:</div>
+      <div class="loc-label-inp">{{system.damage}}</div>
+    {{/if}}    
+  </div>    
+    {{#if (gt system.damage 0)}}
+    <div class="skill-prop" style="display: block;" data-set="properties">
+      <div class="item-label">{{ localize 'ROL.damageType' }}:</div>
+            <div class="display-switch {{#if (eq system.damType 'blunt')}} control-active {{/if}}" title = "{{ localize 'ROL.dmgBlunt' }}" data-action="damageType" data-property='blunt'>{{ localize 'ROL.blunt' }}  </div>
+            <div class="display-switch {{#if (eq system.damType 'bladed')}} control-active {{/if}}" title = "{{ localize 'ROL.dmgBladed' }}" data-action="damageType" data-property='bladed'>{{ localize 'ROL.bladed' }}  </div>
+            <div class="display-switch {{#if (eq system.damType 'ballistic')}} control-active {{/if}}" title = "{{ localize 'ROL.dmgBallistic' }}" data-action="damageType" data-property='ballistic'>{{ localize 'ROL.ballistic' }}  </div>
+            <div class="display-switch {{#if (eq system.damType 'magic')}} control-active {{/if}}" title = "{{ localize 'ROL.dmgMagic' }}" data-action="damageType" data-property='magic'>{{ localize 'ROL.magic' }}  </div>
+            <div class="display-switch {{#if (eq system.damType 'vorpal')}} control-active {{/if}}" title = "{{ localize 'ROL.dmgVorpal' }}" data-action="damageType" data-property='vorpal'>{{ localize 'ROL.vorpal' }}  </div>
+    </div>    
+          <div></div>  
+          <br>  
+    {{/if}}  
+
+  <div></div>
+  
+  <div class="item-label">{{ localize 'ROL.properties' }}:</div>
+    <div class="display-switch {{#if system.mastered}} control-active {{/if}}" {{#if canEdit}} data-action ='mastered' {{/if}}>{{ localize 'ROL.mastered' }}</div>
+  <div class="display-switch {{#if system.damageBoost}} control-active {{/if}}" {{#if isGM}} data-action="itemToggle" data-property='damageBoost' {{/if}}>{{ localize 'ROL.damageBoost' }}</div>
+  <div></div>
+  <br>
+
+  {{!-- Description  --}}
+    <section class="sheet-body">
+      <div class="item-label">{{ localize 'ROL.description' }}:</div>
+      <div class="background-doc">
+        {{#if editable}}
+          <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}"
+            collaborate="true" toggled="true">
+            {{{enrichedDescription}}}
+          </prose-mirror>
+        {{else}}
+          {{{enrichedDescription}}}
+        {{/if}}
+      </div> 
+    </section>
+</header>

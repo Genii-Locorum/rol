@@ -1,0 +1,45 @@
+<header class="{{cssClass}}" autocomplete="off">
+
+  <div class="police-header item-hdr"> {{ localize 'ROL.armour' }}</div>
+  <br>
+  <header class="sheet-header">
+    <img class="item-image" src="{{item.img}}"  data-action ="onEditImage" data-edit="img" title="{{item.name}}" height="75" width="75"/>
+    <div class="itemheader-fields">
+      <div class="skillname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></div>
+    </div>
+  </header>
+
+  <div class="skill-prop" style="display: block;" data-set="properties">
+    <div class="item-label">{{ localize 'ROL.armourType' }}:</div>
+          <div class="display-switch {{#if (eq system.type 'Natural')}} control-active {{/if}}" data-action="armourType" data-property='Natural'>{{ localize 'ROL.natural' }}  </div>
+          <div class="display-switch {{#if (eq system.type 'Regular')}} control-active {{/if}}" data-action="armourType" data-property='Regular'>{{ localize 'ROL.regular' }}  </div>
+          <div class="display-switch {{#if (eq system.type 'Ballistic')}} control-active {{/if}}" data-action="armourType" data-property='Ballistic'>{{ localize 'ROL.ballistic' }}  </div>
+  </div>    
+        <div></div>  
+        <br>  
+
+    <div class="skill-resource grid grid-2col"> 
+    {{#if isGM}}    
+      <label class="item-label">{{ localize 'ROL.ap' }}:</label>
+        <input class="loc-label-inp" type="text" name="system.ap" value="{{system.ap}}" data-dtype="Number"/>
+    {{else}} 
+      <div class="item-label">{{ localize 'ROL.ap' }}:</div>
+        <div class="loc-label-inp">{{system.ap}}</div>
+    {{/if}}
+    </div>  
+
+  {{!-- Description  --}}
+    <section class="sheet-body">
+      <div class="item-label">{{ localize 'ROL.description' }}:</div>
+      <div class="background-doc">
+        {{#if editable}}
+          <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}"
+            collaborate="true" toggled="true">
+            {{{enrichedDescription}}}
+          </prose-mirror>
+        {{else}}
+          {{{enrichedDescription}}}
+        {{/if}}
+      </div>
+    </section>
+</header>
