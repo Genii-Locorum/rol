@@ -1,18 +1,26 @@
 <header class="{{cssClass}} {{actor.type}} {{actor.system.charType}} standard-form flexcol" autocomplete="off">
 
   {{!-- Sheet Header --}}
-  <section class="multi-panel-content">
+  <section class="multi-panel-content-char  {{#if isLargeFont}}multi-panel-content-char-large{{/if}}">
 
 
     {{!-- Portrait --}}  
-    <div class="section-vertical"> {{ localize 'ROL.portrait' }}</div>
-    <div class="image-panel">
-      <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="175" width="175"/>
-    </div>
-
+    {{#if isLargeFont}}
+      <div>
+        <div class="section-horizontal"> {{ localize 'ROL.portrait' }}</div>
+        <div class="image-panel">
+          <img class="profile-img"  src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="182" width="182"/>
+        </div>
+      </div>
+    {{else}}
+      <div class="section-vertical section-vertical-norm"> {{ localize 'ROL.portrait' }}</div>
+      <div class="image-panel">
+        <img class="profile-img"  src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="176" width="176"/>
+      </div>
+    {{/if}}
 
     {{!-- Investigator Info Block --}}
-    <div class="left-panel">
+    <div class="{{#if isLargeFont}} left-panel-large {{else}} left-panel-norm {{/if}}">
       <div>
     {{#isAnd isCreation isDemiMonde}} 
     <div class="skill-prop grid grid-2col" style="display: grid; justify-items: center;" data-set="properties">
@@ -21,13 +29,13 @@
     </div>
     {{else}}
       {{#if (eq  system.charType 'Investigator')}}  
-        <div class="section-title-large">{{ localize 'ROL.investigator' }}</div>
+        <div class="section-title-large {{#if isLargeFont}} section-title-large-large {{else}} section-title-large-norm {{/if}}">{{ localize 'ROL.investigator' }}</div>
       {{else}}
-        <div class="section-title-large">{{ localize 'ROL.demiMonde' }}</div>
+        <div class="section-title-large {{#if isLargeFont}} section-title-large-large {{else}} section-title-large-norm {{/if}}">{{ localize 'ROL.demiMonde' }}</div>
       {{/if}}
     {{/isAnd}}  
     </div>
-    <div class="info-panel">  
+    <div class="info-panel {{#if isLargeFont}} info-panel-large {{else}}info-panel-norm{{/if}}">  
       <div class="charname row flexrow">
         <label class="charname">{{ localize 'ROL.name' }} :</label>
         <input class="" name="name" type="text" value="{{actor.name}}"/>
@@ -68,7 +76,7 @@
         <div></div>
 
         <label class="detailblockbottom-short">{{ localize 'ROL.age' }} :</label>
-        <input class ="" name="system.age" type="text" value="{{system.age}}" data d-type="Number"/>
+        <input class ="detailblockbottom-short" name="system.age" type="text" value="{{system.age}}" data d-type="Number"/>
       </div>
     
       </div>
@@ -78,14 +86,14 @@
     <div class="right-panel">
     <div class="section-title" title="{{localize 'ROL.charHint'}}">{{localize 'ROL.characteristics'}}</div>
       {{#unless isCreation}}  
-      <div class="abilities grid grid-2col">
+      <div class="abilities {{#if isLargeFont}}info-panel-large {{else}} info-panel-norm{{/if}} grid grid-2col">
         {{#each system.abilities as |ability key|}}
           <div class="resource-label attribute-name rollable" data-target ={{ability.value}} data-label="{{ability.label}}">{{ability.label}}</div>
              <div class="stats-content">{{ability.value}}</div>
         {{/each}}
       </div>    
       {{else}}
-      <div class="{{#if (gt system.abilityTotal maxStats)}} abilities-max  {{/if}} abilities">
+      <div class="{{#if (gt system.abilityTotal maxStats)}} abilities-max  {{/if}} abilities {{#if isLargeFont}}abilities-large {{else}} abilities-norm{{/if}}">
         {{#each system.abilities as |ability key|}}
           <div class="resource-label rollable" data-target ={{ability.value}} data-label="{{ability.label}}">{{ability.label}}</div>
           <input class="stats-content" type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>

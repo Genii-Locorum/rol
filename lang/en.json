@@ -312,6 +312,8 @@
     "Settings.AgeHint": "",
     "Settings.DemiMonde": "Allow Demi Monde Investigators",
     "Settings.DemiMondeHint": "",
+    "Settings.largeFont": "Use Large Font",
+    "Settings.largeFontHint": "Use 18px Font as base font",
     "Settings.MaxSpell": "Maximum Spell Order",
     "Settings.MaxSpellHint": "",
     "Settings.StatsOnes": "Increase abilities in single units",

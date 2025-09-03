@@ -7,6 +7,10 @@ export class ROLSkillSheet extends ROLItemSheet {
 
   static DEFAULT_OPTIONS = {
     classes: ['skill'],
+    position: {
+      width: 600,
+      height: 650
+    },
   }
 
   static PARTS = {

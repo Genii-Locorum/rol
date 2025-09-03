@@ -1,3 +1,6 @@
+V13.2
+-  There is a new game setting "Use Large Font" - all actor and item sheets will use a larger (18px) font to make it easier to read.  This is specific to the user, it does not apply automatically to all users.
+
 V13.1
 -  Move to Foundry V13 - PLEASE PLEASE PLEASE back up your world
 -  Actors and Items have been migrated to Application V2 - these may mean there are some slight layout changes

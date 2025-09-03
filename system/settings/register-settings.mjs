@@ -156,6 +156,16 @@ export function registerSettings () {
       type: String
     })
 
+  //Display Settings  
+    game.settings.register('rol', 'largeFont', {
+    name: 'ROL.Settings.largeFont',
+    hint: 'ROL.Settings.largeFontHint',
+    scope: 'client',
+    config: true,
+    default: false,
+    type: Boolean,
+    requiresReload: true,
+  }) 
 
   CONFIG.Dice.terms.t = ROLDecaderDie
   CONFIG.Dice.terms.o = ROLDecaderDieOther

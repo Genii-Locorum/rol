@@ -11,7 +11,7 @@ export class ROLCharacterSheet extends ROLActorSheet {
     classes: ['character','themed', 'theme-light'],
     position: {
       width: 705,
-      height: 750
+      height: 785
     },
   }
 

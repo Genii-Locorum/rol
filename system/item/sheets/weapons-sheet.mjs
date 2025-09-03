@@ -9,7 +9,7 @@ export class ROLWeaponSheet extends ROLItemSheet {
     classes: ['weapons'],
     position: {
       width: 550,
-      height: 630,
+      height: 640,
     },
   }
 

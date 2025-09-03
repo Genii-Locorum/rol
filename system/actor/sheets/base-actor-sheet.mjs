@@ -53,6 +53,7 @@ export class ROLActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
       isDemiMonde: game.settings.get('rol','demiMonde'),
       isLuckDetail: game.settings.get('rol','luckExtend'),
       maxStats: game.settings.get('rol','maxStats'),
+      isLargeFont: game.settings.get('rol','largeFont'),
     };
   }
 
@@ -310,4 +311,15 @@ export class ROLActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
       return new foundry.applications.ux.DragDrop(d);
     });
   }
+
+
+//--------Implement Font Size and other changes--------------//
+  static renderSheet(sheet, html) {
+    if (game.settings.get('rol', 'largeFont')) {
+      document.body.style.setProperty('--rol-prim-font-size', '18px');
+      document.body.style.setProperty('--rol-sec-font-size', '18px');    
+      document.body.style.setProperty('--rol-ter-font-size', '18px');            
+    }
+
+  }  
 }

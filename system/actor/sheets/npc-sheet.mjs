@@ -9,7 +9,7 @@ export class ROLNPCSheet extends ROLActorSheet {
   static DEFAULT_OPTIONS = {
     classes: ['npc','themed', 'theme-light'],
     position: {
-      width: 620,
+      width: 625,
       height: 860
     },
   }
@@ -17,7 +17,7 @@ export class ROLNPCSheet extends ROLActorSheet {
   static PARTS = {
     header: { 
       template: 'systems/rol/templates/actor/npc.header.hbs',
-      scrollable: ['']
+      scrollable: [''],
      }
   }
 

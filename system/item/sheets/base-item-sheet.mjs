@@ -226,7 +226,15 @@ export class ROLItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemShee
     this.item.update(checkProp)
   }
 
+//--------Implement Font Size and other changes--------------//
+  static renderSheet(sheet, html) {
+    if (game.settings.get('rol', 'largeFont')) {
+      document.body.style.setProperty('--rol-prim-font-size', '18px');
+      document.body.style.setProperty('--rol-sec-font-size', '18px');    
+      document.body.style.setProperty('--rol-ter-font-size', '18px');            
+    }
 
+  }  
 
 
 

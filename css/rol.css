@@ -5,6 +5,12 @@
   font-size: 12px;
 }
 
+:root {
+  --rol-prim-font-size: 14px;
+  --rol-sec-font-size: 16px;
+  --rol-ter-font-size: 12px;  
+}
+
 
 .rollable:hover, .rollable:focus, .item-create:hover, .skill-rollable:hover, .skill-rollable:focus, .healing-phase:hover, .healing-phase:focus, .luckreset-rollable:hover, .luckreset-rollable:focus, .luckrecovery-rollable:hover, .luckrecovery-rollable:focus, .next-scene:hover, .next-scene:focus {
   color: #000;
@@ -253,15 +259,27 @@ body.theme-dark.application .rol {
 
 /* Styles limited to rol sheets-------------------------------------------------------------------------------------------------------------------------------------- */ 
 
+.rol.character {
+  font-size: var(--rol-prim-font-size);
+}
+
 
 .rol .DemiMonde {
   background-image:url("./images/grey-paper2.jpg");
   background-size: cover;
-  overflow-y:hidden ;
+  overflow-y:auto ;
   background-color: rgb(255, 255, 255);
   --main-colour: green;
   --police-colour: rgb(73, 141, 107);
   color: var(--rol-primary-font-colour);  
+}
+
+.rol .Creature {
+  overflow-y:auto ;  
+}
+
+.rol .Npc {
+  overflow-y:auto ;  
 }
 
 .rol .window-content {
@@ -379,13 +397,17 @@ body.theme-dark.application .rol {
   text-align: center;
 }
 
+.rol .section-vertical-large {
+  height: 204px
+}  
+
 .rol .section-vertical {
   font-size: 16px;
   font-weight: normal;
   padding-top:3px;
+  height: 176px;
   width:25px;
   max-width: 25px;
-  min-height: 175px;
   color: white;
   background: solid;
   background-color: var(--police-colour);
@@ -395,11 +417,26 @@ body.theme-dark.application .rol {
   writing-mode: vertical-rl;
 }
 
+.rol .section-horizontal {
+  font-size: 16px;
+  font-weight: normal;
+  padding-left:3px;
+  width:182px;
+  height: 22px;
+  color: white;
+  background: solid;
+  background-color: var(--police-colour);
+  border-left: 2px solid var(--main-colour);
+  border-top: 2px solid var(--main-colour);
+  border-right: 2px solid var(--main-colour);
+}
+
+
 .rol .section-title-left {
   font-size: 16px;
   font-weight: normal;
-  width:100px;
-  max-width: 100px;
+  width:122px;
+  max-width: 122px;
   color: white;
   background: solid;
   background-color: var(--police-colour);
@@ -412,8 +449,6 @@ body.theme-dark.application .rol {
   font-size: 16px;
   font-weight: normal;
   padding-left: 3px;
-  width:310px;
-  max-width: 310px;
   text-align: left;
   color: white;
   background: solid;
@@ -421,13 +456,21 @@ body.theme-dark.application .rol {
   border: 2px solid var(--main-colour);
 }
 
+.rol .section-title-large-norm {
+  width:320px;
+  max-width: 320px;  
+}
+
+.rol .section-title-large-large {
+  width:338px;
+  max-width: 338px;  
+}
+
 .rol .abilities{
   display: grid;
   grid-template-columns: 106px 40px;
   margin: 0px;
   gap: 0px;
-  min-height: 152px;
-  max-height: 152px;
   padding-top:7px;
   padding-left: 10px;
   border-left: 2px solid var(--main-colour);
@@ -442,18 +485,32 @@ body.theme-dark.application .rol {
   background-color: crimson;
 }
 
+.rol .abilities-norm{
+  height: 152px;
+}
+
+.rol .abilities-large{
+  height: 179px;
+}
+
+.rol .info-panel-norm {
+  min-height: 152px;
+  max-height: 152px;
+}
+
+.rol .info-panel-large {
+  min-height: 180px;
+  max-height: 180px;
+}
+
 .rol .info-panel {
   margin: 0px;
   gap: 0px;
-  min-height: 152px;
-  max-height: 152px;
   padding-top: 5px;
   padding-left: 3px;
   border-left: 2px solid var(--main-colour);
   border-right: 2px solid var(--main-colour);
   border-bottom: 2px solid var(--main-colour);
-  width:310px;
-  max-width: 310px;
 }
 
 .rol .right {
@@ -466,14 +523,14 @@ body.theme-dark.application .rol {
 }
 
 .rol .stats-content {
-  font-size: 16px;
+  font-size: var(--rol-sec-font-size);
   font-weight: bold;
   text-align: center;
-  max-height: 16px;
+  max-height: var(--rol-sec-font-size);
 }
 
 .rol .stats-content-left {
-  font-size: 12px;
+  font-size: var(--rol-ter-font-size);
   font-weight: bold;
   text-align: center;
   max-height: 20px;
@@ -482,7 +539,7 @@ body.theme-dark.application .rol {
 
 
 .rol .stats-total {
-  font-size: 16px;
+  font-size: var(--rol-sec-font-size);
   font-weight: bold;
   text-align: center;
   margin: 1px;
@@ -492,7 +549,7 @@ body.theme-dark.application .rol {
 
 .rol .npc-stats-content {
   text-align: center;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
   height: 18px;
   margin: 0px;
@@ -500,7 +557,7 @@ body.theme-dark.application .rol {
 
 .rol .npc-stats-input {
   text-align: center;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
   height: 18px;
   padding:1px;
@@ -509,7 +566,7 @@ body.theme-dark.application .rol {
 }
 
 .rol .fixed-stats-content {
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
   text-align: center;
   height: 18px;
@@ -525,7 +582,7 @@ body.theme-dark.application .rol {
 .rol .charname label{
   margin-bottom: 4px;
   font-weight: bold;
-  max-width: 90px;
+  max-width: 100px;
 }
 
 .rol .sheet-header .header-fields {
@@ -568,9 +625,9 @@ body.theme-dark.application .rol {
 }
 
 .rol .resource-label {
-  font-size: 16px;
+  font-size: var(--rol-sec-font-size);
   font-weight: bold;
-  max-height: 16px;
+  max-height: var(--rol-sec-font-size);
   border-color: var(--main-colour);
 }
 
@@ -582,12 +639,12 @@ body.theme-dark.application .rol {
 }
 
 .rol .resource-label-left {
-  font-size: 12px;
+  font-size: var(--rol-ter-font-size);
   font-weight: bolder;
 }
 
 .rol .resource-label-topgap {
-  font-size: 12px;
+  font-size: var(--rol-ter-font-size);
   font-weight: bolder;
   margin-top: 1px;
   padding-top: 2px;
@@ -644,7 +701,7 @@ body.theme-dark.application .rol {
 .rol .items-list .item-name {
   flex: 2;
   margin: 0;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   text-align: left;
   align-items: center;
   display: flex;
@@ -669,7 +726,7 @@ body.theme-dark.application .rol {
 }
 
 .rol .item-create {
-  font-size: 12px;
+  font-size: var(--rol-ter-font-size);
   text-align: left;
   margin: 0 6px;
   min-width: 150px;
@@ -747,11 +804,15 @@ body.theme-dark.application .rol {
   border: none;
 }
 
-.rol .multi-panel-content {
+.rol .multi-panel-content-char {
   display:flex; 
-  max-height:165px;
-  width: 700px;
-  max-width: 700px;
+  max-height:190px;
+  width: 685px;
+  max-width: 685px;
+}
+
+.rol .multi-panel-content-char-large {
+  min-height:190px;
 }
 
 .rol .npc-multi-panel-content {
@@ -760,10 +821,18 @@ body.theme-dark.application .rol {
   max-height:100px;
 }
 
-.rol .multi-panel-content .left-panel {
+.rol .left-panel-norm {
   flex: none;
-  padding-left: 10px;
+
   width: 320px;  
+  max-width: 320px;
+}
+
+.rol .left-panel-large {
+  flex: none;
+
+  width: 338px;  
+  max-width: 338px;
 }
 
 .rol .multi-panel-content .right-panel {
@@ -780,8 +849,8 @@ font-weight: bold;
 .rol .two-panel-content {
   display: flex;
   flex-direction: row;
-  min-height:455px;
-  max-height: 455px;
+  min-height:470px;
+  max-height: 470px;
   min-width: 685px;
   max-width: 685px;
   border: solid var(--main-colour) 2px;
@@ -789,9 +858,10 @@ font-weight: bold;
 
 .rol .two-panel-content .left-panel {
   flex: 1;
-  max-width: 100px;
-  min-width: 100px;
+  max-width: 122px;
+  min-width: 122px;
   border-right: 2px solid var(--main-colour);
+  font-size: var(--rol-prim-font-size)
 }
 
 .rol .two-panel-content .right-panel {
@@ -817,7 +887,6 @@ font-weight: bold;
 
 .rol .statblock {
   display: grid;
-  gap: 0px;
   text-align: center;
   grid-template-columns: 38px 10px 38px;
   margin: 0px;
@@ -903,8 +972,8 @@ font-weight: bold;
 
 .rol .npc-grid {
   display: grid;
-  font-size:14px;
-  min-height:16px;
+  font-size: var(--rol-prim-font-size);
+  min-height: var(--rol-prim-font-size);
   gap: 0px;
   margin: 0px;
  }
@@ -1006,15 +1075,25 @@ font-weight: bold;
   justify-content: center;
 }
 
+.rol .advheader-fields {
+  max-width: 440px;
+  min-width: 440px;
+  display:grid;
+  grid-template-columns: 350px 10px 10px;
+  font-weight: bolder; 
+  align-content: center;
+  padding-left: 10px;
+}
+
 .rol .display-switch {
   display: inline-block;
   margin: 2px 2px 0 0;
   padding: 0 5px;
   margin: 0 5px;
-  line-height: 16px;
-  min-height: 16px;
+  line-height: var(--rol-prim-font-size);
+  min-height: var(--rol-prim-font-size);
   min-width: 60px;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
   border: 1px solid var(--main-colour);
   border-radius: 3px;
@@ -1026,10 +1105,10 @@ font-weight: bold;
   margin: 2px 2px 0 0;
   padding: 0 5px;
   margin: 0 5px;
-  line-height: 16px;
-  min-height: 16px;
+  line-height: var(--rol-prim-font-size);
+  min-height: var(--rol-prim-font-size);
   min-width: 60px;
-  font-size: 12px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
   border: 1px solid var(--main-colour);
   border-radius: 3px;
@@ -1043,7 +1122,7 @@ font-weight: bold;
   line-height: 16px;
   min-height: 16px;
   min-width: 100px;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
   text-align: center;
   border: 1px solid var(--main-colour);
@@ -1052,7 +1131,7 @@ font-weight: bold;
 }
 
 .rol .skill-prop {
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
   min-height: 23px;
   max-height: 23px;
@@ -1075,13 +1154,13 @@ font-weight: bold;
 
 .rol .skillname {
   margin: auto 0 auto 0;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight:bold;
 }
 
 .rol .skillname input {
   margin: auto 0 auto 0;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight:bold;
   border: solid var(--main-colour) 1px;
 }
@@ -1090,21 +1169,21 @@ font-weight: bold;
   text-align: center;
   margin: auto 0 auto 0;
   font-weight:bolder;
-  font-size: 16px;
+  font-size: var(--rol-sec-font-size);
 }
 
 .rol .skill-resource{
   max-width: 440px;
   min-width: 440px;
   display:grid;
-  grid-template-columns: 100px 100px;
+  grid-template-columns: 140px 100px;
 }
 
 .rol .adv-resource{
   max-width: 440px;
   min-width: 440px;
   display:grid;
-  grid-template-columns: 100px 200px;
+  grid-template-columns: 140px 300px;
 }
 
 .rol .develop-resource{
@@ -1130,7 +1209,7 @@ font-weight: bold;
 }
 
 .rol .loc-label-inp {
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
   text-align:center;
   height: calc(100% - 2px);
@@ -1145,14 +1224,15 @@ font-weight: bold;
 }
 
 .rol .skill-score-inp {
-  height:14px;
-  font-size: 14px;
+  height:var(--rol-prim-font-size);
+  font-size: var(--rol-prim-font-size);
   font-weight:bold;
   border-color: var(--main-colour);
 }
 
 .rol .biography-doc{
   border: 1px solid var(--main-colour);
+  font-size: var(--rol-prim-font-size);
   padding-left: 10px;
   padding-right: 10px;
   height: 30px;
@@ -1161,7 +1241,7 @@ font-weight: bold;
 
 .rol .background-doc{
   border: 1px solid var(--main-colour);
-  font-size:14px;
+  font-size: var(--rol-prim-font-size);
   padding-left: 10px;
   margin-right:10px;
   min-height: 140px;
@@ -1169,7 +1249,7 @@ font-weight: bold;
 
 .rol .npc-doc{
   border: 1px solid var(--main-colour);
-  font-size:14px;
+  font-size: var(--rol-prim-font-size);
   padding-left: 10px;
   padding-right: 10px;
   height: 125px;
@@ -1178,7 +1258,7 @@ font-weight: bold;
 
 .rol .trait-doc{
   border: 1px solid var(--main-colour);
-  font-size:14px;
+  font-size:var(--rol-prim-font-size);
   padding-left: 10px;
   padding-right: 10px;
   margin-right:10px;
@@ -1199,13 +1279,13 @@ font-weight: bold;
   list-style: none;
   width: 180px;
   margin-right: 5px;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight:bold;
 }
 
 .rol .police-header {
   list-style: none;
-  font-size: 16px;
+  font-size: var(--rol-sec-font-size);
   font-weight: normal;
   color: white;
   background: solid;
@@ -1223,8 +1303,8 @@ font-weight: bold;
 }
 
 .rol .spell-header {
-  width:270px;
-  max-width: 270px;
+  width:260px;
+  max-width: 260px;
 }
 
 .rol .skill-header {
@@ -1248,7 +1328,7 @@ font-weight: bold;
   margin-left: 5px;
   padding-left: 5px;
   width: 195px;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight:bold;
   display: grid;
   grid-template-columns: 130px auto 35px 20px;
@@ -1258,15 +1338,15 @@ font-weight: bold;
 .rol .skill-listitem {
   width: 200px;
   display: grid;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight:bold;
   grid-template-columns: 130px auto 35px 20px;
 }
 
 .rol .spell-listitem {
-  width: 270px;
+  width: 260px;
   display: grid;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight:bold;
   grid-template-columns: 200px 20px 20px 20px;
 }
@@ -1275,7 +1355,7 @@ font-weight: bold;
   width: 370px;
   display: grid;
   grid-template-columns: 160px auto 80px 60px 20px;
-  font-size:14px;
+  font-size: var(--rol-prim-font-size);
   font-weight:bold;
 }
 
@@ -1283,7 +1363,7 @@ font-weight: bold;
   width: 350px;
   display: grid;
   grid-template-columns: 250px auto 60px ;
-  font-size:14px;
+  font-size: var(--rol-prim-font-size)px;
   font-weight:bold;
 }
 
@@ -1306,13 +1386,13 @@ font-weight: bold;
 }
 
 .rol .detailblockbottom {
-  max-width: 90px;
-  min-width: 90px;
+  max-width: 100px;
+  min-width: 100px;
 }
 
 .rol .detailblockbottominput {
-  max-width: 90px;
-  min-width: 90px;
+  max-width: 110px;
+  min-width: 110px;
 }
 
 .rol .detailblockbottom-short {
@@ -1338,7 +1418,7 @@ font-weight: bold;
 }
 
 .order-name {
-  font-size: 16px;
+  font-size: var(--rol-sec-font-size);
   font-weight: bold;
 }
 
@@ -1355,12 +1435,12 @@ font-weight: bold;
 
 .rol .signare-name {
   padding-top: 5px;
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
   margin: auto 0px;
 }
 .rol .signare-value {
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
   padding-left: 5px;
   max-width: 560px;
@@ -1427,7 +1507,7 @@ font-weight: bold;
 }
 
 .rol .item-label{
-  font-size: 14px;
+  font-size: var(--rol-prim-font-size);
   font-weight: bold;
 }
 
@@ -1484,6 +1564,7 @@ font-weight: bold;
   max-height: 45px;
   min-height: 0px;
   background-color: transparent;
+  font-size: var(--rol-prim-font-size);
 }
 
 .rol .dice-roll .dice-tooltip {

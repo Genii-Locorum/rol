@@ -10,12 +10,14 @@ export class ROLAdvantagesSheet extends ROLItemSheet {
     classes: ['advantages'],
     position: {
       width: 550,
-      height: 750,
+      height: 640,
     },
   }
 
   static PARTS = {
-    header: { template: 'systems/rol/templates/item/advantages.header.hbs' },
+    header: { 
+      template: 'systems/rol/templates/item/advantages.header.hbs',
+    },
   }
 
   async _prepareContext(options) {

@@ -14,7 +14,9 @@ export class ROLArmourSheet extends ROLItemSheet {
   }
 
   static PARTS = {
-    header: { template: 'systems/rol/templates/item/armour.header.hbs' },
+    header: {
+      template: 'systems/rol/templates/item/armour.header.hbs',
+    },
   }
 
   async _prepareContext(options) {

@@ -9,6 +9,8 @@ import * as RenderChatMessage from './setup/chat-messages.mjs'
 import HotbarDrop from './hooks/hotbar-drop.mjs'
 //import * as Chat from "./apps/chat.mjs";
 import { ROLHooks } from './setup/hooks-index.mjs'
+import { ROLActorSheet } from "./actor/sheets/base-actor-sheet.mjs";
+import { ROLItemSheet } from "./item/sheets/base-item-sheet.mjs";
 
 
   Hooks.once('init',Init);
@@ -16,6 +18,8 @@ import { ROLHooks } from './setup/hooks-index.mjs'
   Hooks.on('hotbarDrop', HotbarDrop)    
   Hooks.on('getSceneControlButtons', ROLMenu.getButtons)
   Hooks.on('renderSceneControls', renderSceneControls);
+  Hooks.on('renderActorSheetV2', ROLActorSheet.renderSheet);
+  Hooks.on('renderItemSheetV2', ROLItemSheet.renderSheet);  
   Hooks.on("hotbarDrop", (bar, data, slot) => {
     if (game.user) {
       createItemMacro(data, slot);
