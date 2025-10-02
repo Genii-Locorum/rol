@@ -1,3 +1,6 @@
+V13.3
+- You can now edit actor images in the usual way.
+
 V13.2
 -  There is a new game setting "Use Large Font" - all actor and item sheets will use a larger (18px) font to make it easier to read.  This is specific to the user, it does not apply automatically to all users.
 

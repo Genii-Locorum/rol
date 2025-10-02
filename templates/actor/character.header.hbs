@@ -9,13 +9,13 @@
       <div>
         <div class="section-horizontal"> {{ localize 'ROL.portrait' }}</div>
         <div class="image-panel">
-          <img class="profile-img"  src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="182" width="182"/>
+          <img class="profile-img"  src="{{actor.img}}" data-action="onEditImage" data-edit="img" title="{{actor.name}}" height="182" width="182"/>
         </div>
       </div>
     {{else}}
       <div class="section-vertical section-vertical-norm"> {{ localize 'ROL.portrait' }}</div>
       <div class="image-panel">
-        <img class="profile-img"  src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="176" width="176"/>
+        <img class="profile-img"  src="{{actor.img}}" data-action="onEditImage" data-edit="img" title="{{actor.name}}" height="176" width="176"/>
       </div>
     {{/if}}
 
