@@ -25,6 +25,10 @@ export class ROLSpellSheet extends ROLItemSheet {
     if (context.isCreation || context.isDevelepment || context.isGM) {
       context.canEdit = true
     }
+    context.logicList = await ROLSelectLists.logicOptions();
+    context.logicName = game.i18n.localize(this.item.system.preReq.logic)    
+    context.preReqList = await ROLSelectLists.prereqOptions();
+    context.preOptList = await ROLSelectLists.preOptList();
     context.tabs = this._getTabs(options.parts);
     return context
   }
@@ -68,6 +72,5 @@ export class ROLSpellSheet extends ROLItemSheet {
 
 
   //-----------------------ACTIONS-----------------------------------
-
 
 }

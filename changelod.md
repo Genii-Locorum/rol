@@ -1,3 +1,7 @@
+## V13.4
+- Spell Mastery will now work (bug fix) - if you updated the name or spell level you couldn't master the spell
+- Spell pre-requisites now visible and can be ammended/set
+
 V13.3
 - You can now edit actor images in the usual way.
 

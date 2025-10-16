@@ -12,7 +12,7 @@
   <div class="skill-resource grid grid-2col">
     {{#if isGM}}
       <label class="item-label">{{ localize 'ROL.spellOrder' }}:</label>
-      <select class="loc-label-inp" data-handle-change name="system.spellOrder">
+      <select class="loc-label-inp" data-handle-change type="number" name="system.spellOrder">
         {{selectOptions spellOrderList selected=item.system.spellOrder}}
       </select>
       <label class="item-label">{{ localize 'ROL.damage' }}:</label>
@@ -44,6 +44,118 @@
   <div class="display-switch {{#if system.damageBoost}} control-active {{/if}}" {{#if isGM}} data-action="itemToggle" data-property='damageBoost' {{/if}}>{{ localize 'ROL.damageBoost' }}</div>
   <div></div>
   <br>
+
+
+  {{!-- Pre-Requisites & Logic Partial --}}
+  {{#if isGM}}
+    <div class="spell-resource grid grid-2col"></div>
+    <div class = "prereq">
+      <label class="item-label">{{ localize 'ROL.preReq' }}:</label>
+      <div class="" >
+        <select class="loc-label-inp" data-handle-change name="system.preReq.logic">
+          {{selectOptions logicList selected=item.system.preReq.logic}}
+        </select>
+      </div>
+    </div>
+    <div class=" grid grid-4col">
+      {{#unless (eq system.preReq.logic "") }}
+        <div class="item-label">{{ localize 'ROL.optA' }}</div>
+          <div class="" >
+            <select class="loc-label-inp" data-handle-change name="system.preReq.1.preType">
+              {{selectOptions preReqList selected=item.system.preReq.1.preType}}
+            </select>
+          </div>
+        {{#if (eq system.preReq.1.preType "Not Advantage")}}
+            <select class="loc-label-inp" data-handle-change name="system.preReq.1.preOpt">
+              {{selectOptions advantagesList selected=item.system.preReq.1.preOpt}}
+            </select>
+        {{else}}
+          {{#isOr (eq system.preReq.1.preType "Char-Min") (eq system.preReq.1.preType "Char-Max")}}
+            <select class="loc-label-inp" data-handle-change name="system.preReq.1.preOpt">
+              {{selectOptions preOptList selected=item.system.preReq.1.preOpt}}
+            </select>
+          {{else}}
+            <input class="prereq" type="text" name="system.preReq.1.preOpt" value="{{system.preReq.1.preOpt}}"/>
+          {{/isOr}}
+        {{/if}}
+        <input class="prereq" type="text" name="system.preReq.1.preVal" value="{{system.preReq.1.preVal}}" data-dtype="Number"/>
+    
+        {{#unless (eq system.preReq.logic "A") }}  
+          <div class="item-label">{{ localize 'ROL.optB' }}</div>
+            <div class="" >
+              <select class="loc-label-inp" data-handle-change name="system.preReq.2.preType">
+                {{selectOptions preReqList selected=item.system.preReq.2.preType}}
+              </select>
+            </div>    {{#if (eq system.preReq.2.preType "Not Advantage")}}
+              <select class="loc-label-inp" data-handle-change name="system.preReq.2.preOpt">
+                {{selectOptions advantagesList selected=item.system.preReq.2.preOpt}}
+              </select>
+          {{else}}
+            {{#isOr (eq system.preReq.2.preType "Char-Min") (eq system.preReq.2.preType "Char-Max")}}
+              <select class="loc-label-inp" data-handle-change name="system.preReq.2.preOpt">
+                {{selectOptions preOptList selected=item.system.preReq.2.preOpt}}
+              </select>
+            {{else}}
+              <input class="prereq" type="text" name="system.preReq.2.preOpt" value="{{system.preReq.2.preOpt}}"/>
+            {{/isOr}}
+          {{/if}}
+          <input class="prereq" type="text" name="system.preReq.2.preVal" value="{{system.preReq.2.preVal}}" data-dtype="Number"/>
+        
+          {{#isOr (eq system.preReq.logic "A and B and C") (eq system.preReq.logic "A and (B or C)") }}
+          <div class="item-label">{{ localize 'ROL.optC' }}</div>
+            <div class="" >
+              <select class="loc-label-inp" data-handle-change name="system.preReq.3.preType">
+                {{selectOptions preReqList selected=item.system.preReq.3.preType}}
+              </select>
+            </div>
+          {{#if (eq system.preReq.3.preType "Not Advantage")}}
+              <select class="loc-label-inp" data-handle-change name="system.preReq.3.preOpt">
+                {{selectOptions advantagesList selected=item.system.preReq.3.preOpt}}
+              </select>
+          {{else}}
+            {{#isOr (eq system.preReq.3.preType "Char-Min") (eq system.preReq.3.preType "Char-Max")}}
+              <select class="loc-label-inp" data-handle-change name="system.preReq.3.preOpt">
+                {{selectOptions preOptList selected=item.system.preReq.3.preOpt}}
+              </select>
+            {{else}}
+              <input class="prereq" type="text" name="system.preReq.3.preOpt" value="{{system.preReq.3.preOpt}}"/>
+            {{/isOr}}
+          {{/if}}
+          <input class="prereq" type="text" name="system.preReq.3.preVal" value="{{system.preReq.3.preVal}}" data-dtype="Number"/>
+          {{/isOr}}
+        {{/unless}}
+      {{/unless}}
+    </div>
+
+  {{else}}
+    <div class="spell-resource grid grid-2col"></div>
+    <div class="item-label">{{ localize 'ROL.preReq' }}:</div>
+    <div class="prereq plainboxed">{{system.preReq.logic}}</div>
+    <div class=" grid grid-4col">
+      {{#unless (eq system.preReq.logic "") }}
+        <div class="item-label plainboxed">{{ localize 'ROL.optA' }}</div>
+        <div class="prereq plainboxed">{{system.preReq.1.preType}}</div>
+        <div class="prereq plainboxed">{{system.preReq.1.preOpt}}</div>
+        <div class="prereq plainboxed">{{system.preReq.1.preVal}}</div>
+        {{#unless (eq system.preReq.logic "A") }}  
+          <div class="item-label plainboxed">{{ localize 'ROL.optB' }}</div>
+          <div class="prereq plainboxed">{{system.preReq.2.preType}}</div>
+          <div class="prereq plainboxed">{{system.preReq.2.preOpt}}</div>
+          <div class="prereq plainboxed">{{system.preReq.2.preVal}}</div>
+          {{#isOr (eq system.preReq.logic "A and B and C") (eq system.preReq.logic "A and (B or C)") }}
+            <div class="item-label plainboxed">{{ localize 'ROL.optC' }}</div>
+            <div class="prereq plainboxed">{{system.preReq.3.preType}}</div>
+            <div class="prereq plainboxed">{{system.preReq.3.preOpt}}</div>
+            <div class="prereq plainboxed">{{system.preReq.3.preVal}}</div>
+          {{/isOr}}
+        {{/unless}}
+      {{/unless}}
+    </div>
+  </div>
+  {{/if}} 
+
+  <br>
+
 
   {{!-- Description  --}}
     <section class="sheet-body">

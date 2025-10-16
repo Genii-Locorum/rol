@@ -199,17 +199,18 @@ export class ROLItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemShee
     if (!this.item.isOwner) {return}
     let state = this.item.system.mastered
     let checkProp={};
+    let spellOrder=Number(this.item.system.spellOrder)
     if (state) {
       checkProp = {'system.mastered': false}
-    } else if (this.item.system.spellOrder === 1) {
+    } else if (spellOrder === 1) {
       checkProp = {'system.mastered': true}
     } else {
-      let mastered = await this.actor.items.filter(itm => itm.type ==='spell').filter(itm => itm.system.spellOrder === this.item.system.spellOrder-1 && itm.system.mastered === true)
+      let mastered = await this.actor.items.filter(itm => itm.type ==='spell').filter(itm => Number(itm.system.spellOrder) === spellOrder-1 && itm.system.mastered)
       if (mastered.length >1) {
         checkProp={'system.mastered' : true};
       } else {
         ui.notifications.error(game.i18n.localize("ROL.spellMastery"));
-        return``
+        return
       }
     }       
     await this.item.update(checkProp)
