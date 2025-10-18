@@ -1,7 +1,7 @@
 import ChaosiumCanvasInterface from "./chaosium-canvas-interface.mjs";
 
 export default class ChaosiumCanvasInterfaceToScene extends ChaosiumCanvasInterface {
-  static get PERMISSIONS () {
+  static get PERMISSIONS() {
     return {
       ALWAYS: 'ROL.ChaosiumCanvasInterface.Permission.Always',
       GM: 'ROL.ChaosiumCanvasInterface.Permission.GM',
@@ -9,11 +9,11 @@ export default class ChaosiumCanvasInterfaceToScene extends ChaosiumCanvasInterf
     }
   }
 
-  static get icon () {
+  static get icon() {
     return 'fa-solid fa-map'
   }
 
-  static defineSchema () {
+  static defineSchema() {
     const fields = foundry.data.fields
     return {
       triggerButton: new fields.NumberField({
@@ -43,7 +43,7 @@ export default class ChaosiumCanvasInterfaceToScene extends ChaosiumCanvasInterf
     }
   }
 
-  async _handleMouseOverEvent () {
+  async _handleMouseOverEvent() {
     switch (this.permission) {
       case 'ALWAYS':
         return true
@@ -60,16 +60,26 @@ export default class ChaosiumCanvasInterfaceToScene extends ChaosiumCanvasInterf
     return false
   }
 
-  async _handleLeftClickEvent () {
-    if (this.sceneUuid) {
-      const doc = await fromUuid(this.sceneUuid)
-      if (doc) {
-        setTimeout(() => {
-          doc.view()
-        }, 100)
-      } else {
-        console.error('Scene ' + this.sceneUuid + ' not loaded')
-      }
+  async #handleClickEvent() {
+    const doc = await fromUuid(this.sceneUuid)
+    if (doc) {
+      setTimeout(() => {
+        doc.view()
+      }, 100)
+    } else {
+      console.error('Scene ' + this.sceneUuid + ' not loaded')
+    }
+  }
+
+  async _handleLeftClickEvent() {
+    if (this.sceneUuid && this.triggerButton === ChaosiumCanvasInterface.triggerButton.Left) {
+      this.#handleClickEvent()
+    }
+  }
+
+  async _handleRightClickEvent() {
+    if (this.sceneUuid && this.triggerButton === ChaosiumCanvasInterface.triggerButton.Right) {
+      this.#handleClickEvent()
     }
   }
 }

@@ -1,7 +1,7 @@
 import ChaosiumCanvasInterface from "./chaosium-canvas-interface.mjs";
 
 export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInterface {
-  static get PERMISSIONS () {
+  static get PERMISSIONS() {
     return {
       [CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT]: 'OWNERSHIP.INHERIT',
       [CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE]: 'OWNERSHIP.NONE',
@@ -11,16 +11,28 @@ export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInt
     }
   }
 
-  static get icon () {
+  static get icon() {
     return 'fa-solid fa-cubes'
   }
 
-  static defineSchema () {
+  static get triggerButtons () {
+    const buttons = super.triggerButtons
+    buttons[ChaosiumCanvasInterfaceTileToggle.triggerButton.Both] = 'ROL.ChaosiumCanvasInterface.Buttons.Both'
+    return buttons
+  }
+
+  static get triggerButton () {
+    const button = super.triggerButton
+    button.Both = 20
+    return button
+  }
+
+  static defineSchema() {
     const fields = foundry.data.fields
     return {
       triggerButton: new fields.NumberField({
-        choices: ChaosiumCanvasInterface.triggerButtons,
-        initial: ChaosiumCanvasInterface.triggerButton.Left,
+        choices: ChaosiumCanvasInterfaceTileToggle.triggerButtons,
+        initial: ChaosiumCanvasInterfaceTileToggle.triggerButton.Left,
         label: 'ROL.ChaosiumCanvasInterface.TileToggle.Button.Title',
         hint: 'ROL.ChaosiumCanvasInterface.TileToggle.Button.Hint'
       }),
@@ -91,11 +103,18 @@ export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInt
     }
   }
 
-  async _handleMouseOverEvent () {
+  static migrateData (source) {
+    if (typeof source.triggerButton === 'undefined' && source.regionUuids.length) {
+      source.triggerButton = ChaosiumCanvasInterfaceTileToggle.triggerButton.Both
+    }
+    return source
+  }
+
+  async _handleMouseOverEvent() {
     return game.user.isGM
   }
 
-  async _handleLeftClickEvent () {
+  async #handleClickEvent(button) {
     for (const uuid of this.tileUuids) {
       const doc = await fromUuid(uuid)
       if (doc) {
@@ -130,14 +149,28 @@ export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInt
         console.error('Region Behavior ' + uuid + ' not loaded')
       }
     }
+    if (this.triggerButton === ChaosiumCanvasInterfaceTileToggle.triggerButton.Both) {
+      for (const uuid of this.regionUuids) {
+        setTimeout(() => {
+          if (button === ChaosiumCanvasInterface.triggerButton.Right) {
+            game.rol.ClickRegionLeftUuid(uuid)
+          } else if (button === ChaosiumCanvasInterface.triggerButton.Left) {
+            game.rol.ClickRegionRightUuid(uuid)
+          }
+        }, 100)
+      }
+    }
   }
 
-  async _handleRightClickEvent () {
-    await this._handleLeftClickEvent()
-    for (const uuid of this.regionUuids) {
-      setTimeout(() => {
-        game.rol.ClickRegionLeftUuid(uuid)
-      }, 100)
+  async _handleLeftClickEvent() {
+    if ([ChaosiumCanvasInterfaceTileToggle.triggerButton.Both, ChaosiumCanvasInterface.triggerButton.Left].includes(this.triggerButton)) {
+      this.#handleClickEvent(ChaosiumCanvasInterface.triggerButton.Left)
+    }
+  }
+
+  async _handleRightClickEvent() {
+    if ([ChaosiumCanvasInterfaceTileToggle.triggerButton.Both, ChaosiumCanvasInterface.triggerButton.Right].includes(this.triggerButton)) {
+      this.#handleClickEvent(ChaosiumCanvasInterface.triggerButton.Right)
     }
   }
 }

@@ -1,7 +1,7 @@
 import ChaosiumCanvasInterface from "./chaosium-canvas-interface.mjs";
 
 export default class ChaosiumCanvasInterfaceOpenDocument extends ChaosiumCanvasInterface {
-  static get PERMISSIONS () {
+  static get PERMISSIONS() {
     return {
       ALWAYS: 'ROL.ChaosiumCanvasInterface.Permission.Always',
       DOCUMENT: 'ROL.ChaosiumCanvasInterface.Permission.Document',
@@ -9,11 +9,11 @@ export default class ChaosiumCanvasInterfaceOpenDocument extends ChaosiumCanvasI
     }
   }
 
-  static get icon () {
+  static get icon() {
     return 'fa-solid fa-book-atlas'
   }
 
-  static defineSchema () {
+  static defineSchema() {
     const fields = foundry.data.fields
     return {
       triggerButton: new fields.NumberField({
@@ -42,7 +42,7 @@ export default class ChaosiumCanvasInterfaceOpenDocument extends ChaosiumCanvasI
     }
   }
 
-  async _handleMouseOverEvent () {
+  async _handleMouseOverEvent() {
     switch (this.permission) {
       case 'ALWAYS':
         return true
@@ -59,18 +59,28 @@ export default class ChaosiumCanvasInterfaceOpenDocument extends ChaosiumCanvasI
     return false
   }
 
-  async _handleLeftClickEvent () {
-    if (this.documentUuid) {
-      const doc = await fromUuid(this.documentUuid)
-      if (doc?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER)) {
-        if (doc instanceof JournalEntryPage) {
-          doc.parent.sheet.render(true, { pageId: doc.id, anchor: this.anchor })
-        } else {
-          doc.sheet.render(true)
-        }
+  async #handleClickEvent() {
+    const doc = await fromUuid(this.documentUuid)
+    if (doc?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER)) {
+      if (doc instanceof JournalEntryPage) {
+        doc.parent.sheet.render(true, { pageId: doc.id, anchor: this.anchor })
       } else {
-        console.error('Document ' + this.documentUuid + ' not loaded')
+        doc.sheet.render(true)
       }
+    } else {
+      console.error('Document ' + this.documentUuid + ' not loaded')
+    }
+  }
+
+  async _handleLeftClickEvent() {
+    if (this.documentUuid && this.triggerButton === ChaosiumCanvasInterface.triggerButton.Left) {
+      this.#handleClickEvent()
+    }
+  }
+
+  async _handleRightClickEvent() {
+    if (this.documentUuid && this.triggerButton === ChaosiumCanvasInterface.triggerButton.Right) {
+      this.#handleClickEvent()
     }
   }
 }

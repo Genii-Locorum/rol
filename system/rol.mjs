@@ -9,6 +9,7 @@ import * as RenderChatMessage from './setup/chat-messages.mjs'
 import DrawNote from './hooks/draw-note.mjs'
 import HotbarDrop from './hooks/hotbar-drop.mjs'
 import RenderNoteConfig from './hooks/render-note-config.mjs'
+import RenderRegionConfig from './hooks/render-region-config.mjs'
 //import * as Chat from "./apps/chat.mjs";
 import { ROLHooks } from './setup/hooks-index.mjs'
 import { ROLActorSheet } from "./actor/sheets/base-actor-sheet.mjs";
@@ -29,5 +30,6 @@ Hooks.on("hotbarDrop", (bar, data, slot) => {
   }
 });
 Hooks.on('renderNoteConfig', RenderNoteConfig);
+Hooks.on('renderRegionConfig', RenderRegionConfig);
 
 ROLHooks.listen();

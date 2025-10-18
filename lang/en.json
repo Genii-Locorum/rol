@@ -353,6 +353,7 @@
     },
     "ChaosiumCanvasInterface": {
       "Buttons": {
+        "Both": "Both Mouse Buttons",
         "Left": "Left Mouse Button",
         "Right": "Right Mouse Button"
       },
