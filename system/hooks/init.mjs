@@ -6,12 +6,15 @@ import { registerSettings } from '../settings/register-settings.mjs';
 import { registerSheets } from '../setup/register-sheets.mjs';
 import { ROLCombat } from "../apps/Combat/combat.mjs";
 import { ROLCombatTracker } from "../apps/Combat/combatTracker.mjs";
+import ChaosiumCanvasInterfaceInit from '../apps/CCI/init.mjs'
 
 export default function Init() {
   //Add classes to global game object
   game.rol = {
     ROLActor,
     ROLItem,
+    ClickRegionLeftUuid: ChaosiumCanvasInterfaceInit.ClickRegionLeftUuid,
+    ClickRegionRightUuid: ChaosiumCanvasInterfaceInit.ClickRegionRightUuid,
     //rollItemMacro
   }
   //Add Custom Configuration
@@ -31,10 +34,9 @@ export default function Init() {
   registerSettings();
   handlebarsHelper();
 
-
-
   // Define custom Document classes
   CONFIG.Item.documentClass = ROLItem;
   CONFIG.Actor.documentClass = ROLActor;
+  ChaosiumCanvasInterfaceInit.initSelf()
   registerSheets()
 }
