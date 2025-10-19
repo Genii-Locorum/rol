@@ -1,3 +1,6 @@
+## V13.5
+- Chaosium Canvas Interface support added with some extra (brief) game instructions
+
 ## V13.4
 - Spell Mastery will now work (bug fix) - if you updated the name or spell level you couldn't master the spell
 - Spell pre-requisites now visible and can be ammended/set
