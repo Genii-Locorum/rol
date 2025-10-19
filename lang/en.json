@@ -52,7 +52,7 @@
     "characteristics": "CHARACTERISTICS",
     "charHint": "Ask your GM to turn on Character Creation mode to edit characteristics",
     "CharMax": "Characteristic Maximum Value",
-    "CharMaxAbbr": "Max Char", 
+    "CharMaxAbbr": "Max Char",
     "CharMin": "Characteristic Minimum Value",
     "CharMinAbbr": "Min Char",
     "childhood": "Childhood",
@@ -91,7 +91,7 @@
     "deleteWeapon": "Delete Weapon",
     "demiMonde": "DEMI MONDE",
     "DemiMondeOnly": "Only available for Demi Monde",
-    "DemiMondeOnlyAbbr": "For Demi Monde",    
+    "DemiMondeOnlyAbbr": "For Demi Monde",
     "descending": " and then is in descending order",
     "description" : "Description",
     "developLoss": "Development Loss",
@@ -169,6 +169,7 @@
     "luckShort": "Luck",
     "luckSpent": "Luck spent",
     "magic" : "Magic",
+    "mapNoteNoBackground": "Hide background",
     "mastered" : "Mastered",
     "masteredShort" : "M",
     "melee": "Melee",
@@ -194,11 +195,11 @@
     "noReset": "Max Luck has not increased",
     "noSkill": "No roll allowed as you have no chance of success",
     "NotAdvantage": "Not available with specific advantage",
-    "NotAdvantageAbbr": "Not Advantage",    
+    "NotAdvantageAbbr": "Not Advantage",
     "noTarget": "You have not selected a target",
     "notDemiMonde": "Non Demi Monde",
     "NotDemiMonde": "Not available to Demi Monde",
-    "NotDemiMondeAbbr": "Not Demi Monde",    
+    "NotDemiMondeAbbr": "Not Demi Monde",
     "notes": "Notes",
     "npc": "NPC",
     "occupation" : "Occupation",
@@ -245,7 +246,7 @@
     "signatureWeapon": "Signature Weapon",
     "singleShot": "Single Shot",
     "SkillMin": "Skill Minumum Value",
-    "SkillMinAbbr": "Min Skill",    
+    "SkillMinAbbr": "Min Skill",
     "skill" : "Skill",
     "skills" : "Skills",
     "skillSubType" : "Skill Sub-Type",
@@ -299,7 +300,7 @@
     "weapons": "Weapons",
     "weaponType": "Weapon Type",
     "yes": "Yes",
-    
+
     "Settings.advancedRules": "Advanced Rule Settings",
     "Settings.Dice3D": "Dice So Nice",
     "Settings.SyncDice3D" : "Sync 3D Dice",
@@ -349,6 +350,175 @@
       "equipment": "Equipment",
       "biography": "Biography",
       "development": "Development"
+    },
+    "ChaosiumCanvasInterface": {
+      "Buttons": {
+        "Both": "Both Mouse Buttons",
+        "Left": "Left Mouse Button",
+        "Right": "Right Mouse Button"
+      },
+      "DrawingToggle": {
+        "Button": {
+          "Title": "Mouse Button",
+          "Hint": "Which button should trigger this behavior"
+        },
+        "Toggle": {
+          "Title": "Show",
+          "Hint": "Should this show or hide the drawing and documents"
+        },
+        "Drawing": {
+          "Title": "Select Drawing",
+          "Hint": "Set visibility of these drawings"
+        },
+        "JournalEntry": {
+          "Title": "Select Journal Entries",
+          "Hint": ""
+        },
+        "JournalEntryPage": {
+          "Title": "Select Journal Entry Pages",
+          "Hint": ""
+        },
+        "RegionBehavior": {
+          "Title": "Select Region Behaviors",
+          "Hint": "Enable/Disable these Region Behaviors"
+        },
+        "PermissionDocument": {
+          "Title": "Permission for Journal Entries",
+          "Hint": "When set to show set Document ownership to this level"
+        },
+        "PermissionPage": {
+          "Title": "Permission for Journal Entry Pages",
+          "Hint": "When set to show set Journal Entry Page ownership to this level"
+        },
+        "RegionUuids": {
+          "Title": "Then trigger these CCI Regions on Right Click",
+          "Hint": ""
+        }
+      },
+      "MapPinToggle": {
+        "Button": {
+          "Title": "Mouse Button",
+          "Hint": "Which button should trigger this behavior"
+        },
+        "Toggle": {
+          "Title": "Show",
+          "Hint": "Should this show or hide the map note and documents"
+        },
+        "Document": {
+          "Title": "Select Documents",
+          "Hint": ""
+        },
+        "Note": {
+          "Title": "Map Notes",
+          "Hint": ""
+        },
+        "PermissionShow": {
+          "Title": "Show Permission",
+          "Hint": ""
+        },
+        "PermissionHide": {
+          "Title": "Hide Permission",
+          "Hint": ""
+        }
+      },
+      "OpenDocument": {
+        "Button": {
+          "Title": "Mouse Button",
+          "Hint": "Which button should trigger this behavior"
+        },
+        "Permission": {
+          "Title": "Can click if",
+          "Hint": ""
+        },
+        "Document": {
+          "Title": "Select Document",
+          "Hint": ""
+        },
+        "Anchor": {
+          "Title": "Optional Anchor",
+          "Hint": "If loading a JournalEntryPage jump to anchor"
+        }
+      },
+      "Permission": {
+        "Always": "Always",
+        "Document": "See Document",
+        "GM": "GM",
+        "SeeTile": "See Tile"
+      },
+      "PlaySound": {
+        "Button": {
+          "Title": "Mouse Button",
+          "Hint": "Which button should trigger this behavior"
+        },
+        "Playlist": {
+          "Title": "Select Playlist",
+          "Hint": ""
+        },
+        "Sound": {
+          "Title": "Select Playlist Sound",
+          "Hint": ""
+        },
+        "Toggle": {
+          "Title": "Play",
+          "Hint": "Should this play or stop playback"
+        }
+      },
+      "ToScene": {
+        "Button": {
+          "Title": "Mouse Button",
+          "Hint": "Which button should trigger this behavior"
+        },
+        "Permission": {
+          "Title": "Can click if",
+          "Hint": ""
+        },
+        "Scene": {
+          "Title": "Select Scene",
+          "Hint": ""
+        },
+        "Tile": {
+          "Title": "Select Tile",
+          "Hint": "Select Tile that must be visible"
+        }
+      },
+      "TileToggle": {
+        "Button": {
+          "Title": "Mouse Button",
+          "Hint": "Which button should trigger this behavior"
+        },
+        "Toggle": {
+          "Title": "Show",
+          "Hint": "Should this show or hide the tile and documents"
+        },
+        "Tile": {
+          "Title": "Select Tile",
+          "Hint": "Set visibility of these tiles"
+        },
+        "JournalEntry": {
+          "Title": "Select Journal Entries",
+          "Hint": ""
+        },
+        "JournalEntryPage": {
+          "Title": "Select Journal Entry Pages",
+          "Hint": ""
+        },
+        "RegionBehavior": {
+          "Title": "Select Region Behaviors",
+          "Hint": "Enable/Disable these Region Behaviors"
+        },
+        "PermissionDocument": {
+          "Title": "Permission for Journal Entries",
+          "Hint": "When set to show set Document ownership to this level"
+        },
+        "PermissionPage": {
+          "Title": "Permission for Journal Entry Pages",
+          "Hint": "When set to show set Journal Entry Page ownership to this level"
+        },
+        "RegionUuids": {
+          "Title": "Then trigger these CCI Regions on Right Click",
+          "Hint": ""
+        }
+      }
     }
   },
 
@@ -365,6 +535,14 @@
       "skill": "Skill",
       "spell": "Spell",
       "weapons": "Weapon"
+    },
+    "RegionBehavior": {
+      "ChaosiumCanvasInterfaceDrawingToggle": "CCI: Drawing Toggle",
+      "ChaosiumCanvasInterfaceMapPinToggle": "CCI: Map Pin Toggle",
+      "ChaosiumCanvasInterfaceOpenDocument": "CCI: Open Document",
+      "ChaosiumCanvasInterfacePlaySound": "CCI: Play Sound",
+      "ChaosiumCanvasInterfaceToScene": "CCI: To Scene",
+      "ChaosiumCanvasInterfaceTileToggle": "CCI: Tile Toggle"
     }
   },
 
