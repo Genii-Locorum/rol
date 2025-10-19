@@ -2,7 +2,7 @@
   "id": "rol",
   "title": "Rivers of London",
   "description": "Rivers of London implementation for FoundryVTT!",
-  "version": "13.4",
+  "version": "13.5",
   "compatibility": {
     "minimum": "13",
     "verified": "13.350",
@@ -102,7 +102,7 @@
   },
   "url": "https://github.com/Genii-Locorum/rol",
   "manifest": "https://github.com/Genii-Locorum/rol/releases/latest/download/system.json",
-  "download": "https://github.com/Genii-Locorum/rol/releases/download/v13.4/system.zip",
+  "download": "https://github.com/Genii-Locorum/rol/releases/download/v13.5/system.zip",
   "license": "LICENSE.txt",
   "changelog": "CHANGELOG.md",
   "bugs": "https://github.com/Genii-Locorum/rol/issues"
