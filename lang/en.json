@@ -386,12 +386,28 @@
           "Title": "Permission for Journal Entries",
           "Hint": "When set to show set Document ownership to this level"
         },
+        "PermissionDocumentHide": {
+          "Title": "Hide Permission for Journal Entries",
+          "Hint": "When set to hide set Document ownership to this level"
+        },
         "PermissionPage": {
           "Title": "Permission for Journal Entry Pages",
           "Hint": "When set to show set Journal Entry Page ownership to this level"
         },
-        "RegionUuids": {
-          "Title": "Then trigger these CCI Regions on Right Click",
+        "PermissionPageHide": {
+          "Title": "Hide Permission for Journal Entry Pages",
+          "Hint": "When set to hide set Journal Entry Page ownership to this level"
+        },
+        "TriggerButton": {
+          "Title": "Trigger Region Button",
+          "Hint": "If Mouse Button is Both, and this button is used trigger the following region"
+        },
+        "TriggerRegionUuids": {
+          "Title": "Trigger This Region",
+          "Hint": ""
+        },
+        "TriggerAsButton": {
+          "Title": "With A Button Click",
           "Hint": ""
         }
       },
@@ -510,12 +526,28 @@
           "Title": "Permission for Journal Entries",
           "Hint": "When set to show set Document ownership to this level"
         },
+        "PermissionDocumentHide": {
+          "Title": "Hide Permission for Journal Entries",
+          "Hint": "When set to hide set Document ownership to this level"
+        },
         "PermissionPage": {
           "Title": "Permission for Journal Entry Pages",
           "Hint": "When set to show set Journal Entry Page ownership to this level"
         },
-        "RegionUuids": {
-          "Title": "Then trigger these CCI Regions on Right Click",
+        "PermissionPageHide": {
+          "Title": "Hide Permission for Journal Entry Pages",
+          "Hint": "When set to hide set Journal Entry Page ownership to this level"
+        },
+        "TriggerButton": {
+          "Title": "Trigger Region Button",
+          "Hint": "If Mouse Button is Both, and this button is used trigger the following region"
+        },
+        "TriggerRegionUuids": {
+          "Title": "Trigger This Region",
+          "Hint": ""
+        },
+        "TriggerAsButton": {
+          "Title": "With A Button Click",
           "Hint": ""
         }
       }
