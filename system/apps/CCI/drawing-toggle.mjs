@@ -66,6 +66,13 @@ export default class ChaosiumCanvasInterfaceDrawingToggle extends ChaosiumCanvas
         hint: 'ROL.ChaosiumCanvasInterface.DrawingToggle.PermissionDocument.Hint',
         required: true
       }),
+      permissionDocumentHide: new fields.NumberField({
+        choices: Object.keys(ChaosiumCanvasInterfaceDrawingToggle.PERMISSIONS).reduce((c, k) => { c[k] = game.i18n.localize(ChaosiumCanvasInterfaceDrawingToggle.PERMISSIONS[k]); return c }, {}),
+        initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE,
+        label: 'ROL.ChaosiumCanvasInterface.DrawingToggle.PermissionDocumentHide.Title',
+        hint: 'ROL.ChaosiumCanvasInterface.DrawingToggle.PermissionDocumentHide.Hint',
+        required: true
+      }),
       journalEntryPageUuids: new fields.SetField(
         new fields.DocumentUUIDField({
           type: 'JournalEntryPage'
@@ -82,6 +89,13 @@ export default class ChaosiumCanvasInterfaceDrawingToggle extends ChaosiumCanvas
         hint: 'ROL.ChaosiumCanvasInterface.DrawingToggle.PermissionPage.Hint',
         required: true
       }),
+      permissionPageHide: new fields.NumberField({
+        choices: Object.keys(ChaosiumCanvasInterfaceDrawingToggle.PERMISSIONS).reduce((c, k) => { c[k] = game.i18n.localize(ChaosiumCanvasInterfaceDrawingToggle.PERMISSIONS[k]); return c }, {}),
+        initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE,
+        label: 'ROL.ChaosiumCanvasInterface.DrawingToggle.PermissionPageHide.Title',
+        hint: 'ROL.ChaosiumCanvasInterface.DrawingToggle.PermissionPageHide.Hint',
+        required: true
+      }),
       regionBehaviorUuids: new fields.SetField(
         new fields.DocumentUUIDField({
           type: 'RegionBehavior'
@@ -91,21 +105,33 @@ export default class ChaosiumCanvasInterfaceDrawingToggle extends ChaosiumCanvas
           hint: 'ROL.ChaosiumCanvasInterface.DrawingToggle.RegionBehavior.Hint'
         }
       ),
+      regionButton: new fields.NumberField({
+        choices: ChaosiumCanvasInterface.triggerButtons,
+        initial: ChaosiumCanvasInterface.triggerButton.Right,
+        label: 'ROL.ChaosiumCanvasInterface.DrawingToggle.TriggerButton.Title',
+        hint: 'ROL.ChaosiumCanvasInterface.DrawingToggle.TriggerButton.Hint'
+      }),
       regionUuids: new fields.SetField(
         new fields.DocumentUUIDField({
           type: 'Region'
         }),
         {
-          label: 'ROL.ChaosiumCanvasInterface.DrawingToggle.RegionUuids.Title',
-          hint: 'ROL.ChaosiumCanvasInterface.DrawingToggle.RegionUuids.Hint'
+          label: 'ROL.ChaosiumCanvasInterface.DrawingToggle.TriggerRegionUuids.Title',
+          hint: 'ROL.ChaosiumCanvasInterface.DrawingToggle.TriggerRegionUuids.Hint'
         }
       ),
+      triggerAsButton: new fields.NumberField({
+        choices: ChaosiumCanvasInterface.triggerButtons,
+        initial: ChaosiumCanvasInterface.triggerButton.Left,
+        label: 'ROL.ChaosiumCanvasInterface.DrawingToggle.TriggerAsButton.Title',
+        hint: 'ROL.ChaosiumCanvasInterface.DrawingToggle.TriggerAsButton.Hint'
+      }),
     }
   }
 
   static migrateData (source) {
-    if (typeof source.triggerButton === 'undefined' && source.regionUuids.length) {
-      source.triggerButton = ChaosiumCanvasInterfaceTileToggle.triggerButton.Both
+    if (typeof source.triggerButton === 'undefined' && source.regionUuids?.length) {
+      source.triggerButton = ChaosiumCanvasInterfaceDrawingToggle.triggerButton.Both
     }
     return source
   }
@@ -123,8 +149,8 @@ export default class ChaosiumCanvasInterfaceDrawingToggle extends ChaosiumCanvas
         console.error('Drawing ' + uuid + ' not loaded')
       }
     }
-    const permissionDocument = (!this.toggle ? CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE : this.permissionDocument)
-    const permissionPage = (!this.toggle ? CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE : this.permissionPage)
+    const permissionDocument = (!this.toggle ? this.permissionDocumentHide : this.permissionDocument)
+    const permissionPage = (!this.toggle ? this.permissionPageHide : this.permissionPage)
     for (const uuid of this.journalEntryUuids) {
       const doc = await fromUuid(uuid)
       if (doc) {
@@ -149,13 +175,15 @@ export default class ChaosiumCanvasInterfaceDrawingToggle extends ChaosiumCanvas
         console.error('Region Behavior ' + uuid + ' not loaded')
       }
     }
-    if (this.triggerButton === ChaosiumCanvasInterfaceTileToggle.triggerButton.Both) {
+    if (this.triggerButton === ChaosiumCanvasInterfaceDrawingToggle.triggerButton.Both) {
       for (const uuid of this.regionUuids) {
         setTimeout(() => {
-          if (button === ChaosiumCanvasInterface.triggerButton.Right) {
-            game.rol.ClickRegionLeftUuid(uuid)
-          } else if (button === ChaosiumCanvasInterface.triggerButton.Left) {
-            game.rol.ClickRegionRightUuid(uuid)
+          if (button === this.regionButton) {
+            if (this.triggerAsButton === ChaosiumCanvasInterface.triggerButton.Right) {
+              game.rol.ClickRegionRightUuid(uuid)
+            } else if (this.triggerAsButton === ChaosiumCanvasInterface.triggerButton.Left) {
+              game.rol.ClickRegionLeftUuid(uuid)
+            }
           }
         }, 100)
       }
