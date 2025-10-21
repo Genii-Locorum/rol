@@ -1,3 +1,6 @@
+## V13.6
+- Chaosium Canvas Interface update
+
 ## V13.5
 - Chaosium Canvas Interface support added with some extra (brief) game instructions
 
