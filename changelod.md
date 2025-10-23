@@ -1,3 +1,7 @@
+## v13.7
+- Additional CCI option, Ambient Light toggle added
+- All CCI show/hide options have become show/hide/toggle
+
 ## V13.6
 - Chaosium Canvas Interface update
 

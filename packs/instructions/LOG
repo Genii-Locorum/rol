@@ -1,22 +1,3 @@
-2025/10/21-05:44:41.959 56c0 Recovering log #176
-2025/10/21-05:44:41.969 56c0 Delete type=0 #176
-2025/10/21-05:44:41.969 56c0 Delete type=3 #174
-2025/10/21-05:54:31.842 4fc0 Level-0 table #180: started
-2025/10/21-05:54:31.844 4fc0 Level-0 table #180: 10992 bytes OK
-2025/10/21-05:54:31.844 4fc0 Delete type=0 #178
-2025/10/21-05:54:31.846 4fc0 Manual compaction at level-0 from '!journal!wcEzUGv6hcxzNBFW' @ 72057594037927935 : 1 .. '!journal.pages!wcEzUGv6hcxzNBFW.yJ2UxYSSbIsPxLuN' @ 0 : 0; will stop at '!journal.pages!wcEzUGv6hcxzNBFW.yJ2UxYSSbIsPxLuN' @ 18 : 1
-2025/10/21-05:54:31.846 4fc0 Compacting 2@0 + 0@1 files
-2025/10/21-05:54:31.849 4fc0 Generated table #181@0: 13 keys, 23085 bytes
-2025/10/21-05:54:31.849 4fc0 Compacted 2@0 + 0@1 files => 23085 bytes
-2025/10/21-05:54:31.849 4fc0 compacted to: files[ 0 1 1 0 0 0 0 ]
-2025/10/21-05:54:31.849 4fc0 Delete type=2 #175
-2025/10/21-05:54:31.850 4fc0 Delete type=2 #180
-2025/10/21-05:54:31.857 4fc0 Manual compaction at level-0 from '!journal.pages!wcEzUGv6hcxzNBFW.yJ2UxYSSbIsPxLuN' @ 18 : 1 .. '!journal.pages!wcEzUGv6hcxzNBFW.yJ2UxYSSbIsPxLuN' @ 0 : 0; will stop at (end)
-2025/10/21-05:54:31.865 4fc0 Manual compaction at level-1 from '!journal!wcEzUGv6hcxzNBFW' @ 72057594037927935 : 1 .. '!journal.pages!wcEzUGv6hcxzNBFW.yJ2UxYSSbIsPxLuN' @ 0 : 0; will stop at '!journal.pages!wcEzUGv6hcxzNBFW.yJ2UxYSSbIsPxLuN' @ 318 : 1
-2025/10/21-05:54:31.865 4fc0 Compacting 1@1 + 1@2 files
-2025/10/21-05:54:31.867 4fc0 Generated table #182@1: 12 keys, 23059 bytes
-2025/10/21-05:54:31.868 4fc0 Compacted 1@1 + 1@2 files => 23059 bytes
-2025/10/21-05:54:31.868 4fc0 compacted to: files[ 0 0 1 0 0 0 0 ]
-2025/10/21-05:54:31.868 4fc0 Delete type=2 #85
-2025/10/21-05:54:31.869 4fc0 Delete type=2 #181
-2025/10/21-05:54:31.869 4fc0 Manual compaction at level-1 from '!journal.pages!wcEzUGv6hcxzNBFW.yJ2UxYSSbIsPxLuN' @ 318 : 1 .. '!journal.pages!wcEzUGv6hcxzNBFW.yJ2UxYSSbIsPxLuN' @ 0 : 0; will stop at (end)
+2025/10/23-09:22:39.813 4cf8 Recovering log #192
+2025/10/23-09:22:39.813 4cf8 Delete type=0 #192
+2025/10/23-09:22:39.813 4cf8 Delete type=3 #190
