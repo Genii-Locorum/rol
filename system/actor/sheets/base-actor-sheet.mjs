@@ -147,7 +147,7 @@ export class ROLActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
     const newItem = await docCls.create(docData, { parent: this.actor });
 
     //And in certain circumstances render the new item sheet
-    if (['gear','wound','family','thrall'].includes(newItem.type)) {
+    if (['equipment','contacts'].includes(newItem.type)) {
       newItem.sheet.render(true);
     }
   }

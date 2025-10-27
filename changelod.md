@@ -1,3 +1,6 @@
+## v13.9
+- Equipment and Contacts can, once again, be added from the character sheet ("+add item" button)
+
 ## v13.8
 - Inline editing of skills from the character sheet should be working again in Development/Creation phase.
 

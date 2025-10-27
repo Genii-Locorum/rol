@@ -377,7 +377,7 @@
             <li class="flexrow contacts-header">
               <div class="police-header spell-header">{{ localize 'ROL.contacts' }}</div>
               <div class="item-controls">
-                <div class="item-control item-create" title="{{ localize 'ROL.createContact' }}" data-type="contacts"> +{{ localize 'ROL.addContact' }}</div>
+                <div class="item-control item-create" data-action='createDoc' data-document-class='Item' data-type='contacts' title="{{ localize 'ROL.createContact' }}"> +{{ localize 'ROL.addContact' }}</div>
               </div>  
             </li>
             {{#each contacts as |contacts id|}}
@@ -523,7 +523,7 @@
             <li class="flexrow contacts-header">
               <div class="police-header equip-header">{{ localize 'ROL.equipment' }}</div>
               <div class="item-controls">
-                <div class="item-control item-create" title="{{ localize 'ROL.createEquipment' }}" data-type="equipment"> +{{ localize 'ROL.addItem' }}</div>
+                <div class="item-control item-create" data-action='createDoc' data-document-class='Item' data-type='equipment' title="{{ localize 'ROL.createEquipment' }}" data-type="equipment"> +{{ localize 'ROL.addItem' }}</div>
               </div>  
             </li>
             {{#each equipment as |equipment id|}}
