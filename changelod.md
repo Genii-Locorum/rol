@@ -1,3 +1,6 @@
+## v13.8
+- Inline editing of skills from the character sheet should be working again in Development/Creation phase.
+
 ## v13.7
 - Additional CCI option, Ambient Light toggle added
 - All CCI show/hide options have become show/hide/toggle

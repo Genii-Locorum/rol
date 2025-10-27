@@ -248,7 +248,7 @@ export class ROLCharacterSheet extends ROLActorSheet {
   _onRender(context, _options) {
     this._dragDrop.forEach((d) => d.bind(this.element));
     this.element.querySelectorAll('.viewFromUuid').forEach(n => n.addEventListener("click", this.#viewFromUuid.bind(this)))
-    this.element.querySelectorAll('.skill-inline').forEach(n => n.addEventListener("change", this.#skillInline.bind(this)))
+    this.element.querySelectorAll('.inline-edit').forEach(n => n.addEventListener("change", this.#skillInline.bind(this)))
     this.element.querySelectorAll('.change-tab').forEach(n => n.addEventListener("click", this.#changeTab.bind(this)))
     this.element.querySelectorAll('.attribute-name.rollable').forEach(n => n.addEventListener("click", ROLChecks._onRollAttributeTest.bind(this)))
     this.element.querySelectorAll('.luck-name.rollable').forEach(n => n.addEventListener("click", ROLChecks._onRollLuckTest.bind(this)))
@@ -283,8 +283,11 @@ export class ROLCharacterSheet extends ROLActorSheet {
     event.preventDefault();
     event.stopImmediatePropagation();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
-    let newVal = Number(event.target.value);
-    const field = "system." + event.target.dataset.field
+    let newVal = event.target.value;
+    const field = event.target.dataset.field
+    if (field === 'system.score') {
+      newVal = Number(newVal)
+    }
     const item = this.actor.items.get(itemId);
     await item.update({ [field]: newVal });
   }

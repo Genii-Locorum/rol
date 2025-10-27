@@ -262,7 +262,7 @@
                   <li class="item {{#if skill.system.special}}specialisation {{else}} skill-listitem {{/if}}" data-document-class='Item' data-item-id="{{skill._id}}">
                     {{#isOr ../isCreation ../isDevelopment}}
                     <div class="item-name skill-name context">
-                      <input class="skill-score-inp skill-name inline-edit" name="skill.system.skillName" type="text" value="{{skill.system.skillName}}"/>
+                      <input class="skill-score-inp skill-name inline-edit" data-field="system.skillName" name="skill.system.skillName" type="text" value="{{skill.system.skillName}}"/>
                     </div>
                     <div></div>
                     <input class="skill-score-inp centre inline-edit"  data-field="system.score" name="skill.system.score" type="text" value="{{skill.system.score}}" data-dtype="Number"/>
